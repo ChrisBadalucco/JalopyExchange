@@ -2,7 +2,7 @@ package com.je.domain
 
 class Automobile {
 
-    long vin
+    Long vin
     String make
     String model
     int year

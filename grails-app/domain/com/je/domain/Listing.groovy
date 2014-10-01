@@ -2,14 +2,14 @@ package com.je.domain
 
 class Listing {
 
+    Long id
     Automobile automobile
-    User buyer
     User seller
     Date startDate
     Date endDate
     BigDecimal askingPrice
-    BigDecimal highestOffer // TODO probably move off the listing object to offer object (?)
 
     static constraints = {
+        id blank: false, unique: true
     }
 }
