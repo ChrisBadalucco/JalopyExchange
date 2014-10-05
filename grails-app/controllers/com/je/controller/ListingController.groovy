@@ -10,9 +10,5 @@ class ListingController extends RestfulController {
         super(Listing)
     }
 
-//    protected Listing queryForResource(Serializable id) {
-//        Listing.where {
-//            id == id && user.username = params.username
-//        }
-//    }
+    // TODO override index aka get request with a println to show it's working
 }
