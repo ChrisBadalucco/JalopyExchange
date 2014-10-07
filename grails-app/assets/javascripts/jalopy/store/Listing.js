@@ -1,5 +1,5 @@
 Ext.define('Jalopy.store.Listing', {
-    extend : 'Ext.data.Store',
+    extend : 'Jalopy.store.BaseStore',
     autoLoad : true,
     model : Ext.define('Jalopy.model.Listing', {
         extend : 'Jalopy.model.Base'

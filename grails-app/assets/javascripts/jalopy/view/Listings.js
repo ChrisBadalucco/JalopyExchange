@@ -2,13 +2,21 @@ Ext.define('Jalopy.view.Listings', {
     extend : 'Ext.grid.Panel',
 
     title : 'Listings',
-    width : 800,
-    height : 300,
+    store : 'Listing',
     columns : [ {
-        text : 'VIN',
-        dataIndex : 'vin'
+        text : 'ID',
+        dataIndex : 'id'
+    }, {
+        text : 'Seller',
+        dataIndex : 'seller'
     }, {
         text : 'Asking Price',
         dataIndex : 'askingPrice'
+    }, {
+        text : 'Start Date',
+        dataIndex : 'dateCreated'
+    }, {
+        text : 'End Date',
+        dataIndex : 'endDate'
     } ]
 });
