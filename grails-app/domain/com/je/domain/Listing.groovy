@@ -6,7 +6,7 @@ import grails.rest.*
  * Listing
  * TODO (A domain class describes the data object and it's mapping to the database)
  */
-@Resource(uri='/listings', formats=['json', 'xml'])
+@Resource(uri='/main/listing', formats=['json', 'xml'])
 class Listing {
 
     /* Default (injected) attributes of GORM */

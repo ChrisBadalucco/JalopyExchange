@@ -2,6 +2,10 @@ package com.je.domain
 
 import grails.rest.Resource
 
+/**
+ * Person
+ * TODO (A domain class describes the data object and it's mapping to the database)
+ */
 @Resource(uri='/persons', formats=['json', 'xml'])
 class Person {
 
