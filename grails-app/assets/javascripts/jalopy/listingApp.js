@@ -3,5 +3,5 @@ Ext.application({
     extend : 'Jalopy.app.ListingApplication',
     appFolder : 'assets/jalopy',
 
-    autoCreateViewport : 'Jalopy.view.Listings'
+    autoCreateViewport : 'Jalopy.view.listing.Listings'
 });

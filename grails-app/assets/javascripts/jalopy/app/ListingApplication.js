@@ -5,6 +5,7 @@ Ext.define('Jalopy.app.ListingApplication', {
     paths : {
         'Ext' : '.'
     },
+    views : [ 'listing.AddListingDlg'],
     stores : [ 'Listing' ],
 
     launch : function() {

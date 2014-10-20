@@ -6,7 +6,7 @@ import grails.rest.Resource
  * Automobile
  * TODO (A domain class describes the data object and it's mapping to the database)
  */
-@Resource(uri='/automobiles', formats=['json', 'xml'])
+@Resource(uri='/main/automobiles', formats=['json', 'xml'])
 class Automobile {
 
     Long vin
@@ -25,5 +25,9 @@ class Automobile {
         vin blank : false, unique : true
         year size: 4
         // TODO owner unique: true
+    }
+
+    String getDescription() {
+        "$year$make$model"
     }
 }
