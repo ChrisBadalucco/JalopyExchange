@@ -5,6 +5,7 @@ Ext.define('Jalopy.view.listing.AddListingDlg', {
     controller: 'listingViewController',
 
     title: 'Add New Listing',
+    autoShow : true,
     bbar : {
         xtype: 'button',
         reference : 'submitListingBtn',

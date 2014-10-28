@@ -1,5 +1,5 @@
-import com.je.domain.Automobile
-import com.je.domain.Listing
+import com.je.Automobile
+import com.je.Listing
 import grails.rest.render.json.JsonCollectionRenderer
 import grails.rest.render.json.JsonRenderer
 

@@ -8,14 +8,14 @@ Ext.define('Jalopy.view.listing.ListingViewController', {
         var store = grid.getStore();
         if (form.isValid()) {
             store.add(form.getValues());
-//            store.sync({
-//                success : function() {
-//                    this.getView().close();
-//                },
-//                failure : function() {
-//                    store.rejectChanges();
-//                }
-//            });
+            store.sync({
+                success : function() {
+                    this.getView().close();
+                },
+                failure : function() {
+                    store.rejectChanges();
+                }
+            });
         }
     }
 });

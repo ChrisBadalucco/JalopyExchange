@@ -1,5 +1,6 @@
 package com.je.domain
 
+import com.je.Automobile
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 

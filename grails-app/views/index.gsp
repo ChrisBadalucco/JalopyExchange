@@ -7,9 +7,18 @@
 
         <asset:javascript src="extjs/ext-all-debug.js"/>
 
+        <script type="text/javascript">
+            JE = {};
+            JE.USERNAME = "<sec:loggedInUserInfo field="username"/>";
+            <sec:access expression="hasRole('ROLE_ADMIN')">
+            JE.ADMIN = true;
+            </sec:access>
+        </script>
+
         <asset:javascript src="jalopy/overrides/extjsSetup.js"/>
 
         <asset:javascript src="jalopy/listingApp.js"/>
+
 	</head>
 	<body></body>
 </html>

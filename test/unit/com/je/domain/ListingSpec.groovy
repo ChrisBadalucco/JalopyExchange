@@ -1,6 +1,6 @@
 package com.je.domain
 
-import com.je.domain.Listing
+import com.je.Listing
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 
