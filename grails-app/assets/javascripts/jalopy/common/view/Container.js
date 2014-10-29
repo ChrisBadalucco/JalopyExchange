@@ -20,6 +20,8 @@ Ext.define('Jalopy.common.view.Container', {
                 '</div>',
 
     initComponent : function() {
+        Ext.applyIf(this.content, {region : 'center'});
+
         this.items = [ {
             xtype : 'container',
             region : 'north',

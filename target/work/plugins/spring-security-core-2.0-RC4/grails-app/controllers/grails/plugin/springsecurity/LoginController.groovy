@@ -144,6 +144,6 @@ class LoginController {
 	 * The Ajax denied redirect url.
 	 */
 	def ajaxDenied() {
-		render([success: false, message: 'access denied'] as JSON)
+		render([success: false, message: 'You are not allowed to perform this task.'] as JSON)
 	}
 }

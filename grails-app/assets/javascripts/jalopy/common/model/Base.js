@@ -13,7 +13,7 @@ Ext.define('Jalopy.common.model.Base', {
             url : '/JalopyExchange/main/{entityName:lowercase}',
             reader : {
                 type : 'json',
-                rootProperty : ''
+                rootProperty : 'data'
             }
             //writer : {}
         }

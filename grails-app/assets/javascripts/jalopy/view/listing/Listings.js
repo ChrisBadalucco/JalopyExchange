@@ -13,6 +13,7 @@ Ext.define('Jalopy.view.listing.Listings', {
     buildListingsGrid : function() {
         var tbar =  [{
             xtype: 'button',
+            margin : 2,
             reference : 'addListingBtn',
             text: 'Add',
             listeners: {

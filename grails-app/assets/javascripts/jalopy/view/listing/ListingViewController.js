@@ -10,12 +10,13 @@ Ext.define('Jalopy.view.listing.ListingViewController', {
             store.add(form.getValues());
             store.sync({
                 success : function() {
-                    this.getView().close();
+                    Ext.Msg.alert('Success', 'Your listing has been added.');
                 },
                 failure : function() {
                     store.rejectChanges();
                 }
             });
+            this.getView().close();
         }
     }
 });

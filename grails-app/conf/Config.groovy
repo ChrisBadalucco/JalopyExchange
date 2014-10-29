@@ -124,11 +124,10 @@ grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.je.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.je.UserRole'
 grails.plugin.springsecurity.authority.className = 'com.je.Role'
 
-//grails.plugin.springsecurity.auth.ajaxLoginFormUrl = '/login'
-//grails.plugin.springsecurity.auth.useForward = true
+grails.plugin.springsecurity.roleHierarchy = '''
+   ROLE_ADMIN > ROLE_USER
+'''
 
-//grails.plugin.springsecurity.successHandler.alwaysUseDefault = true
-//grails.plugin.springsecurity.fii.rejectPublicInvocations = false
 
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/':               ['ROLE_USER', 'ROLE_ADMIN'],

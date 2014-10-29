@@ -94,8 +94,8 @@ Ext.define('Jalopy.overrides.Overrides', {
             } else {
                 var json = Ext.decode(response.responseText, true);
 
-                if (json || !json.success) {
-                    if (json && json.message) {
+                if (json && json.success === false) {
+                    if (Ext.isEmpty(json.message) === false) {
                         Ext.Msg.alert('Error', json.message);
                     } else {
                         Ext.Msg.alert('Error', 'Application Error Occurred. Please contact Jalopy Exchange for more details.');
@@ -113,5 +113,5 @@ Ext.Ajax.on('requestexception', function(conn, response, requestOpts, listenerOp
 });
 
 Ext.Ajax.on('requestcomplete', function(conn, response, requestOpts, listenerOpts) {
-//    Jalopy.overrides.update(response);
+    Jalopy.overrides.update(response);
 });
