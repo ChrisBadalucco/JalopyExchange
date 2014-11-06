@@ -21,18 +21,20 @@ Ext.define('Jalopy.view.listing.AddListingDlg', {
         reference : 'addform',
         defaults : { anchor : '100%' },
         items : [ {
-            xtype : 'textfield',
+            xtype : 'combo',
+            store : 'Sellers',
             fieldLabel : 'Seller',
             allowBlank : false,
             name : 'seller'
         }, {
             xtype : 'combo',
             fieldLabel : 'Automobile',
-            store : [ 'Impreza', 'WRX', 'STi' ],
+            //store : [ 'Impreza', 'WRX', 'STi' ],
+            store : 'Automobiles',
             queryMode : 'local',
-            valueField : 'id',
-            displayField : 'id',
-            name : 'carModel'
+            valueField : 'vin',
+            displayField : 'description',
+            name : 'automobile'
         }, {
             xtype : 'numberfield',
             fieldLabel : 'Asking Price ($)',
@@ -52,7 +54,8 @@ Ext.define('Jalopy.view.listing.AddListingDlg', {
             xtype : 'datefield',
             disabled : true,
             fieldLabel : 'Start Date',
-            value : new Date(),
+//            format: 'm/d/y',
+            value: new Date(),
             name : 'startDate'
         }, {
             xtype : 'datefield',

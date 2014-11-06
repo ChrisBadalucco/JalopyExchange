@@ -1,20 +1,15 @@
-import com.je.Automobile
-import com.je.Listing
-import grails.rest.render.json.JsonCollectionRenderer
-import grails.rest.render.json.JsonRenderer
+import util.marshalling.AutomobileMarshaller
+import util.marshalling.CustomObjectMarshallers
+import util.marshalling.ListingMarshaller
+import util.marshalling.UserMarshaller
 
 // Place your Spring DSL code here
 beans = {
-    listingJSONRenderer(JsonRenderer, Listing) {
-        excludes = [ 'class' ]
-    }
-    listingJSONCollectionRenderer(JsonCollectionRenderer, Listing) {
-        excludes = [ 'class' ]
-    }
-    automobileJSONRenderer(JsonRenderer, Automobile) {
-        excludes = [ 'class' ]
-    }
-    automobileJSONCollectionRenderer(JsonCollectionRenderer, Automobile) {
-        excludes = [ 'class' ]
+    customObjectMarshallers(CustomObjectMarshallers) {
+        marshallers = [
+                new ListingMarshaller(),
+                new AutomobileMarshaller(),
+                new UserMarshaller()
+        ]
     }
 }

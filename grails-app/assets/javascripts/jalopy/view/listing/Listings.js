@@ -31,16 +31,23 @@ Ext.define('Jalopy.view.listing.Listings', {
             dataIndex : 'seller'
         }, {
             text : 'Asking Price',
-            dataIndex : 'askingPrice'
+            dataIndex : 'askingPrice',
+            formatter : 'usMoney'
         }, {
+            xtype: 'datecolumn',
             text : 'Start Date',
-            dataIndex : 'dateCreated'
+            dataIndex : 'startDate',
+            format: 'm/d/Y'
         }, {
+            xtype: 'datecolumn',
             text : 'End Date',
-            dataIndex : 'endDate'
+            dataIndex : 'endDate',
+            format: 'm/d/Y'
         }, {
+            xtype: 'datecolumn',
             text : 'Last Updated',
-            dataIndex : 'lastUpdated'
+            dataIndex : 'lastUpdated',
+            format: 'm/d/Y'
         } ];
 
         return {
@@ -52,5 +59,4 @@ Ext.define('Jalopy.view.listing.Listings', {
             store : 'Listing'
         }
     }
-
 });

@@ -13,7 +13,7 @@ class Automobile {
     String make
     String model
     int year
-    String owner
+    User owner
 
     /* Automatic timestamping of GORM */
     Date dateCreated
@@ -25,9 +25,5 @@ class Automobile {
         vin blank : false, unique : true
         year size: 4
         // TODO owner unique: true
-    }
-
-    String getDescription() {
-        "$year$make$model"
     }
 }

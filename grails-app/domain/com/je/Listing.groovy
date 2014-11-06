@@ -1,7 +1,5 @@
 package com.je
 
-import grails.rest.*
-
 /**
  * Listing
  * TODO (A domain class describes the data object and it's mapping to the database)
@@ -17,7 +15,7 @@ class Listing {
     Date lastUpdated
 
     Automobile automobile
-    String seller
+    User seller
 
     Date endDate
     BigDecimal askingPrice

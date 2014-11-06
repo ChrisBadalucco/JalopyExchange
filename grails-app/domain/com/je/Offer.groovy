@@ -9,8 +9,8 @@ import grails.rest.Resource
 @Resource(uri='/offers', formats=['json', 'xml'])
 class Offer {
 
-    Person buyer
-    Person seller
+    User buyer
+    User seller
     Listing listing
     BigDecimal offerAmount
     Boolean isAccepted

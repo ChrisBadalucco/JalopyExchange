@@ -21,26 +21,29 @@ class ListingController extends RestfulController {
     def index(Integer max) {
         log.info "listing controller - index method invoked"
         params.max = Math.min(max ?: 10, 100)
-        render([success: true, data: Listing.list(params)] as JSON) // render Listing.list(params) as JSON
+        // render Listing.list(params) as JSON
+        render([success: true, data: Listing.list(params)] as JSON)
     }
 
-    @Secured('ROLE_ADMIN')
     @Transactional
     def save(Listing listingInstance) {
+        log.info "listing controller - save method invoked"
         if (listingInstance == null) {
-            log.info "listing controller - save method invoked [listingInstance] " + listingInstance.toString()
-            render([success: false, message: 'Application Error Occurred.'] as JSON) // render status: NOT_FOUND
+            // render status: NOT_FOUND
+            render([success: false, message: 'Error parsing data. Please make sure you are submitting a valid Listing.'] as JSON)
             return
         }
 
         listingInstance.validate()
         if (listingInstance.hasErrors()) {
-            render([success: false, message: 'Invalid Listing. Please try again.'] as JSON) //render status: NOT_ACCEPTABLE
+            //render status: NOT_ACCEPTABLE
+            render([success: false, message: 'Invalid Listing. Please try again.'] as JSON)
             return
         }
 
         listingInstance.save flush:true
-        render([success: true, data: []] as JSON)// respond listingInstance, [status: CREATED]
+        // respond listingInstance, [status: CREATED]
+        render([success: true, data: []] as JSON)
     }
 
     @Transactional
