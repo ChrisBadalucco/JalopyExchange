@@ -26,8 +26,11 @@ class ListingController extends RestfulController {
     }
 
     @Transactional
-    def save(Listing listingInstance) {
+    def save() {
+//    def save() {
+//        def listingInstance = new Listing(JSON.parse(request.JSON));
         log.info "listing controller - save method invoked"
+        def listingInstance = new Listing(params)
         if (listingInstance == null) {
             // render status: NOT_FOUND
             render([success: false, message: 'Error parsing data. Please make sure you are submitting a valid Listing.'] as JSON)

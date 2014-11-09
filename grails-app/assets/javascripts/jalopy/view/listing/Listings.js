@@ -1,6 +1,6 @@
 Ext.define('Jalopy.view.listing.Listings', {
     extend : 'Jalopy.common.view.Container',
-    xtype : 'listing',
+    xtype : 'listingscreen',
     requires : [ 'Jalopy.view.listing.ListingViewController' ],
     controller : 'listingViewController',
 

@@ -22,6 +22,30 @@ Ext.define('Jalopy.common.view.Container', {
     initComponent : function() {
         Ext.applyIf(this.content, {region : 'center'});
 
+        var menu = {
+            xtype : 'toolbar',
+            cls : 'je_menu',
+            itemId : 'menu',
+            defaults : {
+                cls : 'je_menuItem',
+                margin : '1 5',
+                hrefTarget : '_self'
+            },
+            items : [ {
+                xtype : 'button',
+                text : 'View Listings',
+                href : '/JalopyExchange/listings'
+            } ]
+        };
+
+        if (JE.ADMIN) {
+            menu.items.push( {
+                xtype : 'button',
+                text : 'Manage Users',
+                href : '/JalopyExchange/users'
+            });
+        }
+
         this.items = [ {
             xtype : 'container',
             region : 'north',
@@ -31,10 +55,7 @@ Ext.define('Jalopy.common.view.Container', {
                     subTitle : this.subTitle,
                     username : Ext.String.capitalize(JE.USERNAME)
                 } )
-//            }, {
-//                xtype : 'jemenu',
-//                cls : 'je-menu'
-            } ]
+            }, menu ]
         }, {
             xtype : 'container',
             region : 'center',

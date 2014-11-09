@@ -131,13 +131,11 @@ grails.plugin.springsecurity.roleHierarchy = '''
 
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/':               ['ROLE_USER', 'ROLE_ADMIN'],
-        '/index':          ['ROLE_USER', 'ROLE_ADMIN'],
-        '/index.gsp':      ['ROLE_USER', 'ROLE_ADMIN'],
+        '/views/**':       ['ROLE_USER', 'ROLE_ADMIN'],
         '/assets/**':      ['permitAll'],
         '/**/js/**':       ['permitAll'],
         '/**/css/**':      ['permitAll'],
         '/**/images/**':   ['permitAll'],
-        '/**/favicon.ico': ['permitAll'],
-        '/dbconsole':      ['permitAll']
+        '/**/favicon.ico': ['permitAll']
 ]
 

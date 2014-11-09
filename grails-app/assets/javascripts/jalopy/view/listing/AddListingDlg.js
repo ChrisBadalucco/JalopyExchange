@@ -5,6 +5,7 @@ Ext.define('Jalopy.view.listing.AddListingDlg', {
     controller: 'listingViewController',
 
     title: 'Add New Listing',
+    modal : true,
     autoShow : true,
     bbar : {
         xtype: 'button',
@@ -21,16 +22,15 @@ Ext.define('Jalopy.view.listing.AddListingDlg', {
         reference : 'addform',
         defaults : { anchor : '100%' },
         items : [ {
-            xtype : 'combo',
-            store : 'Sellers',
+            xtype : 'displayfield',
             fieldLabel : 'Seller',
-            allowBlank : false,
+            value : Ext.String.capitalize(JE.USERNAME),
             name : 'seller'
         }, {
             xtype : 'combo',
             fieldLabel : 'Automobile',
-            //store : [ 'Impreza', 'WRX', 'STi' ],
-            store : 'Automobiles',
+            store : [ 'Impreza', 'WRX', 'STi' ],
+//            store : 'Automobiles',
             queryMode : 'local',
             valueField : 'vin',
             displayField : 'description',
@@ -40,8 +40,10 @@ Ext.define('Jalopy.view.listing.AddListingDlg', {
             fieldLabel : 'Asking Price ($)',
             step : 100,
             value : 0,
-            minLength : 4,
-            maxLength : 6,
+            minValue: 1000,
+            maxValue: 100000,
+            emptyText : 'Type a price',
+            submitEmptyText : false,
             name : 'askingPrice'
             // Add change handler to force user-entered numbers to hundreds
 //            listeners: {
@@ -51,12 +53,9 @@ Ext.define('Jalopy.view.listing.AddListingDlg', {
 //                }
 //            }
         }, {
-            xtype : 'datefield',
-            disabled : true,
+            xtype : 'displayfield',
             fieldLabel : 'Start Date',
-//            format: 'm/d/y',
-            value: new Date(),
-            name : 'startDate'
+            value : Ext.util.Format.date(new Date(), 'm/d/Y'),
         }, {
             xtype : 'datefield',
             fieldLabel : 'End Date',

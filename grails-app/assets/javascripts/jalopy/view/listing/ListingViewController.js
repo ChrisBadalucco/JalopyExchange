@@ -7,6 +7,7 @@ Ext.define('Jalopy.view.listing.ListingViewController', {
         var grid = Ext.ComponentQuery.query('#listingGrid')[0];
         var store = grid.getStore();
         if (form.isValid()) {
+
             store.add(form.getValues());
             store.sync({
                 success : function() {

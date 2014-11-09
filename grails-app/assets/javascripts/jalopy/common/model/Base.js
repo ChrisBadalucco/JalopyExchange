@@ -1,5 +1,6 @@
 Ext.define('Jalopy.common.model.Base', {
     extend : 'Ext.data.Model',
+    //identifier : 'sequential',
 
     fields : [ {
         name : 'id',

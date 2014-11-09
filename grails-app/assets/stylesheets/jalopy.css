@@ -12,10 +12,19 @@
 
 /*LOGIN STUFF GOES HERE*/
 
-#header { overflow : hidden; }
+#header { overflow : hidden; margin-bottom : 5px; height : 40px; }
 #header .left { width : 400px; }
-/*#header > div { }*/
 .headerTitles { display : inline-block; padding-left : 4px; }
-.mainTitle { margin-top : 2px; font-size : 22px; font-style : italic; }
-.subTitle { marign-top : 2px; font-size: 14px; font-weight : bold; }
+.mainTitle { margin-top : 2px; font-size : 26px; font-style : italic; }
+.subTitle { margin-top : 2px; padding-left : 4px; font-size: 16px; font-weight : bold; }
 #footer { bottom : 5px; padding-top : 2px; overflow : hidden; position : absolute; width : 100%; }
+
+/*------------------------------*/
+/* Menu                         */
+/*------------------------------*/
+.je_menu { background-color : transparent; border-style: solid; border-top-color : #000; border-top-width : 2px; border-bottom-color : #000; border-bottom-width : 2px; }
+
+/*------------------------------*/
+/* Icons                        */
+/*------------------------------*/
+.icon-delete { background-image : url(../images/skin/exclamation.png) !important; }
