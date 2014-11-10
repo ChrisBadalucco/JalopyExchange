@@ -12,7 +12,8 @@ class UrlMappings {
         "/users"(view:"/user")
         "500"(view:'/error')
 
-        "/main/listing"(resources: 'listing')
-        "/main/user"(resources: 'user')
+        "/main/listing"(resources: 'listing', parseRequest: true)
+        "/main/user"(resources: 'user', parseRequest: true)
+        "/main/automobile"(resources: 'automobile', parseRequest: true)
 	}
 }

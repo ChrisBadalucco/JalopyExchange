@@ -34,7 +34,7 @@ Ext.define('Jalopy.common.view.Container', {
             items : [ {
                 xtype : 'button',
                 text : 'View Listings',
-                href : '/JalopyExchange/listings'
+                href : JE.CONTEXT + '/listings'
             } ]
         };
 
@@ -42,7 +42,7 @@ Ext.define('Jalopy.common.view.Container', {
             menu.items.push( {
                 xtype : 'button',
                 text : 'Manage Users',
-                href : '/JalopyExchange/users'
+                href : JE.CONTEXT + '/users'
             });
         }
 

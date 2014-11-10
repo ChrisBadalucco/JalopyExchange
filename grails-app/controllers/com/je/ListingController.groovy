@@ -11,6 +11,8 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class ListingController extends RestfulController {
 
+    def springSecurityService
+
     static responseFormats = ['json', 'xml']
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -27,21 +29,27 @@ class ListingController extends RestfulController {
 
     @Transactional
     def save() {
-//    def save() {
-//        def listingInstance = new Listing(JSON.parse(request.JSON));
         log.info "listing controller - save method invoked"
-        def listingInstance = new Listing(params)
+
+        def jsonObject = request.JSON
+        def listingInstance = new Listing(jsonObject)
+
+        listingInstance.id = Listing.getCount()++
+        listingInstance.seller = springSecurityService.currentUser
+        listingInstance.automobile = Automobile.findByVin(jsonObject.autoVin)
+        listingInstance.dateCreated = new Date()
+        listingInstance.lastUpdated = new Date()
+
         if (listingInstance == null) {
             // render status: NOT_FOUND
             render([success: false, message: 'Error parsing data. Please make sure you are submitting a valid Listing.'] as JSON)
-            return
         }
 
         listingInstance.validate()
         if (listingInstance.hasErrors()) {
             //render status: NOT_ACCEPTABLE
+            log.info listingInstance.errors
             render([success: false, message: 'Invalid Listing. Please try again.'] as JSON)
-            return
         }
 
         listingInstance.save flush:true

@@ -6,6 +6,8 @@ import com.je.UserRole
 import grails.util.Environment
 import org.springframework.web.context.support.WebApplicationContextUtils
 
+import javax.servlet.ServletContext
+
 
 class BootStrap {
 
@@ -36,7 +38,7 @@ class BootStrap {
 
 
 
-    private static void seedTestData(servletContext) {
+    private static void seedTestData(ServletContext servletContext) {
 
         def springContext = WebApplicationContextUtils.getWebApplicationContext(servletContext)
         // Custom marshalling
@@ -46,13 +48,13 @@ class BootStrap {
         def adminRole = new Role(authority: 'ROLE_ADMIN').save(flush: true)
         def userRole = new Role(authority: 'ROLE_USER').save(flush: true)
 
-        def adminUser = new User(username: 'admin', password: 'admin')
+        def adminUser = new User(id: 1L, username: 'admin', password: 'admin')
         adminUser.save(flush: true)
 
-        def chrisUser = new User(username: 'chris', password: 'chris')
+        def chrisUser = new User(id: 2L, username: 'chris', password: 'chris')
         chrisUser.save(flush: true)
 
-        def joeUser = new User(username: 'joe', password: 'joe')
+        def joeUser = new User(id: 3L, username: 'joe', password: 'joe')
         joeUser.save(flush: true)
 
         UserRole.create adminUser, adminRole, true

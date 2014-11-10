@@ -4,6 +4,10 @@ class User {
 
 	transient springSecurityService
 
+    /* Default (injected) attributes of GORM */
+    Long id
+    Long version
+
 	String username
 	String password
 	boolean enabled = true

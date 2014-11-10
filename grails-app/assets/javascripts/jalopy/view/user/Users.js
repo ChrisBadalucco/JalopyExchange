@@ -46,6 +46,13 @@ Ext.define('Jalopy.view.user.Users', {
         } ];
         return {
             xtype : 'grid',
+            tbar : [ {
+                xtype : 'button',
+                text : 'load chris',
+                listeners : {
+                    click : 'loadChris'
+                }
+            } ],
             columns : columns,
             reference : 'userGrid',
             itemId : 'userGrid',

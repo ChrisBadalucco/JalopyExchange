@@ -9,11 +9,14 @@
 
     <script type="text/javascript">
         JE = {};
-        JE.USERNAME = "<sec:loggedInUserInfo field="username"/>";
+        %{--JE.User = {--}%
+            %{--username : "<sec:loggedInUserInfo field="username"/>",--}%
+        %{--};--}%
+        JE.USERNAME = '<sec:loggedInUserInfo field="username"/>';
         <sec:access expression="hasRole('ROLE_ADMIN')">
         JE.ADMIN = true;
         </sec:access>
-        JE.CONTEXT = "<%=request.getContextPath().toString() %>";
+        JE.CONTEXT = "<%=applicationContext.servletContext.contextPath %>";
     </script>
 
     <asset:javascript src="jalopy/overrides/extjsSetup.js"/>
