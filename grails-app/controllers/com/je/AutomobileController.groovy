@@ -17,10 +17,17 @@ class AutomobileController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
+        render([success: true, data: Automobile.list(params)] as JSON)
+    }
+
+    def indexUserOnly(Integer max) {
+        params.max = Math.min(max ?: 10, 100)
 //        respond Automobile.list(params), [status: OK]
 
         User user = springSecurityService.currentUser
-        render([success: true, data: Automobile.findByOwner(user)] as JSON)
+        def data = Automobile.findByOwner(user) ?: []
+
+        render([success: true, data: data] as JSON)
     }
 
     @Transactional

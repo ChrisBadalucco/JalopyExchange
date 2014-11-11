@@ -1,6 +1,7 @@
 Ext.define('Jalopy.common.model.Base', {
     extend : 'Ext.data.Model',
-    //identifier : 'sequential',
+    clientIdProperty : 'clientId',
+    identifier : 'negative',
 
     fields : [ {
         name : 'id',
@@ -16,7 +17,6 @@ Ext.define('Jalopy.common.model.Base', {
                 type : 'json',
                 rootProperty : 'data'
             }
-            //writer : {}
         }
     }
 });

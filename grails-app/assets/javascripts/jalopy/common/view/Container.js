@@ -2,6 +2,8 @@ Ext.define('Jalopy.common.view.Container', {
     extend : 'Ext.container.Viewport',
     xtype : 'jalopy-container',
 
+    requires : [ 'Jalopy.common.view.Menu' ],
+
     layout : 'border',
     padding : '10 10 0 10',
     subTitle : null,
@@ -22,30 +24,6 @@ Ext.define('Jalopy.common.view.Container', {
     initComponent : function() {
         Ext.applyIf(this.content, {region : 'center'});
 
-        var menu = {
-            xtype : 'toolbar',
-            cls : 'je_menu',
-            itemId : 'menu',
-            defaults : {
-                cls : 'je_menuItem',
-                margin : '1 5',
-                hrefTarget : '_self'
-            },
-            items : [ {
-                xtype : 'button',
-                text : 'View Listings',
-                href : JE.CONTEXT + '/listings'
-            } ]
-        };
-
-        if (JE.ADMIN) {
-            menu.items.push( {
-                xtype : 'button',
-                text : 'Manage Users',
-                href : JE.CONTEXT + '/users'
-            });
-        }
-
         this.items = [ {
             xtype : 'container',
             region : 'north',
@@ -55,7 +33,9 @@ Ext.define('Jalopy.common.view.Container', {
                     subTitle : this.subTitle,
                     username : Ext.String.capitalize(JE.USERNAME)
                 } )
-            }, menu ]
+            }, {
+                xtype : 'jalopymenu'
+            } ]
         }, {
             xtype : 'container',
             region : 'center',

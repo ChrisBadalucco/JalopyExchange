@@ -15,6 +15,7 @@ class ListingMarshaller {
                 autoMake : listing.automobile.make,
                 autoModel : listing.automobile.model,
                 autoYear : listing.automobile.year,
+                autoDescription : listing.automobile.description,
                 automobile : listing.automobile,
                 seller : listing.seller.username,
                 askingPrice : listing.askingPrice,

@@ -10,10 +10,13 @@ class UrlMappings {
         "/"(view:"/listing")
         "/listings"(view:"/listing")
         "/users"(view:"/user")
+        "/myaccount"(view:"/myaccount")
         "500"(view:'/error')
 
         "/main/listing"(resources: 'listing', parseRequest: true)
         "/main/user"(resources: 'user', parseRequest: true)
         "/main/automobile"(resources: 'automobile', parseRequest: true)
+        "/main/automobile/user"(controller: 'automobile', parseRequest: true, action: 'indexUserOnly')
+        "/main/listing/user"(controller: 'listing', parseRequest: true, action: 'indexUserOnly')
 	}
 }

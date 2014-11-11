@@ -21,9 +21,14 @@ class Automobile {
 
     // TODO hasOne [owner : Person]
 
+    static transients = ['description']
+
     static constraints = {
         vin blank : false, unique : true
         year size: 4
-        // TODO owner unique: true
+    }
+
+    String getDescription() {
+        return "$year $make $model"
     }
 }

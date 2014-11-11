@@ -10,14 +10,6 @@ Ext.define('Jalopy.view.listing.AddListingDlg', {
     listeners : {
         show : 'loadCombos'
     },
-//    bbar : {
-//        xtype: 'button',
-//        reference : 'submitListingBtn',
-//        text: 'Submit New Listing',
-//        listeners: {
-//            click: 'onClickAdd'
-//        }
-//    },
     items: [ {
         xtype : 'form',
         bodyPadding: 5,
@@ -40,12 +32,15 @@ Ext.define('Jalopy.view.listing.AddListingDlg', {
         }, {
             xtype : 'combo',
             fieldLabel : 'Automobile',
-            store : 'Automobile',
+            store : 'UserAutomobile',
             queryMode : 'local',
             emptyText : 'Select an automobile...',
             valueField : 'vin',
-            displayField : 'vin',
+            displayField : 'description',
+            typeAhead : true,
             forceSelection : true,
+            blankText : 'This field is required. Please add an ' +
+                'automobile in "My Account" if there are none in the dropdown',
             name : 'autoVin'
         }, {
             xtype : 'numberfield',
@@ -55,13 +50,6 @@ Ext.define('Jalopy.view.listing.AddListingDlg', {
             maxValue: 100000,
             emptyText : 'Enter a dollar amount...',
             name : 'askingPrice'
-            // Add change handler to force user-entered numbers to hundreds
-//            listeners: {
-//                change: function(field, value) {
-//                    value = parseInt(value, 10);
-//                    field.setValue(value + value % 100);
-//                }
-//            }
         }, {
             xtype : 'displayfield',
             fieldLabel : 'Start Date',

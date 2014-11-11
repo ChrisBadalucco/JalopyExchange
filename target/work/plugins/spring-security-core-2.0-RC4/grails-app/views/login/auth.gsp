@@ -3,7 +3,11 @@
 	<meta name='layout' content='main'/>
 	<title><g:message code="springSecurity.login.title"/></title>
 	<style type='text/css' media='screen'>
-	#login {
+	body {
+        background-color : #157fcc;
+    }
+
+    #login {
 		margin: 15px 0px;
 		padding: 0px;
 		text-align: center;

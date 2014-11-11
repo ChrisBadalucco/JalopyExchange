@@ -27,6 +27,16 @@ class ListingController extends RestfulController {
         render([success: true, data: Listing.list(params)] as JSON)
     }
 
+    def indexUserOnly(Integer max) {
+        params.max = Math.min(max ?: 10, 100)
+//        respond Automobile.list(params), [status: OK]
+
+        User user = springSecurityService.currentUser
+        def data = Listing.findBySeller(user) ?: []
+
+        render([success: true, data: data] as JSON)
+    }
+
     @Transactional
     def save() {
         log.info "listing controller - save method invoked"
@@ -74,6 +84,7 @@ class ListingController extends RestfulController {
         respond listingInstance, [status: OK]
     }
 
+    @Secured('ROLE_ADMIN')
     @Transactional
     def delete(Listing listingInstance) {
 
@@ -83,6 +94,6 @@ class ListingController extends RestfulController {
         }
 
         listingInstance.delete flush:true
-        render status: NO_CONTENT
+        render([success: true, data: []] as JSON)
     }
 }
