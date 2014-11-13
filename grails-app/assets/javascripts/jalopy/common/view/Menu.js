@@ -11,20 +11,22 @@ Ext.define('Jalopy.common.view.Menu', {
         hrefTarget : '_self'
     },
     items : [ {
-        text : 'My Account',
-//        tooltip : 'Manage your account details.',
-        href : JE.CONTEXT + '/myaccount'
-    }, {
         text : ' Listings',
 //        tooltip : 'View .',
+        iconCls : 'icon-list',
         href : JE.CONTEXT + '/listings'
+    }, {
+        text : 'My Account',
+        iconCls : 'icon-user',
+//        tooltip : 'Manage your account details.',
+        href : JE.CONTEXT + '/myaccount'
     } ],
 
     initComponent : function() {
         if (JE.ADMIN) {
             this.items.push( '->', {
-//                xtype : 'button',
                 text : 'Manage Users',
+                iconCls : 'icon-user-edit',
                 href : JE.CONTEXT + '/users'
             });
         }

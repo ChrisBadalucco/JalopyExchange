@@ -40,6 +40,10 @@ class UserController extends RestfulController{
         render([success: true, data: data] as JSON)
     }
 
+    def indexSellers() {
+        render ([success: true, data: [] ] as JSON) // FIXME!!!!!!
+    }
+
     @Secured('ROLE_ADMIN')
     @Transactional
     def save(User userInstance) {

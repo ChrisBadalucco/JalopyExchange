@@ -5,32 +5,140 @@ Ext.define('Jalopy.view.listing.Listings', {
     controller : 'listingViewController',
 
     initComponent : function() {
-        this.subTitle = 'Listings',
+        this.subTitle = 'Listings';
         this.content = this.buildListingsGrid();
         this.callParent();
     },
 
+//    buildListingsToolbar : function() {
+//        var create = {
+//            xtype: 'button',
+//            margin : 2,
+//            itemId : 'createListingBtn',
+//            text: 'Create Listing',
+//            listeners: {
+//                click: function() {
+//                    Ext.widget('addlistingdlg');
+//                }
+//            }
+//        };
+//
+//        var search = {
+//            xtype : 'button',
+//            text : 'Search',
+//            iconCls : 'icon-magnifier',
+//            reference : 'searchBtn',
+//            listeners : { click : 'onClickSearch' }
+//        };
+//
+//        var defaults = {
+//            labelWidth : 140,
+//            labelAlign : 'right',
+//            width : 240,
+//            margin : '0 10 0 0'
+//        };
+//
+//        var status = {
+//            xtype : 'combo',
+//            fieldLabel : 'Status',
+//            allowBlank : true,
+//            forceSelection : true,
+//            store : [ '', 'Active', 'Ended' ],
+//            name : 'status'
+//        };
+//
+//        var endDate = {
+//            xtype : 'datefield',
+//            width : 200,
+//            fieldLabel : 'End Date',
+//            name : 'endDate'
+//        };
+//        Ext.apply(endDate, defaults);
+//
+//        var seller = {
+//            xtype : 'jalopycombo',
+//            fieldLabel : 'Seller',
+//            store : 'filters.Seller',
+//            name : 'seller'
+//        };
+//        Ext.apply(seller, defaults);
+//
+//        var filter = {
+//            xtype : 'form',
+//            border : false,
+//            margin : '0 0 5 0',
+//            layout : 'hbox',
+//            items : [ status, endDate, seller, search ]
+//        };
+//
+//        return [ create, '->', filter ];
+//    },
+
     buildListingsGrid : function() {
-        var dockedItems = [{
-            xtype: 'toolbar',
-//            style : 'backgroundColor: #157fcc',
-            dock: 'top',
-            items: [ {
-                xtype: 'button',
-                margin : 2,
-                itemId : 'createListingBtn',
-                text: 'Create Listing',
-                listeners: {
-                    click: function() {
-                        Ext.widget('addlistingdlg');
-                    }
+        var create = {
+            xtype: 'button',
+            margin : 2,
+            itemId : 'createListingBtn',
+            text: 'Create Listing',
+            iconCls : 'icon-add',
+            listeners: {
+                click: function() {
+                    Ext.widget('addlistingdlg');
                 }
-            } ]
-        }];
+            }
+        };
 
-        var tbar =  [ {
+        var search = {
+            xtype : 'button',
+            text : 'Search',
+            iconCls : 'icon-magnifier',
+            reference : 'searchBtn',
+            margin : '0 5 0 0',
+            listeners : { click : 'onClickSearch' }
+        };
 
-        } ];
+        var defaults = {
+            labelWidth : 80,
+            labelAlign : 'right',
+            width : 200,
+            margin : '0 10 0 0',
+            emptyText : 'All'
+        };
+
+        var status = {
+            xtype : 'combo',
+            fieldLabel : 'Status',
+            allowBlank : true,
+            forceSelection : true,
+            store : [ '', 'Active', 'Ended' ],
+            name : 'status'
+        };
+        Ext.apply(status, defaults);
+
+        var endDate = {
+            xtype : 'datefield',
+            width : 200,
+            fieldLabel : 'End Date',
+            name : 'endDate'
+        };
+        Ext.apply(endDate, defaults);
+
+        var seller = {
+            xtype : 'jalopycombo',
+            fieldLabel : 'Seller',
+            store : 'filters.Seller',
+            name : 'seller'
+        };
+        Ext.apply(seller, defaults);
+
+        var filter = {
+            xtype : 'form',
+            border : false,
+            layout : 'hbox',
+            items : [ status, endDate, seller, search ]
+        };
+
+        var dockedItems = [ create, '->', filter ];
 
         var columns = [ {
             text : 'ID',
@@ -103,7 +211,15 @@ Ext.define('Jalopy.view.listing.Listings', {
 
         return {
             xtype : 'grid',
-            dockedItems: dockedItems,
+//            title : 'Automobile Listings',
+//            tbar : tbar,
+            dockedItems: [{
+                xtype: 'toolbar',
+                dock: 'top',
+                padding : 2,
+                autoScroll : true,
+                items: dockedItems
+            }],
             columns : columns,
             reference : 'listingGrid',
             itemId : 'listingGrid',

@@ -11,12 +11,12 @@ Ext.define('Jalopy.view.account.Accounts', {
     },
 
     buildAccountCt : function() {
-        var left = {
+        var west = {
             xtype : 'form',
+            region : 'west',
+            collapsible : true,
             title : 'User Details',
-            flex :.5,
             layout : 'anchor',
-            defaults : { anchor : '100%', padding : 10 },
             items : [ {
                 xtype : 'displayfield',
                 fieldLabel : 'Username',
@@ -30,7 +30,7 @@ Ext.define('Jalopy.view.account.Accounts', {
             } ]
         };
 
-        var center = {
+        var myListings = {
             xtype : 'grid',
             title : 'My Listings',
             columns : [ {
@@ -62,7 +62,7 @@ Ext.define('Jalopy.view.account.Accounts', {
             store : 'UserListing'
         };
 
-        var right = {
+        var myAutos = {
             xtype : 'grid',
             title : 'My Automobiles',
             columns : [ {
@@ -81,14 +81,22 @@ Ext.define('Jalopy.view.account.Accounts', {
             store : 'UserAutomobile'
         };
 
-        return {
+        var centerCt = {
             xtype : 'container',
+            region : 'center',
+            defaults : { flex : 1 },
             layout : {
-                type : 'hbox',
+                type : 'vbox',
                 align : 'stretch'
             },
-            defaults : { flex : 1 },
-            items : [ left, center, right ]
+            items : [ myListings, myAutos ]
+        };
+
+        return {
+            xtype : 'container',
+            layout : 'border',
+            defaults : { split : true },
+            items : [ west, centerCt ]
         }
     }
 });

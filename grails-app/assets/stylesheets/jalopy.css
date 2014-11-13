@@ -1,3 +1,8 @@
+body { background-color : #E6F1F9 }
+a { color : #000; text-decoration: none;}
+a:hover { text-decoration: underline; }
+a:active { color: #FFF; }
+
 /*------------------------------*/
 /* Helper Classes               */
 /*------------------------------*/
@@ -27,4 +32,10 @@
 /*------------------------------*/
 /* Icons                        */
 /*------------------------------*/
-.icon-delete { background-image : url(../images/skin/exclamation.png) !important; }
+.icon-add { background-image : url(../images/icons/add.png) !important; }
+.icon-delete { background-image : url(../images/icons/delete.png) !important; }
+.icon-accept { background-image : url(../images/icons/accept.png) !important; }
+.icon-magnifier { background-image : url(../images/icons/magnifier.png) !important; }
+.icon-user { background-image : url(../images/icons/user.png) !important; }
+.icon-user-edit { background-image : url(../images/icons/user_edit.png) !important; }
+.icon-list { background-image : url(../images/icons/application_view_list.png) !important; }

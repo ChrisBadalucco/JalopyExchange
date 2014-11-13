@@ -15,6 +15,8 @@ class User {
 	boolean accountLocked
 	boolean passwordExpired
 
+    static hasMany = [ listings : Listing ]
+
 	static transients = ['springSecurityService']
 	static constraints = {
 		username blank: false, unique: true

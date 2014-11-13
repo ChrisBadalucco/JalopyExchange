@@ -5,6 +5,7 @@ Ext.define('Jalopy.common.view.Container', {
     requires : [ 'Jalopy.common.view.Menu' ],
 
     layout : 'border',
+    style : 'backgroundColor : #A1CCEB',
     padding : '10 10 0 10',
     subTitle : null,
     username : null,
@@ -18,7 +19,7 @@ Ext.define('Jalopy.common.view.Container', {
                 '</div>',
 
     footerTmp : '<div id="footer">' +
-                    '<div class="left">&nbsp;&copy;{year}. Jalopy Exchange. All Rights Reserved.</div>' +
+                    '<div class="right">&nbsp;&copy;{year}. Jalopy Exchange. All Rights Reserved.</div>' +
                 '</div>',
 
     initComponent : function() {
@@ -40,7 +41,7 @@ Ext.define('Jalopy.common.view.Container', {
             xtype : 'container',
             region : 'center',
             layout : 'border',
-            padding : '5 0 0 0',
+            margin : '5 0 0 0',
             items : this.content
         }, {
             xtype : 'container',

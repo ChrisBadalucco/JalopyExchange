@@ -15,10 +15,12 @@ class Listing {
     Date lastUpdated
 
     Automobile automobile
-    User seller
+//    User seller
 
     Date endDate
     BigDecimal askingPrice
+
+    static hasOne = [ seller : User ]
 
     static constraints = {
         id blank : false, unique : true

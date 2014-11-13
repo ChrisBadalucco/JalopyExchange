@@ -16,6 +16,10 @@ Ext.override(Ext.data.proxy.Ajax, {
     disableCachingParam : 'dc'
 });
 
+Ext.override(Ext.window.Window, {
+    modal : true
+});
+
 Ext.define('Jalopy.overrides.Overrides', {
     update : function(response) {
         /*if (response.status === 401) {
