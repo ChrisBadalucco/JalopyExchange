@@ -36,10 +36,7 @@ class BootStrap {
         println "Application shutting down... "
     }
 
-
-
     private static void seedTestData(ServletContext servletContext) {
-
         def springContext = WebApplicationContextUtils.getWebApplicationContext(servletContext)
         // Custom marshalling
         springContext.getBean( "customObjectMarshallers" ).register()
@@ -51,10 +48,10 @@ class BootStrap {
         def adminUser = new User(id: 1L, username: 'admin', password: 'admin')
         adminUser.save(flush: true)
 
-        def chrisUser = new User(id: 2L, username: 'chris', password: 'chris')
+        def chrisUser = new User(id: 2L, username: 'badaluccoc843', password: 'chris', firstName: 'Chris', lastName: 'Badalucco', email: 'badaluccoc843@strose.edu', age: 29)
         chrisUser.save(flush: true)
 
-        def joeUser = new User(id: 3L, username: 'joe', password: 'joe')
+        def joeUser = new User(id: 3L, username: 'joe123', password: 'joe', firstName: 'Joe', lastName: 'Generon', email: 'joe73@aol.com', age: 37)
         joeUser.save(flush: true)
 
         UserRole.create adminUser, adminRole, true
@@ -68,11 +65,12 @@ class BootStrap {
         println "Finished loading $User.count persons into database"
 
         println "Start loading automobiles into database"
-        def wrx = new Automobile(vin: 1000L, make: "Subaru", model: "WRX", year: "2014", owner: chrisUser)
+        def wrx = new Automobile(vin: 12345678901234567L, make: "Subaru", model: "WRX", year: "2014", user: chrisUser,
+                imageUrl: 'http://images.thecarconnection.com/lrg/2015-subaru-wrx_100457402_l.jpg')
         assert wrx.save(failOnError:true, flush:true, insert: true)
         wrx.errors = null
 
-        def wrangler = new Automobile(vin: 2000L, make: "Jeep", model: "Wrangler", year: "2000", owner: joeUser)
+        def wrangler = new Automobile(vin: 98765432109876543L, make: "Jeep", model: "Wrangler", year: "2000", user: joeUser)
         assert wrangler.save(failOnError:true, flush:true, insert: true)
         wrangler.errors = null
 
@@ -80,11 +78,11 @@ class BootStrap {
         println "Finished loading $Automobile.count automobiles into database"
 
         println "Start loading listings into database"
-        def listingWrx = new Listing(automobile: wrx, seller: chrisUser, startDate: new Date(), endDate: new Date(), askingPrice: 30000)
+        def listingWrx = new Listing(automobile: wrx, user: chrisUser, endDate: new Date(), askingPrice: 30000, isActive: true)
         assert listingWrx.save(failOnError:true, flush:true, insert: true)
         listingWrx.errors = null
 
-        def listingWrangler = new Listing(automobile: wrangler, seller: joeUser, startDate: new Date(), endDate: new Date(), askingPrice: 15000)
+        def listingWrangler = new Listing(automobile: wrangler, user: joeUser, endDate: new Date(), askingPrice: 15000, isActive: false)
         assert listingWrangler.save(failOnError:true, flush:true, insert: true)
         listingWrangler.errors = null
 

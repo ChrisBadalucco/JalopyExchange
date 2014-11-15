@@ -15,12 +15,24 @@ class User {
 	boolean accountLocked
 	boolean passwordExpired
 
-    static hasMany = [ listings : Listing ]
+    String firstName
+    String lastName
+    String email
+    int age
+
+    static hasMany = [ listings : Listing, automobiles : Automobile ]
 
 	static transients = ['springSecurityService']
+
 	static constraints = {
 		username blank: false, unique: true
 		password blank: false
+        firstName nullable: true
+        lastName nullable: true
+        email email: true, nullable: true
+        age nullable: true
+        listings nullable: true
+        automobiles nullable: true
 	}
 
 	static mapping = {

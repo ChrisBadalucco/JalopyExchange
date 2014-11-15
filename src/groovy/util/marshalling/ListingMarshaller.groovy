@@ -1,5 +1,6 @@
 package util.marshalling
 
+import com.je.Automobile
 import com.je.Listing
 import grails.converters.JSON
 
@@ -10,17 +11,18 @@ class ListingMarshaller {
 
     void register() {
         JSON.registerObjectMarshaller(Listing) { Listing listing ->
+            def auto = Automobile.findById(listing.automobile.id)
             return [
                 id : listing.id,
-                autoMake : listing.automobile.make,
-                autoModel : listing.automobile.model,
-                autoYear : listing.automobile.year,
-                autoDescription : listing.automobile.description,
-                automobile : listing.automobile,
-                seller : listing.seller.username,
+                autoMake : auto.make,
+                autoModel : auto.model,
+                autoYear : auto.year,
+                autoDescription : auto.description,
+                automobile : auto,
+                seller : listing.user,
                 askingPrice : listing.askingPrice,
-                startDate : listing.dateCreated,
                 endDate : listing.endDate,
+                isActive : listing.isActive,
                 lastUpdated : listing.lastUpdated
             ]
         }

@@ -5,15 +5,13 @@ Ext.define('Jalopy.common.view.Container', {
     requires : [ 'Jalopy.common.view.Menu' ],
 
     layout : 'border',
-    style : 'backgroundColor : #A1CCEB',
-    padding : '10 10 0 10',
     subTitle : null,
     username : null,
 
     headerTmp : '<div id="header">' +
                     '<div class="headerTitles left">' +
                         '<div class="mainTitle">Jalopy Exchange</div>' +
-                        '<div class="subTitle">{subTitle}</div>' +
+                        '<div class="subTitle right">{subTitle}</div>' +
                     '</div>' +
                     '<div class="logout right">Welcome {username} | <a href="j_spring_security_logout">Logout</a></div>' +
                 '</div>',
@@ -28,6 +26,7 @@ Ext.define('Jalopy.common.view.Container', {
         this.items = [ {
             xtype : 'container',
             region : 'north',
+//            style : 'backgroundColor : #157fcc',
             items : [ {
                 xtype : 'container',
                 html : Ext.create('Ext.XTemplate', this.headerTmp).apply( {
@@ -41,7 +40,7 @@ Ext.define('Jalopy.common.view.Container', {
             xtype : 'container',
             region : 'center',
             layout : 'border',
-            margin : '5 0 0 0',
+//            margin : '5 0 0 0',
             items : this.content
         }, {
             xtype : 'container',

@@ -6,23 +6,26 @@ package com.je
  */
 class Listing {
 
-    /* Default (injected) attributes of GORM */
-    Long id
-    Long version
+//    /* Default (injected) attributes of GORM */
+//    Long id
+//    Long version
 
     /* Automatic timestamping of GORM */
     Date dateCreated
     Date lastUpdated
 
-    Automobile automobile
 //    User seller
+    Automobile automobile
+    boolean isActive
 
     Date endDate
     BigDecimal askingPrice
 
-    static hasOne = [ seller : User ]
+    static belongsTo = [ user : User]
+//    static hasOne = [ automobile : Automobile ]
 
     static constraints = {
         id blank : false, unique : true
+        automobile unique : true
     }
 }

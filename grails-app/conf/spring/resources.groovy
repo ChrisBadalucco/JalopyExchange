@@ -8,8 +8,8 @@ beans = {
     customObjectMarshallers(CustomObjectMarshallers) {
         marshallers = [
                 new ListingMarshaller(),
-                new AutomobileMarshaller(),
-                new UserMarshaller()
+//                new AutomobileMarshaller(),
+//                new UserMarshaller()
         ]
     }
 }

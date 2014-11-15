@@ -5,6 +5,7 @@ Ext.define('Jalopy.app.AccountApplication', {
     paths : {
         'Ext' : '.'
     },
+    views : [ 'account.AddAutoDlg' ],
     stores : [ 'User', 'UserAutomobile', 'UserListing' ],
 
     launch : function() {

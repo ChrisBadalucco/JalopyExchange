@@ -14,9 +14,12 @@ Ext.define('Jalopy.view.account.Accounts', {
         var west = {
             xtype : 'form',
             region : 'west',
+            split : true,
             collapsible : true,
             title : 'User Details',
+            bodyPadding : '5 10',
             layout : 'anchor',
+            defaults : { anchor : '100%' },
             items : [ {
                 xtype : 'displayfield',
                 fieldLabel : 'Username',
@@ -24,15 +27,48 @@ Ext.define('Jalopy.view.account.Accounts', {
                 name : 'username'
             }, {
                 xtype : 'textfield',
+                fieldLabel : 'First Name',
+                name : 'firstName'
+            }, {
+                xtype : 'textfield',
+                fieldLabel : 'Last Name',
+                name : 'lastName'
+            }, {
+                xtype : 'textfield',
                 fieldLabel : 'Email',
                 vtype : 'email',
                 name : 'email'
+            }, {
+                xtype : 'numberfield',
+                fieldLabel : 'Age',
+                minValue : 18,
+                maxValue : 100,
+                name : 'age'
+            }, {
+                xtype : 'textarea',
+                fieldLabel : 'About Me',
+                grow : true,
+                emptyText : 'Tell us about you!',
+                name : 'bio'
             } ]
         };
 
         var myListings = {
             xtype : 'grid',
             title : 'My Listings',
+            region : 'south',
+            collapsible : true,
+            flex : 1,
+            tbar : [ '->', {
+                xtype : 'button',
+                text : 'Create Listing',
+                iconCls : 'icon-form-add',
+                listeners : {
+                    click: function() {
+//                        Ext.widget('addautodlg');
+                    }
+                }
+            } ],
             columns : [ {
                 text : 'ID',
                 dataIndex : 'id'
@@ -40,11 +76,6 @@ Ext.define('Jalopy.view.account.Accounts', {
                 text : 'Asking Price',
                 dataIndex : 'askingPrice',
                 formatter : 'usMoney'
-            }, {
-                xtype: 'datecolumn',
-                text : 'Start Date',
-                dataIndex : 'startDate',
-                format: 'm/d/Y'
             }, {
                 xtype: 'datecolumn',
                 text : 'End Date',
@@ -65,6 +96,19 @@ Ext.define('Jalopy.view.account.Accounts', {
         var myAutos = {
             xtype : 'grid',
             title : 'My Automobiles',
+            region : 'center',
+            flex : 1,
+            itemId : 'automobileGrid',
+            tbar : [ '->', {
+                xtype : 'button',
+                text : 'Add Automobile',
+                iconCls : 'icon-car-add',
+                listeners : {
+                    click: function() {
+                        Ext.widget('addautodlg');
+                    }
+                }
+            } ],
             columns : [ {
                 text : 'VIN',
                 dataIndex : 'vin'
@@ -84,18 +128,14 @@ Ext.define('Jalopy.view.account.Accounts', {
         var centerCt = {
             xtype : 'container',
             region : 'center',
-            defaults : { flex : 1 },
-            layout : {
-                type : 'vbox',
-                align : 'stretch'
-            },
+            layout : 'border',
+            defaults : { split : true },
             items : [ myListings, myAutos ]
         };
 
         return {
             xtype : 'container',
             layout : 'border',
-            defaults : { split : true },
             items : [ west, centerCt ]
         }
     }

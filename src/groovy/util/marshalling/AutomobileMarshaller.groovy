@@ -15,9 +15,9 @@ class AutomobileMarshaller {
                 make : automobile.make,
                 model : automobile.model,
                 year : automobile.year,
-                owner : automobile.owner,
+                owner : automobile.user,
                 description : automobile.description,
-                dateCreated : automobile.dateCreated,
+                imageUrl : automobile.imageUrl,
                 lastUpdated : automobile.lastUpdated
             ]
         }

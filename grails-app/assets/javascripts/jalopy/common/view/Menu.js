@@ -7,13 +7,13 @@ Ext.define('Jalopy.common.view.Menu', {
     defaults : {
         xtype : 'button',
         cls : 'je_menuItem',
-        margin : '1 5 1 0',
+        margin : '0 15 0 0',
         hrefTarget : '_self'
     },
     items : [ {
         text : ' Listings',
 //        tooltip : 'View .',
-        iconCls : 'icon-list',
+        iconCls : 'icon-form',
         href : JE.CONTEXT + '/listings'
     }, {
         text : 'My Account',
@@ -26,7 +26,8 @@ Ext.define('Jalopy.common.view.Menu', {
         if (JE.ADMIN) {
             this.items.push( '->', {
                 text : 'Manage Users',
-                iconCls : 'icon-user-edit',
+                iconCls : 'icon-group',
+                margin : '0 8',
                 href : JE.CONTEXT + '/users'
             });
         }

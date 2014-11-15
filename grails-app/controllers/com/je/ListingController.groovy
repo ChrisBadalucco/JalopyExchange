@@ -32,7 +32,7 @@ class ListingController extends RestfulController {
 //        respond Automobile.list(params), [status: OK]
 
         User user = springSecurityService.currentUser
-        def data = Listing.findBySeller(user) ?: []
+        def data = Listing.findByUser(user) ?: []
 
         render([success: true, data: data] as JSON)
     }
@@ -45,7 +45,7 @@ class ListingController extends RestfulController {
         def listingInstance = new Listing(jsonObject)
 
         listingInstance.id = Listing.getCount()++
-        listingInstance.seller = springSecurityService.currentUser
+        listingInstance.user = springSecurityService.currentUser
         listingInstance.automobile = Automobile.findByVin(jsonObject.autoVin)
         listingInstance.dateCreated = new Date()
         listingInstance.lastUpdated = new Date()

@@ -25,13 +25,15 @@ class AutomobileController {
 //        respond Automobile.list(params), [status: OK]
 
         User user = springSecurityService.currentUser
-        def data = Automobile.findByOwner(user) ?: []
+        def data = Automobile.findByUser(user) ?: []
 
         render([success: true, data: data] as JSON)
     }
 
     @Transactional
     def save(Automobile automobileInstance) {
+        log.info('automobile controller - save method invoked')
+
         if (automobileInstance == null) {
             render status: NOT_FOUND
             return

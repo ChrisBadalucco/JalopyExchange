@@ -7,20 +7,31 @@ Ext.define('Jalopy.view.listing.AddListingDlg', {
     title: 'Add New Listing',
     modal : true,
     autoShow : true,
+    layout : 'anchor',
     listeners : {
         show : 'loadCombos'
     },
     items: [ {
         xtype : 'form',
         bodyPadding: 5,
+        anchor : '100%',
         layout : 'anchor',
         reference : 'addform',
         buttons : [ {
             text: 'Submit New Listing',
+            iconCls : 'icon-accept',
             reference : 'submitListingBtn',
             formBind : true,
             listeners: {
                 click: 'onClickAdd'
+            }
+        }, {
+            text : 'Cancel',
+            iconCls : 'icon-cancel',
+            listeners : {
+                click : function(btn) {
+                    btn.up('window').close();
+                }
             }
         } ],
         defaults : { anchor : '100%', allowBlank : false },
@@ -51,12 +62,9 @@ Ext.define('Jalopy.view.listing.AddListingDlg', {
             emptyText : 'Enter a dollar amount...',
             name : 'askingPrice'
         }, {
-            xtype : 'displayfield',
-            fieldLabel : 'Start Date',
-            value : Ext.util.Format.date(new Date(), 'm/d/Y')
-        }, {
             xtype : 'datefield',
             fieldLabel : 'End Date',
+            minValue : new Date(),
             emptyText : 'Select a date...',
             name : 'endDate'
         } ]

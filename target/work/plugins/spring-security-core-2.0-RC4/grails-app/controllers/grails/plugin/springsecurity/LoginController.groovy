@@ -44,7 +44,7 @@ class LoginController {
 	 */
 	def index() {
 		if (springSecurityService.isLoggedIn()) {
-			redirect uri: SpringSecurityUtils.securityConfig.successHandler.defaultTargetUrl // root
+			redirect uri: SpringSecurityUtils.securityConfig.successHandler.defaultTargetUrl
 		}
 		else {
 			redirect action: 'auth', params: params
@@ -74,8 +74,7 @@ class LoginController {
 	 */
 	def authAjax() {
 		response.setHeader 'Location', SpringSecurityUtils.securityConfig.auth.ajaxLoginFormUrl
-		response.sendError HttpServletResponse.SC_UNAUTHORIZED // send 401 status
-//        render view: 'auth', params: params // redirect to login page
+		response.sendError HttpServletResponse.SC_UNAUTHORIZED
 	}
 
 	/**
@@ -144,6 +143,6 @@ class LoginController {
 	 * The Ajax denied redirect url.
 	 */
 	def ajaxDenied() {
-		render([success: false, message: 'You are not allowed to perform this task.'] as JSON)
+		render([error: 'access denied'] as JSON)
 	}
 }

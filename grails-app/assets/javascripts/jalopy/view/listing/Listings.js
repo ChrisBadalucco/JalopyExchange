@@ -77,10 +77,9 @@ Ext.define('Jalopy.view.listing.Listings', {
     buildListingsGrid : function() {
         var create = {
             xtype: 'button',
-            margin : 2,
             itemId : 'createListingBtn',
             text: 'Create Listing',
-            iconCls : 'icon-add',
+            iconCls : 'icon-form-add',
             listeners: {
                 click: function() {
                     Ext.widget('addlistingdlg');
@@ -98,7 +97,6 @@ Ext.define('Jalopy.view.listing.Listings', {
         };
 
         var defaults = {
-            labelWidth : 80,
             labelAlign : 'right',
             width : 200,
             margin : '0 10 0 0',
@@ -108,15 +106,18 @@ Ext.define('Jalopy.view.listing.Listings', {
         var status = {
             xtype : 'combo',
             fieldLabel : 'Status',
+            labelWidth : 40,
             allowBlank : true,
-            forceSelection : true,
-            store : [ '', 'Active', 'Ended' ],
+            typeAhead : true,
+//            forceSelection : true,
+            store : [ 'Active', 'Ended' ],
             name : 'status'
         };
         Ext.apply(status, defaults);
 
         var endDate = {
             xtype : 'datefield',
+            labelWidth : 80,
             width : 200,
             fieldLabel : 'End Date',
             name : 'endDate'
@@ -125,6 +126,7 @@ Ext.define('Jalopy.view.listing.Listings', {
 
         var seller = {
             xtype : 'jalopycombo',
+            labelWidth : 80,
             fieldLabel : 'Seller',
             store : 'filters.Seller',
             name : 'seller'
@@ -138,11 +140,18 @@ Ext.define('Jalopy.view.listing.Listings', {
             items : [ status, endDate, seller, search ]
         };
 
-        var dockedItems = [ create, '->', filter ];
+        var dockedItems = [ filter, '->', create ];
 
         var columns = [ {
             text : 'ID',
-            dataIndex : 'id'
+            dataIndex : 'id',
+            hidden : true
+//        }, {
+//            header: 'Photo',
+//            dataIndex: 'imageUrl',
+//            renderer: function(value){
+//                return '<img src="' + value + '" />';
+//            }
         }, {
             text : 'Year',
             dataIndex : 'autoYear'
@@ -159,11 +168,6 @@ Ext.define('Jalopy.view.listing.Listings', {
             text : 'Asking Price',
             dataIndex : 'askingPrice',
             formatter : 'usMoney'
-        }, {
-            xtype: 'datecolumn',
-            text : 'Start Date',
-            dataIndex : 'startDate',
-            format: 'm/d/Y'
         }, {
             xtype: 'datecolumn',
             text : 'End Date',
@@ -216,7 +220,6 @@ Ext.define('Jalopy.view.listing.Listings', {
             dockedItems: [{
                 xtype: 'toolbar',
                 dock: 'top',
-                padding : 2,
                 autoScroll : true,
                 items: dockedItems
             }],

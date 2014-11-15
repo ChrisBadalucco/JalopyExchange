@@ -1,7 +1,7 @@
-body { background-color : #E6F1F9 }
-a { color : #000; text-decoration: none;}
-a:hover { text-decoration: underline; }
-a:active { color: #FFF; }
+body { background-color : #157fcc !important; color : #FFF !important;  font-family : Arial, Helvetica, sans-serif }
+a { color : #FFF; text-decoration: none; }
+a:hover { text-decoration : underline; }
+a:active { color : #333; }
 
 /*------------------------------*/
 /* Helper Classes               */
@@ -14,20 +14,17 @@ a:active { color: #FFF; }
 /* Layout                       */
 /*------------------------------*/
 .page { margin : 10px; }
-
-/*LOGIN STUFF GOES HERE*/
-
-#header { overflow : hidden; margin-bottom : 5px; height : 45px; }
-#header .left { width : 400px; }
-.headerTitles { display : inline-block; padding-left : 4px; }
+#header { padding : 10px 10px 10px 5px; overflow : hidden; font-size: 18px; font-weight: bold; }
+#header .left { width : 215px; }
+.headerTitles { display : inline-block; }
 .mainTitle { margin-top : 2px; font-size : 26px; font-style : italic; }
 .subTitle { margin-top : 2px; padding : 4px; font-size: 16px; font-weight : bold; }
-#footer { bottom : 5px; padding-top : 2px; overflow : hidden; position : absolute; width : 100%; }
+#footer { bottom : 5px; padding-top : 2px; overflow : hidden; position : absolute; width : 100%; border-top : 2px solid #000; }
 
 /*------------------------------*/
 /* Menu                         */
 /*------------------------------*/
-.je_menu { background-color : transparent; border-style : solid; border-color : #000; border-width : 2px 0px; }
+.je_menu { background-color : transparent; border-top : solid #000 2px; border-bottom : solid #000 2px; border-left-width: 0px; border-right-width: 0px; }
 
 /*------------------------------*/
 /* Icons                        */
@@ -35,7 +32,13 @@ a:active { color: #FFF; }
 .icon-add { background-image : url(../images/icons/add.png) !important; }
 .icon-delete { background-image : url(../images/icons/delete.png) !important; }
 .icon-accept { background-image : url(../images/icons/accept.png) !important; }
+.icon-cancel { background-image : url(../images/icons/cancel.png) !important; }
 .icon-magnifier { background-image : url(../images/icons/magnifier.png) !important; }
 .icon-user { background-image : url(../images/icons/user.png) !important; }
 .icon-user-edit { background-image : url(../images/icons/user_edit.png) !important; }
+.icon-group { background-image : url(../images/icons/group.png) !important; }
 .icon-list { background-image : url(../images/icons/application_view_list.png) !important; }
+.icon-form { background-image : url(../images/icons/application_form.png) !important; }
+.icon-form-add { background-image : url(../images/icons/application_form_add.png) !important; }
+.icon-car { background-image : url(../images/icons/car.png) !important; }
+.icon-car-add { background-image : url(../images/icons/car_add.png) !important; }

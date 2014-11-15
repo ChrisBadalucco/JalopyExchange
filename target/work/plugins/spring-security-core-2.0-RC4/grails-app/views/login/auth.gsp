@@ -3,34 +3,27 @@
 	<meta name='layout' content='main'/>
 	<title><g:message code="springSecurity.login.title"/></title>
 	<style type='text/css' media='screen'>
-	body {
-        background-color : #157fcc;
+    body {
+        background-color: #ddd;
+        font-family: Arial, Helvetica, sans-serif;
     }
 
-    #login {
-		margin: 15px 0px;
-		padding: 0px;
-		text-align: center;
+	#login {
+		text-align: left;
+        background-color : #A1CCEB;
 	}
 
 	#login .inner {
-		width: 340px;
+		width: 100%;
 		padding-bottom: 6px;
-		margin: 60px auto;
 		text-align: left;
-		border: 1px solid #aab;
-		background-color: #f0f0fa;
-		-moz-box-shadow: 2px 2px 2px #eee;
-		-webkit-box-shadow: 2px 2px 2px #eee;
-		-khtml-box-shadow: 2px 2px 2px #eee;
-		box-shadow: 2px 2px 2px #eee;
 	}
 
 	#login .inner .fheader {
 		padding: 18px 26px 14px 26px;
-		background-color: #f7f7ff;
+		background-color: #157fcc;
 		margin: 0px 0 14px 0;
-		color: #2e3741;
+		color: #FFF;
 		font-size: 18px;
 		font-weight: bold;
 	}
@@ -56,10 +49,6 @@
 		width: 110px;
 		padding-top: 3px;
 		padding-right: 10px;
-	}
-
-	#login #remember_me_holder {
-		padding-left: 120px;
 	}
 
 	#login #submit {
@@ -107,11 +96,6 @@
 				<label for='password'><g:message code="springSecurity.login.password.label"/>:</label>
 				<input type='password' class='text_' name='j_password' id='password'/>
 			</p>
-
-			%{--<p id="remember_me_holder">--}%
-				%{--<input type='checkbox' class='chk' name='${rememberMeParameter}' id='remember_me' <g:if test='${hasCookie}'>checked='checked'</g:if>/>--}%
-				%{--<label for='remember_me'><g:message code="springSecurity.login.remember.me.label"/></label>--}%
-			%{--</p>--}%
 
 			<p>
 				<input type='submit' id="submit" value='${message(code: "springSecurity.login.button")}'/>
