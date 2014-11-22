@@ -88,7 +88,8 @@ class UserController extends RestfulController{
             return
         }
 
-        userInstance.delete flush:true
+        //userInstance.delete flush:true
+        User.executeUpdate("delete User c where c.id = :oldId", [oldId: userInstance.id])
         render([success: true, data: []] as JSON)
     }
 }

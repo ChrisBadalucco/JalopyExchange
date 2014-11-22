@@ -25,7 +25,7 @@ class AutomobileController {
 //        respond Automobile.list(params), [status: OK]
 
         User user = springSecurityService.currentUser
-        def data = Automobile.findByUser(user) ?: []
+        def data = Automobile.findAllByUser(user) ?: []
 
         render([success: true, data: data] as JSON)
     }
@@ -35,18 +35,21 @@ class AutomobileController {
         log.info('automobile controller - save method invoked')
 
         if (automobileInstance == null) {
-            render status: NOT_FOUND
+            render([success: false, message: 'Error parsing data. Please make sure you are submitting a valid Automobile.'] as JSON)
             return
         }
 
+        automobileInstance.user = springSecurityService.currentUser
+
         automobileInstance.validate()
         if (automobileInstance.hasErrors()) {
-            render status: NOT_ACCEPTABLE
+            log.info automobileInstance.errors
+            render([success: false, message: 'Invalid Automobile. Please try again'] as JSON)
             return
         }
 
         automobileInstance.save flush:true
-        respond automobileInstance, [status: CREATED]
+        render([success: true, data: []] as JSON)
     }
 
     @Transactional

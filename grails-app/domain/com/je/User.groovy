@@ -19,6 +19,7 @@ class User {
     String lastName
     String email
     int age
+    String bio
 
     static hasMany = [ listings : Listing, automobiles : Automobile ]
 
@@ -31,12 +32,17 @@ class User {
         lastName nullable: true
         email email: true, nullable: true
         age nullable: true
+        bio nullable: true
         listings nullable: true
         automobiles nullable: true
 	}
 
 	static mapping = {
 		password column: '`password`'
+//        listings cascade: 'all-delete-orphan'
+//        automobiles cascade: 'all-delete-orphan'
+        listings cascade: 'delete'
+        automobiles cascade: 'delete'
 	}
 
 	Set<Role> getAuthorities() {

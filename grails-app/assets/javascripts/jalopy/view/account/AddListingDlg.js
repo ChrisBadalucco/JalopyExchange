@@ -1,8 +1,8 @@
-Ext.define('Jalopy.view.listing.AddListingDlg', {
+Ext.define('Jalopy.view.account.AddListingDlg', {
     extend: 'Ext.window.Window',
     xtype : 'addlistingdlg',
 
-    controller: 'listingViewController',
+    controller: 'accountViewController',
 
     title: 'Add New Listing',
     modal : true,
@@ -23,7 +23,7 @@ Ext.define('Jalopy.view.listing.AddListingDlg', {
             reference : 'submitListingBtn',
             formBind : true,
             listeners: {
-                click: 'onClickAdd'
+                click: 'onClickAddListing'
             }
         }, {
             text : 'Cancel',

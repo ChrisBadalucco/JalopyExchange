@@ -15,16 +15,30 @@ class UserMarshaller {
             def listings = Listing.findByUser(user)
             def autos = Automobile.findByUser(user)
 
-            return [
-                    id : listing.id,
-                    username : user.username,
-                    firstName : user.firstName,
-                    lastName : user.lastName,
-                    email : user.email,
-                    age : user.age,
-                    listings : listings,
-                    automobiles : autos
-            ]
+//            return [
+//                    id : user.id,
+//                    username : user.username,
+//                    firstName : user.firstName,
+//                    lastName : user.lastName,
+//                    email : user.email,
+//                    age : user.age,
+//                    listings : listings,
+//                    automobiles : autos
+//            ]
+
+            def map = [:]
+
+            map['id'] = user.id
+            map['username'] = user.username
+            map['email'] = user.email
+            map['age'] = user.age == 0 ? null : user.age
+            map['firstName'] = user.firstName
+            map['lastName'] = user.lastName
+            map['bio'] = user.bio
+            map['listings'] = listings
+            map['automobiles'] = autos
+
+            return map;
         }
     }
 }

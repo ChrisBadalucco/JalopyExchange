@@ -38,9 +38,10 @@ Ext.define('Jalopy.view.account.AddAutoDlg', {
         items : [ {
             xtype : 'numberfield',
             fieldLabel : 'VIN',
-            emptyText : 'Enter the vehicle identification number...',
-            minLength: 17,
-            maxLength: 17,
+            emptyText : 'Enter the vehicle identification #...',
+            minValue : 10000000000000000,
+            maxValue : 99999999999999999,
+            step : 1000,
             name : 'vin'
         }, {
             xtype : 'numberfield',
@@ -48,7 +49,7 @@ Ext.define('Jalopy.view.account.AddAutoDlg', {
             emptyText : 'Enter the model year...',
             minValue : 1900,
             maxValue : new Date().getFullYear() + 1,
-            name : 'vin'
+            name : 'year'
         }, {
             xtype : 'textfield',
             fieldLabel : 'Make',
@@ -59,13 +60,13 @@ Ext.define('Jalopy.view.account.AddAutoDlg', {
             fieldLabel : 'Model',
             emptyText : 'Enter the model (e.g. Civic)...',
             name : 'model'
-        }, {
-            xtype : 'textfield',
-            fieldLabel : 'Image URL',
-            emptyText : 'Paste a link to an image...',
-            allowBlank : true,
-            vtype : 'url',
-            name : 'imageUrl'
+//        }, {
+//            xtype : 'textfield',
+//            fieldLabel : 'Image URL',
+//            emptyText : 'Paste a link to an image...',
+//            allowBlank : true,
+//            vtype : 'url',
+//            name : 'imageUrl'
         } ]
      } ]
 });

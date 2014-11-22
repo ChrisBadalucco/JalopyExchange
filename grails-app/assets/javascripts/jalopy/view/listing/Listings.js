@@ -75,17 +75,17 @@ Ext.define('Jalopy.view.listing.Listings', {
 //    },
 
     buildListingsGrid : function() {
-        var create = {
-            xtype: 'button',
-            itemId : 'createListingBtn',
-            text: 'Create Listing',
-            iconCls : 'icon-form-add',
-            listeners: {
-                click: function() {
-                    Ext.widget('addlistingdlg');
-                }
-            }
-        };
+//        var create = {
+//            xtype: 'button',
+//            itemId : 'createListingBtn',
+//            text: 'Create Listing',
+//            iconCls : 'icon-form-add',
+//            listeners: {
+//                click: function() {
+//                    Ext.widget('addlistingdlg');
+//                }
+//            }
+//        };
 
         var search = {
             xtype : 'button',
@@ -140,7 +140,7 @@ Ext.define('Jalopy.view.listing.Listings', {
             items : [ status, endDate, seller, search ]
         };
 
-        var dockedItems = [ filter, '->', create ];
+        var dockedItems = [ filter, '->'/*, create*/ ];
 
         var columns = [ {
             text : 'ID',
@@ -163,16 +163,17 @@ Ext.define('Jalopy.view.listing.Listings', {
             dataIndex : 'autoModel'
         }, {
             text : 'Seller',
+            width : 150,
             dataIndex : 'seller'
         }, {
             text : 'Asking Price',
             dataIndex : 'askingPrice',
             formatter : 'usMoney'
-        }, {
-            xtype: 'datecolumn',
-            text : 'End Date',
-            dataIndex : 'endDate',
-            format: 'm/d/Y'
+//        }, {
+//            xtype: 'datecolumn',
+//            text : 'End Date',
+//            dataIndex : 'endDate',
+//            format: 'm/d/Y'
         }, {
             xtype: 'datecolumn',
             text : 'Last Updated',

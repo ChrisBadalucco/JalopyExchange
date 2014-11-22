@@ -19,9 +19,9 @@ class ListingMarshaller {
                 autoYear : auto.year,
                 autoDescription : auto.description,
                 automobile : auto,
-                seller : listing.user,
+                seller : listing.user.username,
                 askingPrice : listing.askingPrice,
-                endDate : listing.endDate,
+//                endDate : listing.endDate,
                 isActive : listing.isActive,
                 lastUpdated : listing.lastUpdated
             ]

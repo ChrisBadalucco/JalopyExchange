@@ -18,11 +18,15 @@ class Listing {
     Automobile automobile
     boolean isActive
 
-    Date endDate
+//    Date endDate
     BigDecimal askingPrice
 
     static belongsTo = [ user : User]
 //    static hasOne = [ automobile : Automobile ]
+
+    static mapping = {
+        user cascade: 'delete'
+    }
 
     static constraints = {
         id blank : false, unique : true

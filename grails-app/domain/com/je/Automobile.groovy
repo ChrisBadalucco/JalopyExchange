@@ -37,6 +37,10 @@ class Automobile {
         imageUrl nullable: true
     }
 
+    static mappings = {
+        listing cascade: 'all-delete-orphan'
+    }
+
     String getDescription() {
         return "$year $make $model"
     }

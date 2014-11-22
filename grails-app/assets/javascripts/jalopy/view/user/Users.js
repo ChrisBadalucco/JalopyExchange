@@ -12,13 +12,34 @@ Ext.define('Jalopy.view.user.Users', {
 
     buildUsersGrid : function() {
         var columns = [ {
+            text : 'id',
+            dataIndex : 'id'
+        }, {
             text : 'User',
+            width : 150,
             dataIndex : 'username'
+        }, {
+            text : 'First Name',
+            dataIndex : 'firstName'
+        }, {
+            text : 'Last Name',
+            dataIndex : 'lastName'
+        }, {
+            text : 'Email',
+            width : 225,
+            dataIndex : 'email'
+        }, {
+            text : 'Age',
+            dataIndex : 'age'
+        }, {
+            text : 'Bio',
+            flex : 1,
+            dataIndex : 'bio'
         }, {
             xtype : 'actioncolumn',
             text : 'Delete',
             fixed : true,
-            width : 60,
+            width : 70,
             sortable : false,
             items : [ {
                 iconCls : 'icon-delete',
@@ -28,19 +49,39 @@ Ext.define('Jalopy.view.user.Users', {
                     var store = grid.getStore();
                     var rec = store.getAt(rowIdx);
 
-                    Ext.Msg.confirm('Confirm Delete', 'Are you sure you want to delete the selected user?', function(btn){
-                        if(btn === 'yes') {
-                            store.remove(rec);
-                            store.sync({
-                                success : function() {
-                                    Ext.Msg.alert('Success', 'User successfully deleted.');
-                                },
-                                failure : function() {
-                                    store.rejectChanges();
-                                }
-                            });
-                        }
-                    });
+                    if (rec.get('username') === JE.USERNAME) {
+                        Ext.Msg.alert('Cannot Delete', 'You cannot delete yourself!');
+                    } else if (Ext.isEmpty(rec.get('listings')) === false || Ext.isEmpty(rec.get('automobiles')) === false) {
+                        Ext.Msg.confirm('Confirm Delete', 'This user has data associated to their account. Delete user and all their data?', function(btn) {
+                            if (btn === 'yes') {
+                                store.remove(rec);
+                                store.sync({
+                                    success : function() {
+                                        Ext.Msg.alert('Success', 'User successfully deleted.');
+                                    },
+                                    failure : function() {
+                                        Ext.Msg.alert('Failed to Delete', 'Delete was unsuccessful.');
+                                        store.rejectChanges();
+                                    }
+                                });
+                            }
+                        });
+                    } else {
+                        Ext.Msg.confirm('Confirm Delete', 'Are you sure you want to delete the selected user?', function(btn){
+                            if(btn === 'yes') {
+                                store.remove(rec);
+                                store.sync({
+                                    success : function() {
+                                        Ext.Msg.alert('Success', 'User successfully deleted.');
+                                    },
+                                    failure : function() {
+                                        Ext.Msg.alert('Failed to Delete', 'Delete was unsuccessful.');
+                                        store.rejectChanges();
+                                    }
+                                });
+                            }
+                        });
+                    }
                 }
             } ]
         } ];
