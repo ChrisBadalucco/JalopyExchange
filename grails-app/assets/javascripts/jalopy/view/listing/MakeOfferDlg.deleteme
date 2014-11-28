@@ -1,0 +1,50 @@
+//Ext.define('Jalopy.view.listing.MakeOfferDlg', {
+//    extend: 'Ext.window.Window',
+//    xtype : 'makeofferdlg',
+//
+//    controller: 'listingViewController',
+//
+//    title: 'Make an Offer',
+//    modal : true,
+//    autoShow : true,
+//    layout : 'anchor',
+//    items: [ {
+//        xtype : 'form',
+//        bodyPadding: 5,
+//        anchor : '100%',
+//        layout : 'anchor',
+//        reference : 'offerForm',
+//        buttons : [ {
+//            text: 'Submit Offer',
+//            iconCls : 'icon-accept',
+//            reference : 'submitOfferBtn',
+//            formBind : true,
+//            listeners: {
+//                click: 'onClickSubmitOffer'
+//            }
+//        }, {
+//            text : 'Cancel',
+//            iconCls : 'icon-cancel',
+//            listeners : {
+//                click : function(btn) {
+//                    btn.up('window').close();
+//                }
+//            }
+//        } ],
+//        defaults : { anchor : '100%', allowBlank : false },
+//        items : [ {
+//            xtype : 'numberfield',
+//            fieldLabel : 'Offer Price ($)',
+//            step : 100,
+//            minValue: 1000,
+//            maxValue: 100000,
+//            emptyText : 'Enter a dollar amount...',
+//            name : 'askingPrice'
+//        } ]
+//     } ],
+//
+//    initComponent : function() {
+//        // TODO consider setting minValue of offer to the current offer + 100
+//        this.callParent();
+//    }
+//});

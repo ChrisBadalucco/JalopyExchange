@@ -87,20 +87,27 @@ Ext.define('Jalopy.view.account.AccountViewController', {
         store.load({
             callback: function(records, operation, success) {
                 if (success) {
-                    store.filterBy(function(rec) {
-                        return Ext.isEmpty(rec.get('listing'));
-                    });
+                    if (records.length > 0) {
+                        Ext.Array.forEach(records, function(item, idx, allItems){
+                            if (Ext.isEmpty(item.get('listing')) === false) {
+                                store.remove(item);
+                            }
+                        });
+                    } else {
+                        thisWin.destroy();
+                        Ext.Msg.alert('Action Required', 'Please add a new automobile before trying to create a listing.');
+                    }
+                } else {
+                    thisWin.destroy();
+                    Ext.Msg.alert('Error', 'Failed to load your available automobiles. Please try again.');
                 }
             }
         });
-        if(store.getCount() === 0) {
-            thisWin.destroy();
-            Ext.Msg.alert('No Available Automobiles', 'You have no automobiles to list. Please add an automobile to your account in "My Account"');
-        }
+
     },
 
     onClickAddListing: function(btn) {
-        var form = this.lookupReference('addform');
+        var form = this.lookupReference('addListingForm');
         var grid = Ext.ComponentQuery.query('grid[title="My Listings"]')[0];
         var store = grid.getStore();
         if (form.isValid()) {
@@ -109,7 +116,7 @@ Ext.define('Jalopy.view.account.AccountViewController', {
             store.sync({
                 success : function() {
                     Ext.Msg.alert('Success', 'Your listing has been added.');
-                    store.load();
+//                    store.load();
                 },
                 failure : function() {
                     store.rejectChanges();
@@ -117,5 +124,30 @@ Ext.define('Jalopy.view.account.AccountViewController', {
             });
             this.getView().close();
         }
+    },
+
+    onClickManageListing : function(btn) {
+        var grid = this.lookupReference('myListingsGrid');
+        var rec = btn.getWidgetRecord();
+        var isActive = rec.get('isActive');
+        var title = isActive ? 'Close' : 'Open';
+        var msg = isActive ? 'This listing is currently open. Are you sure you want to close it?' :
+            'This listing is currently closed. Are you sure you want to open it?';
+        Ext.Msg.confirm('Confirm ' + title, msg, function(confirmBtn) {
+            if (confirmBtn === 'yes') {
+                var store = grid.getStore();
+
+                rec.set('isActive', !isActive);
+                store.sync({
+                    success : function() {
+                        var alertMsg = !isActive ? 'opened.' : 'closed.';
+                        Ext.Msg.alert('Success', 'Listing successully ' + alertMsg);
+                    },
+                    failure : function() {
+                        store.rejectChanges();
+                    }
+                });
+            }
+        });
     }
 });

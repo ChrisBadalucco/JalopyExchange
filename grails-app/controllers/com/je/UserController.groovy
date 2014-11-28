@@ -41,7 +41,16 @@ class UserController extends RestfulController{
     }
 
     def indexSellers() {
-        render ([success: true, data: [] ] as JSON) // FIXME!!!!!!
+        def query = User.where {
+            automobiles.size() > 0
+        }
+
+        def results = query.list()
+
+        //results.add(0, new User(username: 'All', id = -1))
+
+        println results
+        render ([success: true, data: results ] as JSON)
     }
 
     @Secured('ROLE_ADMIN')

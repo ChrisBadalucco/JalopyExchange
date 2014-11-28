@@ -12,8 +12,8 @@ class UserMarshaller {
 
     void register() {
         JSON.registerObjectMarshaller(User) { User user ->
-            def listings = Listing.findByUser(user)
-            def autos = Automobile.findByUser(user)
+            def listings = Listing.findBySeller(user)
+            def autos = Automobile.findByOwner(user)
 
 //            return [
 //                    id : user.id,

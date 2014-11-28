@@ -6,7 +6,7 @@ Ext.define('Jalopy.app.AccountApplication', {
         'Ext' : '.'
     },
     views : [ 'Jalopy.common.view.JalopyCombo', 'account.AddAutoDlg', 'account.AddListingDlg' ],
-    stores : [ 'User', 'UserAutomobile', 'UserListing' ],
+    stores : [ 'User', 'Automobile', 'AutomobileFiltered', 'Listing' ],
 
     launch : function() {
         console.log('myaccount app launched');

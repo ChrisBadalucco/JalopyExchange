@@ -1,8 +1,8 @@
 Ext.define('Jalopy.view.account.AddListingDlg', {
     extend: 'Ext.window.Window',
     xtype : 'addlistingdlg',
-
     controller: 'accountViewController',
+//    requires : [ 'Jalopy.store.Automobile' ],
 
     title: 'Add New Listing',
     modal : true,
@@ -16,22 +16,18 @@ Ext.define('Jalopy.view.account.AddListingDlg', {
         bodyPadding: 5,
         anchor : '100%',
         layout : 'anchor',
-        reference : 'addform',
+        reference : 'addListingForm',
         buttons : [ {
             text: 'Submit New Listing',
             iconCls : 'icon-accept',
             reference : 'submitListingBtn',
             formBind : true,
-            listeners: {
-                click: 'onClickAddListing'
-            }
+            handler : 'onClickAddListing'
         }, {
             text : 'Cancel',
             iconCls : 'icon-cancel',
-            listeners : {
-                click : function(btn) {
-                    btn.up('window').close();
-                }
+            handler : function(btn) {
+                btn.up('window').close();
             }
         } ],
         defaults : { anchor : '100%', allowBlank : false },
@@ -43,15 +39,13 @@ Ext.define('Jalopy.view.account.AddListingDlg', {
         }, {
             xtype : 'combo',
             fieldLabel : 'Automobile',
-            store : 'UserAutomobile',
+            store : 'AutomobileFiltered',
             queryMode : 'local',
             emptyText : 'Select an automobile...',
             valueField : 'vin',
             displayField : 'description',
             typeAhead : true,
             forceSelection : true,
-            blankText : 'This field is required. Please add an ' +
-                'automobile in "My Account" if there are none in the dropdown',
             name : 'autoVin'
         }, {
             xtype : 'numberfield',
@@ -59,14 +53,9 @@ Ext.define('Jalopy.view.account.AddListingDlg', {
             step : 100,
             minValue: 1000,
             maxValue: 100000,
+            allowDecimals : true,
             emptyText : 'Enter a dollar amount...',
-            name : 'askingPrice'
-        }, {
-            xtype : 'datefield',
-            fieldLabel : 'End Date',
-            minValue : new Date(),
-            emptyText : 'Select a date...',
-            name : 'endDate'
+            name : 'price'
         } ]
      } ]
 });

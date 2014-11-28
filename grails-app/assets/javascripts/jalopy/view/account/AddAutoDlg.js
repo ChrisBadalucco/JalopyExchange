@@ -60,13 +60,6 @@ Ext.define('Jalopy.view.account.AddAutoDlg', {
             fieldLabel : 'Model',
             emptyText : 'Enter the model (e.g. Civic)...',
             name : 'model'
-//        }, {
-//            xtype : 'textfield',
-//            fieldLabel : 'Image URL',
-//            emptyText : 'Paste a link to an image...',
-//            allowBlank : true,
-//            vtype : 'url',
-//            name : 'imageUrl'
         } ]
      } ]
 });

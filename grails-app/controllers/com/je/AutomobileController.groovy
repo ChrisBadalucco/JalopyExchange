@@ -16,30 +16,26 @@ class AutomobileController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
+        log.info("automobile controller index invoked")
         render([success: true, data: Automobile.list(params)] as JSON)
     }
 
     def indexUserOnly(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-//        respond Automobile.list(params), [status: OK]
+        log.info("automobile controller indexUserOnly invoked")
 
-        User user = springSecurityService.currentUser
-        def data = Automobile.findAllByUser(user) ?: []
-
-        render([success: true, data: data] as JSON)
+        render([success: true, data: springSecurityService.currentUser.automobiles] as JSON)
     }
 
     @Transactional
     def save(Automobile automobileInstance) {
-        log.info('automobile controller - save method invoked')
+        log.info("automobile controller - save invoked")
 
         if (automobileInstance == null) {
             render([success: false, message: 'Error parsing data. Please make sure you are submitting a valid Automobile.'] as JSON)
             return
         }
 
-        automobileInstance.user = springSecurityService.currentUser
+        automobileInstance.owner = springSecurityService.currentUser
 
         automobileInstance.validate()
         if (automobileInstance.hasErrors()) {

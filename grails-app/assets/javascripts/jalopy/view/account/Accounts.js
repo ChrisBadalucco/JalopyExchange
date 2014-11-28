@@ -69,6 +69,7 @@ Ext.define('Jalopy.view.account.Accounts', {
         var myListings = {
             xtype : 'grid',
             title : 'My Listings',
+            reference : 'myListingsGrid',
             iconCls : 'icon-form',
             region : 'south',
             collapsible : true,
@@ -77,10 +78,8 @@ Ext.define('Jalopy.view.account.Accounts', {
                 xtype : 'button',
                 text : 'Create Listing',
                 iconCls : 'icon-form-add',
-                listeners : {
-                    click: function() {
-                        Ext.widget('addlistingdlg');
-                    }
+                handler : function() {
+                    Ext.widget('addlistingdlg');
                 }
             } ],
             columns : [ {
@@ -88,23 +87,40 @@ Ext.define('Jalopy.view.account.Accounts', {
                 dataIndex : 'id'
             }, {
                 text : 'Asking Price',
-                dataIndex : 'askingPrice',
+                width : 120,
+                dataIndex : 'price',
                 formatter : 'usMoney'
-//            }, {
-//                xtype: 'datecolumn',
-//                text : 'End Date',
-//                dataIndex : 'endDate',
-//                format: 'm/d/Y'
+            }, {
+                text : 'Automobile',
+                dataIndex : 'autoDescription',
+                width : 250
             }, {
                 xtype: 'datecolumn',
+                width : 120,
                 text : 'Last Updated',
                 dataIndex : 'lastUpdated',
                 format: 'm/d/Y'
             }, {
-                text : 'Active?',
-                dataIndex : 'isActive'
+                text : 'Status',
+                dataIndex : 'status'
+            }, {
+                xtype : 'widgetcolumn',
+                width : 120,
+                text : 'Manage',
+                widget : {
+                    xtype : 'button',
+                    text : 'Open / Close',
+                    margin : 2,
+                    handler :'onClickManageListing'
+                }
             } ],
-            store : 'UserListing'
+            store : Ext.create('Jalopy.store.Listing', {
+                storeId : 'users-listings',
+                filters : {
+                    property : 'seller',
+                    value : JE.USERNAME
+                }
+            })
         };
 
         var myAutos = {
@@ -125,6 +141,10 @@ Ext.define('Jalopy.view.account.Accounts', {
                 }
             } ],
             columns : [ {
+                text : 'ID',
+                dataIndex : 'id',
+                width : 80
+            }, {
                 text : 'VIN',
                 dataIndex : 'vin',
                 width : 200
@@ -137,38 +157,45 @@ Ext.define('Jalopy.view.account.Accounts', {
             }, {
                 text : 'Model',
                 dataIndex : 'model'
-            }, {
-                xtype : 'actioncolumn',
-                text : 'Delete',
-                fixed : true,
-                width : 70,
-                sortable : false,
-                items : [ {
-                    iconCls : 'icon-delete',
-                    altText : 'Delete',
-                    tooltip : 'Delete User',
-                    handler : function(grid, rowIdx, colIdx) {
-                        var store = grid.getStore();
-                        var rec = store.getAt(rowIdx);
-
-                        Ext.Msg.confirm('Confirm Delete', 'Are you sure you want to delete the selected automobile?', function(btn){
-                            if(btn === 'yes') {
-                                store.remove(rec);
-                                store.sync({
-                                    success : function() {
-                                        Ext.Msg.alert('Success', 'Automobile successfully deleted.');
-                                    },
-                                    failure : function() {
-//                                        Ext.Msg.alert('Failure', 'Delete has failed. Please try again.');
-                                        store.rejectChanges();
-                                    }
-                                });
-                            }
-                        });
-                    }
-                } ]
+//            }, {
+//                xtype : 'actioncolumn',
+//                text : 'Delete',
+//                fixed : true,
+//                width : 70,
+//                sortable : false,
+//                items : [ {
+//                    iconCls : 'icon-delete',
+//                    altText : 'Delete',
+//                    tooltip : 'Delete User',
+//                    handler : function(grid, rowIdx, colIdx) {
+//                        var store = grid.getStore();
+//                        var rec = store.getAt(rowIdx);
+//
+//                        Ext.Msg.confirm('Confirm Delete', 'Are you sure you want to delete the selected automobile?', function(btn){
+//                            if(btn === 'yes') {
+//                                store.remove(rec);
+//                                store.sync({
+//                                    success : function() {
+//                                        Ext.Msg.alert('Success', 'Automobile successfully deleted.');
+//                                    },
+//                                    failure : function() {
+////                                        Ext.Msg.alert('Failure', 'Delete has failed. Please try again.');
+//                                        store.rejectChanges();
+//                                    }
+//                                });
+//                            }
+//                        });
+//                    }
+//                } ]
             } ],
-            store : 'UserAutomobile'
+//            store : 'UserAutomobile'
+            store : Ext.create('Jalopy.store.Automobile', {
+                storeId : 'users-autos',
+                filters : {
+                    property : 'owner',
+                    value : JE.USERNAME
+                }
+            }).load()
         };
 
         var centerCt = {

@@ -18,6 +18,8 @@ hibernate {
 environments {
     development {
         dataSource {
+            logSql = true
+            formatSql = true
             dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
             url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
             //url = "jdbc:h2:mem:devDb;AUTO_SERVER=TRUE;AUTO_SERVER_PORT=9092;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"

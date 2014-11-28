@@ -18,6 +18,6 @@ class UrlMappings {
         "/main/user/sellers"(controller: 'user', parseRequest: true, action: 'indexSellers')
         "/main/automobile"(resources: 'automobile', parseRequest: true)
         "/main/automobile/user"(controller: 'automobile', parseRequest: true, action: 'indexUserOnly')
-        "/main/listing/user"(controller: 'listing', parseRequest: true, action: 'indexUserOnly')
+        "/main/listing/user"(controller: 'listing', parseRequest: true, action: [GET: 'indexUserOnly', POST: 'save'])
 	}
 }

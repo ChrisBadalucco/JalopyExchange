@@ -10,83 +10,7 @@ Ext.define('Jalopy.view.listing.Listings', {
         this.callParent();
     },
 
-//    buildListingsToolbar : function() {
-//        var create = {
-//            xtype: 'button',
-//            margin : 2,
-//            itemId : 'createListingBtn',
-//            text: 'Create Listing',
-//            listeners: {
-//                click: function() {
-//                    Ext.widget('addlistingdlg');
-//                }
-//            }
-//        };
-//
-//        var search = {
-//            xtype : 'button',
-//            text : 'Search',
-//            iconCls : 'icon-magnifier',
-//            reference : 'searchBtn',
-//            listeners : { click : 'onClickSearch' }
-//        };
-//
-//        var defaults = {
-//            labelWidth : 140,
-//            labelAlign : 'right',
-//            width : 240,
-//            margin : '0 10 0 0'
-//        };
-//
-//        var status = {
-//            xtype : 'combo',
-//            fieldLabel : 'Status',
-//            allowBlank : true,
-//            forceSelection : true,
-//            store : [ '', 'Active', 'Ended' ],
-//            name : 'status'
-//        };
-//
-//        var endDate = {
-//            xtype : 'datefield',
-//            width : 200,
-//            fieldLabel : 'End Date',
-//            name : 'endDate'
-//        };
-//        Ext.apply(endDate, defaults);
-//
-//        var seller = {
-//            xtype : 'jalopycombo',
-//            fieldLabel : 'Seller',
-//            store : 'filters.Seller',
-//            name : 'seller'
-//        };
-//        Ext.apply(seller, defaults);
-//
-//        var filter = {
-//            xtype : 'form',
-//            border : false,
-//            margin : '0 0 5 0',
-//            layout : 'hbox',
-//            items : [ status, endDate, seller, search ]
-//        };
-//
-//        return [ create, '->', filter ];
-//    },
-
     buildListingsGrid : function() {
-//        var create = {
-//            xtype: 'button',
-//            itemId : 'createListingBtn',
-//            text: 'Create Listing',
-//            iconCls : 'icon-form-add',
-//            listeners: {
-//                click: function() {
-//                    Ext.widget('addlistingdlg');
-//                }
-//            }
-//        };
-
         var search = {
             xtype : 'button',
             text : 'Search',
@@ -109,49 +33,64 @@ Ext.define('Jalopy.view.listing.Listings', {
             labelWidth : 40,
             allowBlank : true,
             typeAhead : true,
-//            forceSelection : true,
-            store : [ 'Active', 'Ended' ],
-            name : 'status'
+            queryMode : 'local',
+            forceSelection : true,
+            store : [
+                [ null, 'All' ],
+                [ true, 'Active' ],
+                [ false, 'Closed' ]
+            ],
+            displayField : 'name',
+            valueField : 'value',
+            name : 'isActive'
         };
         Ext.apply(status, defaults);
-
-        var endDate = {
-            xtype : 'datefield',
-            labelWidth : 80,
-            width : 200,
-            fieldLabel : 'End Date',
-            name : 'endDate'
-        };
-        Ext.apply(endDate, defaults);
 
         var seller = {
             xtype : 'jalopycombo',
             labelWidth : 80,
             fieldLabel : 'Seller',
+            forceSelection : true,
+            allowBlank : true,
+            typeAhead : true,
+            queryMode : 'local',
             store : 'filters.Seller',
+            displayField : 'username',
+            valueField : 'id',
             name : 'seller'
         };
         Ext.apply(seller, defaults);
 
-        var filter = {
+        var filterForm = {
             xtype : 'form',
             border : false,
             layout : 'hbox',
-            items : [ status, endDate, seller, search ]
+            reference : 'filterForm',
+            items : [ status, seller, search ]
         };
 
-        var dockedItems = [ filter, '->'/*, create*/ ];
+        var purchase = {
+            xtype : 'button',
+            text : 'Purchase',
+            iconCls : 'icon-money',
+            disabled : true,
+            reference : 'purchaseBtn',
+            listeners : {
+                click : function() {
+                    Ext.widget('purchasedlg');
+                }
+            }
+        };
+
+        var dockedItems = [ filterForm, '->', purchase ];
 
         var columns = [ {
             text : 'ID',
             dataIndex : 'id',
             hidden : true
-//        }, {
-//            header: 'Photo',
-//            dataIndex: 'imageUrl',
-//            renderer: function(value){
-//                return '<img src="' + value + '" />';
-//            }
+        }, {
+            text : 'Status',
+            dataIndex : 'status'
         }, {
             text : 'Year',
             dataIndex : 'autoYear'
@@ -167,63 +106,74 @@ Ext.define('Jalopy.view.listing.Listings', {
             dataIndex : 'seller'
         }, {
             text : 'Asking Price',
-            dataIndex : 'askingPrice',
+            width : 120,
+            dataIndex : 'price',
             formatter : 'usMoney'
-//        }, {
-//            xtype: 'datecolumn',
-//            text : 'End Date',
-//            dataIndex : 'endDate',
-//            format: 'm/d/Y'
         }, {
             xtype: 'datecolumn',
             text : 'Last Updated',
+            width : 120,
             dataIndex : 'lastUpdated',
             format: 'm/d/Y'
         } ];
 
         if (JE.ADMIN) {
-            var actionCol = {
-                xtype : 'actioncolumn',
-                text : 'Delete',
-                fixed : 'true',
-                sortable : false,
-                width : 75,
-                items : [ {
-                    iconCls : 'icon-delete',
-                    tooltip : 'Delete listing',
-                    handler : function(grid, rowIdx, colIdx) {
-                        var store = grid.getStore();
-                        var rec = store.getAt(rowIdx);
-                        Ext.Msg.confirm('Confirm Delete', 'Are you sure you want to delete the selected listing?', function(btn) {
-                            if (btn === 'yes') {
-                                store.remove(rec);
-                                store.sync({
-                                    success : function() {
-                                        Ext.Msg.alert('Success', 'Delete was successful.');
-                                    },
-                                    failure : function() {
-                                        store.rejectChanges();
-                                    }
-                                });
-                            }
-                        });
-                    }
-                } ]
-            };
-
-            columns.push(actionCol)
+            columns.push({
+                xtype : 'widgetcolumn',
+                width : 120,
+                text : 'Admin Task',
+                widget : {
+                    xtype : 'button',
+                    text : 'Open / Close',
+                    margin : 2,
+                    handler :'onAdminClickManageListing'
+                }
+            });
         }
+//        if (JE.ADMIN) {
+//            var actionCol = {
+//                xtype : 'actioncolumn',
+//                text : 'Delete',
+//                fixed : 'true',
+//                sortable : false,
+//                width : 75,
+//                items : [ {
+//                    iconCls : 'icon-delete',
+//                    tooltip : 'Delete listing',
+//                    handler : function(grid, rowIdx, colIdx) {
+//                        var store = grid.getStore();
+//                        var rec = store.getAt(rowIdx);
+//                        Ext.Msg.confirm('Confirm Delete', 'Are you sure you want to delete the selected listing?', function(btn) {
+//                            if (btn === 'yes') {
+//                                store.remove(rec);
+//                                store.sync({
+//                                    success : function() {
+//                                        Ext.Msg.alert('Success', 'Delete was successful.');
+//                                    },
+//                                    failure : function() {
+//                                        store.rejectChanges();
+//                                    }
+//                                });
+//                            }
+//                        });
+//                    }
+//                } ]
+//            };
+//
+//            columns.push(actionCol)
+//        }
 
         return {
             xtype : 'grid',
-//            title : 'Automobile Listings',
-//            tbar : tbar,
             dockedItems: [{
                 xtype: 'toolbar',
                 dock: 'top',
                 autoScroll : true,
                 items: dockedItems
             }],
+            listeners : {
+                selectionchange : 'onSelectionChange'
+            },
             columns : columns,
             reference : 'listingGrid',
             itemId : 'listingGrid',

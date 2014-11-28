@@ -6,27 +6,20 @@ package com.je
  */
 class Listing {
 
-//    /* Default (injected) attributes of GORM */
-//    Long id
-//    Long version
+    /* Default (injected) attributes of GORM */
+    Long id
+    Long version
 
     /* Automatic timestamping of GORM */
     Date dateCreated
     Date lastUpdated
 
-//    User seller
     Automobile automobile
+    BigDecimal price
     boolean isActive
+    // TODO: User buyer or hasOne buyer assoc.
 
-//    Date endDate
-    BigDecimal askingPrice
-
-    static belongsTo = [ user : User]
-//    static hasOne = [ automobile : Automobile ]
-
-    static mapping = {
-        user cascade: 'delete'
-    }
+    static belongsTo = [ seller : User ]
 
     static constraints = {
         id blank : false, unique : true
