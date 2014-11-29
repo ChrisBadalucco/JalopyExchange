@@ -47,7 +47,7 @@ Ext.define('Jalopy.view.account.AccountViewController', {
 
                 store.sync({
                     success : function() {
-                        Ext.Msg.alert('Success', 'Your account has been successfully updated.');
+                        Ext.Msg.alert('Success', 'Your account has been updated.');
                     },
                     failure : function() {
                         store.rejectChanges();
@@ -69,12 +69,12 @@ Ext.define('Jalopy.view.account.AccountViewController', {
             form.getForm().submit({
                 clientValidation: true,
                 success: function(form, action) {
-                    Ext.Msg.alert('Success', 'Submission was successful');
+                    Ext.Msg.alert('Success', 'Your automobile has been added.');
                     store.reload();
                     me.getView().close();
                 },
                 failure: function(form, action) {
-                    Ext.Msg.alert('Failure', 'Submission failed');
+//                    Ext.Msg.alert('Failure', 'Submission failed');
                     store.rejectChanges();
                 }
             });
@@ -83,24 +83,25 @@ Ext.define('Jalopy.view.account.AccountViewController', {
     },
 
     loadCombos : function(thisWin, eOpts) {
-        var store = thisWin.down("combo[name='autoVin']").getStore();
+        var store = thisWin.down("combo[name='autoId']").getStore();
         store.load({
             callback: function(records, operation, success) {
                 if (success) {
                     if (records.length > 0) {
                         Ext.Array.forEach(records, function(item, idx, allItems){
-                            if (Ext.isEmpty(item.get('listing')) === false) {
+                            if (Ext.isEmpty(item.get('listing')) === false || item.get('owner') !== JE.USERNAME) {
                                 store.remove(item);
                             }
                         });
-                    } else {
+                    }
+                    if (store.getCount() === 0) {
                         thisWin.destroy();
                         Ext.Msg.alert('Action Required', 'Please add a new automobile before trying to create a listing.');
                     }
                 } else {
-                    thisWin.destroy();
-                    Ext.Msg.alert('Error', 'Failed to load your available automobiles. Please try again.');
-                }
+                        thisWin.destroy();
+                        Ext.Msg.alert('Error', 'Failed to load your available automobiles. Please try again.');
+                    }
             }
         });
 
@@ -116,7 +117,7 @@ Ext.define('Jalopy.view.account.AccountViewController', {
             store.sync({
                 success : function() {
                     Ext.Msg.alert('Success', 'Your listing has been added.');
-//                    store.load();
+                    store.load();
                 },
                 failure : function() {
                     store.rejectChanges();

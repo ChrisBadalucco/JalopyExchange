@@ -65,15 +65,15 @@ class BootStrap {
         println "Finished loading $User.count persons into database"
 
         println "Start loading automobiles into database"
-        def wrx = new Automobile(vin: 12345678901234567L, make: "Subaru", model: "WRX", year: "2014", owner: User.findById(2L) /*chrisUser*/)
+        def wrx = new Automobile(vin: 10000000000000000L, make: "Subaru", model: "WRX", year: "2014", owner: User.findById(2L) /*chrisUser*/)
         assert wrx.save(failOnError:true, flush:true, insert: true)
         wrx.errors = null
 
-        def evo = new Automobile(vin: 18165132111876113L, make: "Mitsubishi", model: "Evolution", year: "1998", owner: User.findById(2L) /*chrisUser*/)
+        def evo = new Automobile(vin: 20000000000000000L, make: "Mitsubishi", model: "Evolution", year: "1998", owner: User.findById(2L) /*chrisUser*/)
         assert evo.save(failOnError:true, flush:true, insert: true)
         evo.errors = null
 
-        def wrangler = new Automobile(vin: 98765432109876543L, make: "Jeep", model: "Wrangler", year: "2000", owner: User.findById(3L) /*joeUser*/)
+        def wrangler = new Automobile(vin: 30000000000000000L, make: "Jeep", model: "Wrangler", year: "2000", owner: User.findById(3L) /*joeUser*/)
         assert wrangler.save(failOnError:true, flush:true, insert: true)
         wrangler.errors = null
 
@@ -81,12 +81,11 @@ class BootStrap {
         println "Finished loading $Automobile.count automobiles into database"
 
         println "Start loading listings into database"
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy")
-        def listingWrangler = new Listing(automobile: Automobile.findByVin(98765432109876543L)/*wrangler*/, seller: User.findById(3L)/*joeUser*/, price: 15000, lastUpdated: sdf.parse("09/21/2014"), isActive: false)
+        def listingWrangler = new Listing(automobile: Automobile.findByVin(30000000000000000L)/*wrangler*/, seller: User.findById(3L)/*joeUser*/, price: 15000, isActive: false, buyer : User.findById(4L))
         assert listingWrangler.save(failOnError:true, flush:true, insert: true)
         listingWrangler.errors = null
 
-        def listingWrx = new Listing(automobile: Automobile.findByVin(12345678901234567L)/*wrx*/, seller: User.findById(2L)/*chrisUser*/, price: 30000, lastUpdated: sdf.parse("11/01/2014"), isActive: true)
+        def listingWrx = new Listing(automobile: Automobile.findByVin(10000000000000000L)/*wrx*/, seller: User.findById(2L)/*chrisUser*/, price: 30000, isActive: true)
         assert listingWrx.save(failOnError:true, flush:true, insert: true)
         listingWrx.errors = null
 

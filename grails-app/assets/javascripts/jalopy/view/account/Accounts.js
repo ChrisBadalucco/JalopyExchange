@@ -83,7 +83,7 @@ Ext.define('Jalopy.view.account.Accounts', {
                 }
             } ],
             columns : [ {
-                text : 'ID',
+                text : 'Listing ID',
                 dataIndex : 'id'
             }, {
                 text : 'Asking Price',
@@ -141,9 +141,9 @@ Ext.define('Jalopy.view.account.Accounts', {
                 }
             } ],
             columns : [ {
-                text : 'ID',
+                text : 'Automobile ID',
                 dataIndex : 'id',
-                width : 80
+                width : 120
             }, {
                 text : 'VIN',
                 dataIndex : 'vin',

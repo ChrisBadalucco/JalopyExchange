@@ -42,11 +42,11 @@ Ext.define('Jalopy.view.account.AddListingDlg', {
             store : 'AutomobileFiltered',
             queryMode : 'local',
             emptyText : 'Select an automobile...',
-            valueField : 'vin',
+            valueField : 'id',
             displayField : 'description',
             typeAhead : true,
             forceSelection : true,
-            name : 'autoVin'
+            name : 'autoId'
         }, {
             xtype : 'numberfield',
             fieldLabel : 'Asking Price ($)',
@@ -56,6 +56,11 @@ Ext.define('Jalopy.view.account.AddListingDlg', {
             allowDecimals : true,
             emptyText : 'Enter a dollar amount...',
             name : 'price'
+        }, {
+            xtype : 'textfield',
+            value : 'true',
+            hidden : true,
+            name : 'isActive'
         } ]
      } ]
 });

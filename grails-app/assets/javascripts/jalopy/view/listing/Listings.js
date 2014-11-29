@@ -115,6 +115,10 @@ Ext.define('Jalopy.view.listing.Listings', {
             width : 120,
             dataIndex : 'lastUpdated',
             format: 'm/d/Y'
+        }, {
+            text : 'Buyer',
+            width : 150,
+            dataIndex : 'buyer'
         } ];
 
         if (JE.ADMIN) {

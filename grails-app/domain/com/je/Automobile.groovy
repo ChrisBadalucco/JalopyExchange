@@ -24,7 +24,7 @@ class Automobile {
     static belongsTo = [ owner : User ]
 
     static constraints = {
-        vin blank : false, unique : true, size: 17
+        vin blank : false, unique : true
         year size: 4
         listing nullable: true, blank : true
     }

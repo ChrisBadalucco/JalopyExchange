@@ -1,11 +1,8 @@
 package com.je
-
 import grails.converters.JSON
 import grails.plugin.springsecurity.SpringSecurityUtils
 import grails.plugin.springsecurity.annotation.Secured
 import grails.rest.RestfulController
-
-import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
 @Secured('ROLE_USER')
@@ -13,12 +10,12 @@ import grails.transaction.Transactional
 class UserController extends RestfulController{
 
     def springSecurityService
+    def messageSource
 
     static responseFormats = ['json', 'xml']
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
+    def index() {
 
         /****** HELPFUL SECURITY UTILITIES ******/
         User user = springSecurityService.currentUser
@@ -45,47 +42,56 @@ class UserController extends RestfulController{
             automobiles.size() > 0
         }
 
-        def results = query.list()
-
-        //results.add(0, new User(username: 'All', id = -1))
-
-        println results
-        render ([success: true, data: results ] as JSON)
+        render ([success: true, data: query.list() ] as JSON)
     }
 
     @Secured('ROLE_ADMIN')
     @Transactional
     def save(User userInstance) {
         if (userInstance == null) {
-            render status: NOT_FOUND
+            log.error "Failed to save User."
+            render([success: false, message: 'Error parsing data. Please make sure you are submitting a valid User.'] as JSON)
             return
         }
 
         userInstance.validate()
         if (userInstance.hasErrors()) {
-            render status: NOT_ACCEPTABLE
+            log.error "Failed to save User."
+            def list = []
+            userInstance.errors.allErrors.each {
+                log.error messageSource.getMessage(it, null)
+                list << messageSource.getMessage(it, null)
+            }
+            render([success: false, message: 'Unable to save User. ' + list ] as JSON)
             return
         }
 
         userInstance.save flush:true
-        respond userInstance, [status: CREATED]
+        render([success: true, data: []] as JSON)
     }
 
     @Transactional
     def update(User userInstance) {
         if (userInstance == null) {
-            render status: NOT_FOUND
+            log.error "Failed to update User."
+            render([success: false, message: 'Error parsing data. Please make sure you are submitting a valid User.'] as JSON)
             return
         }
 
         userInstance.validate()
         if (userInstance.hasErrors()) {
-            render status: NOT_ACCEPTABLE
+            log.error "Failed to update User."
+            def list = []
+            userInstance.errors.allErrors.each {
+                log.error messageSource.getMessage(it, null)
+                list << messageSource.getMessage(it, null)
+            }
+            render([success: false, message: 'Unable to update User. ' + list ] as JSON)
             return
         }
 
         userInstance.save flush:true
-        respond userInstance, [status: OK]
+        render([success: true, data: []] as JSON)
     }
 
     @Secured('ROLE_ADMIN')
@@ -93,12 +99,12 @@ class UserController extends RestfulController{
     def delete(User userInstance) {
 
         if (userInstance == null) {
-            render([success: false, message: 'Invalid User. Please try again.'] as JSON)
+            log.error "Failed to delete User."
+            render([success: false, message: 'Error parsing data. Please make sure you are submitting a valid User.'] as JSON)
             return
         }
 
-        //userInstance.delete flush:true
-        User.executeUpdate("delete User c where c.id = :oldId", [oldId: userInstance.id])
+        userInstance.delete flush:true
         render([success: true, data: []] as JSON)
     }
 }

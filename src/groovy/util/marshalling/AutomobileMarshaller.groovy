@@ -8,18 +8,21 @@ class AutomobileMarshaller {
 
     void register() {
         JSON.registerObjectMarshaller(Automobile) { Automobile automobile ->
-//            def listing = Listing.findById(automobile.listing.id)
-            return [
-                id : automobile.id,
-                vin : automobile.vin,
-                make : automobile.make,
-                model : automobile.model,
-                year : automobile.year,
-                description : automobile.description,
-                owner : automobile.owner.username,
-                listing : automobile.listing,
-                lastUpdated : automobile.lastUpdated
-            ]
+            def map = [:]
+
+            map['id'] = automobile.id
+            map['vin'] = automobile.vin
+            map['make'] = automobile.make
+            map['model'] = automobile.model
+            map['year'] = automobile.year
+            map['description'] = automobile.description
+            map['lastUpdated'] = automobile.lastUpdated
+
+            map['owner'] = automobile.owner.username
+
+            map['listing'] = automobile.listing
+
+            return map
         }
     }
 }

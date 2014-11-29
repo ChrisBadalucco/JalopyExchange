@@ -16,13 +16,14 @@ class Listing {
 
     Automobile automobile
     BigDecimal price
+    User buyer
     boolean isActive
-    // TODO: User buyer or hasOne buyer assoc.
 
     static belongsTo = [ seller : User ]
-
+//    static hasOne = [ buyer : User ]
     static constraints = {
         id blank : false, unique : true
         automobile unique : true
+        buyer nullable : true
     }
 }

@@ -41,6 +41,8 @@ Ext.define('Jalopy.view.account.AddAutoDlg', {
             emptyText : 'Enter the vehicle identification #...',
             minValue : 10000000000000000,
             maxValue : 99999999999999999,
+            allowDecimals : false,
+            allowExponential : false,
             step : 1000,
             name : 'vin'
         }, {

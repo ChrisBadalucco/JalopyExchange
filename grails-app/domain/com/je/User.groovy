@@ -22,9 +22,8 @@ class User {
     String bio
 
     static hasMany = [ listings : Listing, automobiles : Automobile ]
-
 	static transients = ['springSecurityService']
-
+    static mappedBy  = [ listings: 'seller' ]
 	static constraints = {
 		username blank: false, unique: true
 		password blank: false
@@ -39,10 +38,6 @@ class User {
 
 	static mapping = {
 		password column: '`password`'
-//        listings cascade: 'all-delete-orphan'
-//        automobiles cascade: 'all-delete-orphan'
-        listings cascade: 'delete'
-        automobiles cascade: 'delete'
 	}
 
 	Set<Role> getAuthorities() {
