@@ -21,14 +21,19 @@ class ListingController extends RestfulController {
     def index() {
         def data
         def hasSeller = params.int('seller') > 0
+        def isActive = params?.isActive
         def hasStatus = params?.isActive != null && params?.isActive != ""
 
+        if (hasStatus) {
+            def boolActive = params.boolean('isActive')
+        }
+
         if (hasSeller && hasStatus) {
-            data = Listing.findBySellerAndIsActive(User.findById(params.int('seller')), params.boolean('isActive'))
+            data = Listing.findAllBySellerAndIsActive(User.findById(params.int('seller')), params.boolean('isActive').booleanValue())
         } else if(hasSeller && hasStatus == false) {
-            data = Listing.findBySeller(User.findById(params.int('seller')))
+            data = Listing.findAllBySeller(User.findById(params.int('seller')))
         } else if (hasSeller == false && hasStatus){
-            data = Listing.findByIsActive(params.boolean('isActive'))
+            data = Listing.findAllByIsActive(params.boolean('isActive').booleanValue())
         } else {
             data = Listing.list(params)
         }
@@ -50,6 +55,7 @@ class ListingController extends RestfulController {
 
         def auto = Automobile.findById(json.autoId)
         listingInstance.automobile = auto
+        listingInstance.isActive = true
 
         def currentMax = Listing.where {
             id == max(id)

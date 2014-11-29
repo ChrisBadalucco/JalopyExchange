@@ -8,7 +8,14 @@ Ext.define('Jalopy.store.filters.Seller', {
     }),
     listeners : {
         load : function(thisStore, records, successful, eOpts) {
-            thisStore.add( { username : 'All', id : -1 } );
+            if (successful) {
+                Ext.Array.forEach(records, function(rec, idx, allItems) {
+                    if (Ext.isEmpty(rec.get('listings'))) {
+                        thisStore.remove(rec);
+                    }
+                });
+                thisStore.add( { username : 'All', id : -1 } );
+            }
        }
     }
 });

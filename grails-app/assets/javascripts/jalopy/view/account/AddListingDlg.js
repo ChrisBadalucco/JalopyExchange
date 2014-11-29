@@ -56,11 +56,6 @@ Ext.define('Jalopy.view.account.AddListingDlg', {
             allowDecimals : true,
             emptyText : 'Enter a dollar amount...',
             name : 'price'
-        }, {
-            xtype : 'textfield',
-            value : 'true',
-            hidden : true,
-            name : 'isActive'
         } ]
      } ]
 });

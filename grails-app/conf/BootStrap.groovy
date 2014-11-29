@@ -41,53 +41,87 @@ class BootStrap {
         def adminRole = new Role(authority: 'ROLE_ADMIN').save(flush: true)
         def userRole = new Role(authority: 'ROLE_USER').save(flush: true)
 
-        def adminUser = new User(id: 1L, username: 'admin', password: 'admin')
-        adminUser.save(flush: true)
+        def admin = new User(id: 1L, username: 'admin', password: 'admin').save(flush: true)
+        def chris = new User(id: 2L, username: 'chris843', password: 'chris', firstName: 'Chris', lastName: 'Badalucco', email: 'badaluccoc843@strose.edu', age: 29, bio: 'my bio').save(flush: true)
+        def joe = new User(id: 3L, username: 'joe123', password: 'joe', firstName: 'Joe', lastName: 'Generon', email: 'joe73@aol.com', age: 37).save(flush: true)
+        def tom = new User(id: 4L, username: 'tom456', password: 'tom', firstName: 'Tom', lastName: 'Marvin', email: 'tm@yahoo.com', age: 68).save(flush: true)
+        def rockstar = new User(id: 5L, username: 'rockStar33', password: 'rock', firstName: 'Adam', lastName: 'Sellman', email: 'rockStr824@gmail.com', age: 19).save(flush: true)
+        def ryan = new User(id: 6L, username: 'giants14', password: 'giant', firstName: 'Ryan', lastName: 'Godfrey', email: 'godfrey@live.com', age: 25).save(flush: true)
+        def kc = new User(id: 7L, username: 'kcgreiner', password: 'kc', firstName: 'Kurt', lastName: 'Greiner', email: 'kcg@yahoo.com', age: 24).save(flush: true)
 
-        def chrisUser = new User(id: 2L, username: 'chris843', password: 'chris', firstName: 'Chris', lastName: 'Badalucco', email: 'badaluccoc843@strose.edu', age: 29, bio: 'my bio')
-        chrisUser.save(flush: true)
+        UserRole.create admin, adminRole, true
+        UserRole.create chris, userRole, true
+        UserRole.create joe, userRole, true
+        UserRole.create tom, userRole, true
+        UserRole.create rockstar, userRole, true
+        UserRole.create ryan, userRole, true
+        UserRole.create kc, userRole, true
 
-        def joeUser = new User(id: 3L, username: 'joe123', password: 'joe', firstName: 'Joe', lastName: 'Generon', email: 'joe73@aol.com', age: 37)
-        joeUser.save(flush: true)
-
-        def tomUser = new User(id: 4L, username: 'tom456', password: 'tom', firstName: 'Tom', lastName: 'Marvin', email: 'tm@yahoo.com', age: 68)
-        tomUser.save(flush: true)
-
-        UserRole.create adminUser, adminRole, true
-
-        UserRole.create chrisUser, userRole, true
-        UserRole.create joeUser, userRole, true
-        UserRole.create tomUser, userRole, true
-
-        assert User.count() == 4
+        assert User.count() == 7
         assert Role.count() == 2
-        assert UserRole.count() == 4
+        assert UserRole.count() == 7
         println "Finished loading $User.count persons into database"
 
         println "Start loading automobiles into database"
-        def wrx = new Automobile(vin: 10000000000000000L, make: "Subaru", model: "WRX", year: "2014", owner: User.findById(2L) /*chrisUser*/)
+
+        /* chris cars */
+        def wrx = new Automobile(vin: 10000000000000000L, make: "Subaru", model: "WRX", year: "2014", owner: chris)
         assert wrx.save(failOnError:true, flush:true, insert: true)
         wrx.errors = null
 
-        def evo = new Automobile(vin: 20000000000000000L, make: "Mitsubishi", model: "Evolution", year: "1998", owner: User.findById(2L) /*chrisUser*/)
+        def forester = new Automobile(vin: 11000000000000000L, make: "Subaru", model: "Forester", year: "2003", owner: chris)
+        assert forester.save(failOnError:true, flush:true, insert: true)
+        wrx.errors = null
+
+        def evo = new Automobile(vin: 20000000000000000L, make: "Mitsubishi", model: "Evolution", year: "1998", owner: chris)
         assert evo.save(failOnError:true, flush:true, insert: true)
         evo.errors = null
 
-        def wrangler = new Automobile(vin: 30000000000000000L, make: "Jeep", model: "Wrangler", year: "2000", owner: User.findById(3L) /*joeUser*/)
+        /* joe cars */
+        def wrangler = new Automobile(vin: 30000000000000000L, make: "Jeep", model: "Wrangler", year: "2000", owner: joe)
         assert wrangler.save(failOnError:true, flush:true, insert: true)
         wrangler.errors = null
 
-        assert Automobile.count == 3;
+        def fusion = new Automobile(vin: 30200000000000000L, make: "Ford", model: "Fusion", year: "1998", owner: joe)
+        assert fusion.save(failOnError:true, flush:true, insert: true)
+        wrangler.errors = null
+
+        /* ryan cars */
+        def mazda6 = new Automobile(vin: 12340000056700000L, make: "Mazda", model: "6", year: "2013", owner: ryan)
+        assert mazda6.save(failOnError:true, flush:true, insert: true)
+        mazda6.errors = null
+
+        /* kc cars */
+        def eclipse = new Automobile(vin: 93000000000052000L, make: "Mitsubishi", model: "Eclipse", year: "2006", owner: kc)
+        assert eclipse.save(failOnError:true, flush:true, insert: true)
+        eclipse.errors = null
+
+        /* tom cars */
+        def civic = new Automobile(vin: 60330000520010107L, make: "Honda", model: "Civic", year: "2001", owner: tom)
+        assert civic.save(failOnError:true, flush:true, insert: true)
+        civic.errors = null
+
+        def camry = new Automobile(vin: 20120083970000809L, make: "Toyota", model: "Camry", year: "2015", owner: tom)
+        assert camry.save(failOnError:true, flush:true, insert: true)
+        camry.errors = null
+
+        def altima = new Automobile(vin: 30209040703600530L, make: "Nissan", model: "Altima", year: "2010", owner: tom)
+        assert altima.save(failOnError:true, flush:true, insert: true)
+        altima.errors = null
+
+        assert Automobile.count == 10;
         println "Finished loading $Automobile.count automobiles into database"
 
         println "Start loading listings into database"
-        def listingWrangler = new Listing(automobile: Automobile.findByVin(30000000000000000L)/*wrangler*/, seller: User.findById(3L)/*joeUser*/, price: 15000, isActive: false, buyer : User.findById(4L))
-        assert listingWrangler.save(failOnError:true, flush:true, insert: true)
-        listingWrangler.errors = null
 
-        def listingWrx = new Listing(automobile: Automobile.findByVin(10000000000000000L)/*wrx*/, seller: User.findById(2L)/*chrisUser*/, price: 30000, isActive: true)
-        assert listingWrx.save(failOnError:true, flush:true, insert: true)
-        listingWrx.errors = null
+        /* joe listings */
+        def listWrangler = new Listing(automobile: wrangler, seller: joe, price: 15000, isActive: false, buyer: tom).save(failOnError:true, flush:true, insert: true)
+//        assert listWrangler.save(failOnError:true, flush:true, insert: true)
+        listWrangler.errors = null
+
+        /* chris listings*/
+        def listWrx = new Listing(automobile: wrx, seller: chris, price: 30000, isActive: true).save(failOnError:true, flush:true, insert: true)
+        listWrx.errors = null
 
         assert Listing.count == 2;
         println "Finished loading $Listing.count listings into database"

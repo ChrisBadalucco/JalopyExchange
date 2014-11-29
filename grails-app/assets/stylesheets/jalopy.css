@@ -43,3 +43,8 @@ a:active { color : #333; }
 .icon-car { background-image : url(../images/icons/car.png) !important; }
 .icon-car-add { background-image : url(../images/icons/car_add.png) !important; }
 .icon-money { background-image : url(../images/icons/money.png) !important; }
+
+/*------------------------------*/
+/* Ext Overrides                */
+/*------------------------------*/
+.x-grid-item-focused .x-grid-cell-inner:before { border : 0; }
