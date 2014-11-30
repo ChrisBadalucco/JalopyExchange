@@ -66,7 +66,7 @@ Ext.define('Jalopy.view.listing.Listings', {
             labelWidth : 80,
             fieldLabel : 'Seller',
             forceSelection : true,
-            allowBlank : false,
+            allowBlank : true,
             typeAhead : true,
             queryMode : 'local',
             store : 'filters.Seller',
@@ -119,7 +119,8 @@ Ext.define('Jalopy.view.listing.Listings', {
             dataIndex : 'autoModel'
         }, {
             text : 'Seller',
-            width : 150,
+            minWidth : 80,
+            flex : 1,
             dataIndex : 'seller'
         }, {
             text : 'Asking Price',
@@ -128,7 +129,8 @@ Ext.define('Jalopy.view.listing.Listings', {
             formatter : 'usMoney'
         }, {
             text : 'Buyer',
-            width : 150,
+            minWidth : 80,
+            flex : 1,
             dataIndex : 'buyer'
         }, {
             xtype: 'datecolumn',

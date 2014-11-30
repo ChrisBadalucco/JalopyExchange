@@ -32,4 +32,8 @@ class Automobile {
     String getDescription() {
         return "$year $make $model"
     }
+
+    String toString() {
+        return "automobile[$id $vin $year $make $model]"
+    }
 }

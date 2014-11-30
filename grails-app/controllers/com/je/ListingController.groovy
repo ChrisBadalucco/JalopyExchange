@@ -19,25 +19,57 @@ class ListingController extends RestfulController {
     }
 
     def index() {
-        def data
-        def hasSeller = params.int('seller') > 0
-        def isActive = params?.isActive
+        def listings = []
         def hasStatus = params?.isActive != null && params?.isActive != ""
+        def hasMake = params?.make != null && params?.make !="" && params?.make != "All"
+        def hasSeller = params.int('seller') > 0
 
-        if (hasStatus) {
-            def boolActive = params.boolean('isActive')
-        }
-
-        if (hasSeller && hasStatus) {
-            data = Listing.findAllBySellerAndIsActive(User.findById(params.int('seller')), params.boolean('isActive').booleanValue())
-        } else if(hasSeller && hasStatus == false) {
-            data = Listing.findAllBySeller(User.findById(params.int('seller')))
-        } else if (hasSeller == false && hasStatus){
-            data = Listing.findAllByIsActive(params.boolean('isActive').booleanValue())
+        if (hasSeller && hasStatus && hasMake) {
+            def tmpListings = Listing.findAllBySellerAndIsActive(User.findById(params.int('seller')), params.boolean('isActive').booleanValue())
+            for (i in tmpListings) {
+                def tmpAuto = Automobile.findById(i.automobile.id)
+                if (tmpAuto.make == params.make) {
+                    log.info "adding listing " + i
+                    listings.add(i)
+                }
+            }
+        } else if (hasSeller == false && hasStatus && hasMake){
+            def tmpListings = Listing.findAllByIsActive(params.boolean('isActive').booleanValue())
+            for (i in tmpListings) {
+                def tmpAuto = Automobile.findById(i.automobile.id)
+                if (tmpAuto.make == params.make) {
+                    log.info "adding listing " + i
+                    listings.add(i)
+                }
+            }
+        } else if (hasSeller && hasStatus == false && hasMake){
+            def tmpListings = Listing.findAllBySeller(User.findById(params.int('seller')))
+            for (i in tmpListings) {
+                def tmpAuto = Automobile.findById(i.automobile.id)
+                if (tmpAuto.make == params.make) {
+                    log.info "adding listing " + i
+                    listings.add(i)
+                }
+            }
+        } else if (hasSeller == false && hasStatus == false && hasMake){
+            def tmpListings = Listing.list()
+            for (i in tmpListings) {
+                def tmpAuto = Automobile.findById(i.automobile.id)
+                if (tmpAuto.make == params.make) {
+                    log.info "adding listing " + i
+                    listings.add(i)
+                }
+            }
+        } else if (hasSeller && hasStatus && hasMake == false) {
+            listings = Listing.findAllBySellerAndIsActive(User.findById(params.int('seller')), params.boolean('isActive').booleanValue())
+        } else if(hasSeller && hasStatus == false && hasMake == false) {
+            listings = Listing.findAllBySeller(User.findById(params.int('seller')))
+        } else if (hasSeller == false && hasStatus && hasMake == false){
+            listings = Listing.findAllByIsActive(params.boolean('isActive').booleanValue())
         } else {
-            data = Listing.list(params)
+            listings = Listing.list(params)
         }
-        render([success: true, data: data] as JSON)
+        render([success: true, data: listings] as JSON)
     }
 
     def indexUserOnly() {

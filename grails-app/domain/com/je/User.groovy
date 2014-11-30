@@ -40,6 +40,10 @@ class User {
 		password column: '`password`'
 	}
 
+    String toString() {
+        return "user[$id $username $firstName $lastName $email]"
+    }
+
 	Set<Role> getAuthorities() {
 		UserRole.findAllByUser(this).collect { it.role }
 	}

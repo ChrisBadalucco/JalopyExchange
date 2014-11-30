@@ -52,7 +52,7 @@ Ext.define('Jalopy.view.account.AddListingDlg', {
             fieldLabel : 'Asking Price ($)',
             step : 100,
             minValue: 1000,
-            maxValue: 100000,
+            maxValue: 1000000,
             allowDecimals : true,
             emptyText : 'Enter a dollar amount...',
             name : 'price'

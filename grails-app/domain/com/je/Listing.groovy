@@ -26,4 +26,8 @@ class Listing {
         automobile unique : true
         buyer nullable : true
     }
+
+    String toString() {
+        return "listing[$id $automobile $price $buyer $isActive]"
+    }
 }
