@@ -40,5 +40,36 @@ Ext.define('Jalopy.view.listing.ListingViewController', {
                 });
             }
         });
+    },
+
+    onClickPurchaseBtn : function(btn) {
+        var grid = this.lookupReference('listingGrid');
+        var rec = grid.getSelection()[0];
+
+        if (rec.get('seller') === JE.USERNAME) {
+            Ext.Msg.alert('Error', 'You cannot purchase your own automobile.');
+        } else {
+            Ext.widget('purchasedlg', { record : rec });
+        }
+    },
+
+    onClickPurchase : function(btn) {
+        var rec = btn.up('window').record;
+        rec.set('isActive', false);
+        rec.set('buyer', JE.USERNAME);
+        var store = Ext.ComponentQuery.query('#listingGrid')[0].getStore();
+        store.sync({
+            success : function() {
+                btn.up('window').destroy();
+                Ext.Msg.alert('Congratulations!', 'You are the proud new owner of a ' + rec.get('autoDescription') + '!');
+                store.reload();
+            },
+            failure : function() {
+                btn.up('window').destroy();
+                Ext.Msg.alert('Error', 'We were unable to confirm your purchase. Please try again.');
+                store.rejectChanges();
+            }
+        });
+
     }
 });

@@ -123,7 +123,26 @@ class BootStrap {
         def listWrx = new Listing(automobile: wrx, seller: chris, price: 30000, isActive: true).save(failOnError:true, flush:true, insert: true)
         listWrx.errors = null
 
-        assert Listing.count == 2;
+        def listForester = new Listing(automobile: forester, seller: chris, price: 20399, isActive: true).save(failOnError:true, flush:true, insert: true)
+        listForester.errors = null
+
+        /* ryan listings*/
+        def listMazda6 = new Listing(automobile: mazda6, seller: ryan, price: 24000, isActive: true).save(failOnError:true, flush:true, insert: true)
+        listMazda6.errors = null
+
+        /* kc listings*/
+        def listEclipse = new Listing(automobile: eclipse, seller: kc, price: 55000, isActive: true).save(failOnError:true, flush:true, insert: true)
+        listEclipse.errors = null
+
+        /* tom listings*/
+
+        def listCivic = new Listing(automobile: civic, seller: tom, price: 9999, isActive: false).save(failOnError:true, flush:true, insert: true)
+        listCivic.errors = null
+
+        def listCamry = new Listing(automobile: camry, seller: tom, price: 12050, isActive: false, buyer: chris).save(failOnError:true, flush:true, insert: true)
+        listCamry.errors = null
+
+        assert Listing.count == 7;
         println "Finished loading $Listing.count listings into database"
     }
 }

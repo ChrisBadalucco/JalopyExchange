@@ -3,16 +3,19 @@ Ext.define('Jalopy.store.User', {
     autoLoad : true,
     model : Ext.define('Jalopy.model.User', {
         extend : 'Jalopy.common.model.Base',
-        identifier : 'sequential'
+        identifier : 'sequential',
+
+        fields : [ {
+            name : 'accountLocked',
+            type : 'boolean'
+        }, {
+            name : 'lock',
+            calculate : function(data) {
+                return data.accountLocked ? 'Locked' : 'Active';
+            }
+        } ]
     }),
     listeners : {
-        load : function(thisStore, records, successful, eOpts) {
-//            if (successful) {
-//                var formArr = Ext.ComponentQuery.query('userForm');
-//                if(formArr.length > 0) {
-//                    formArr[0].getForm.loadRecord(records[0]);
-//                }
-//            }
-        }
+        load : function(thisStore, records, successful, eOpts) { }
     }
 });

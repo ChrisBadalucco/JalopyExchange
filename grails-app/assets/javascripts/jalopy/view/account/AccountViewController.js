@@ -2,21 +2,42 @@ Ext.define('Jalopy.view.account.AccountViewController', {
     extend: 'Ext.app.ViewController',
     alias : 'controller.accountViewController',
 
-//    config : {
-//        listen : {
-//            store : {
-//                '#User' : {
-//                    load : 'onLoadUsers'
-//                }
-//            }
-//        }
-//    },
-//
-//    onLoadUsers : function(thisStore, records, successful, eOpts) {
-//        if (successful) {
-//            Ext.ComponentQuery.query('userDetailsForm')[0].loadRecord(records[0]);
-//        }
-//    },
+    config : {
+        listen : {
+            store : {
+                '#users-autos' : {
+                    load : 'onLoadAutomobiles'
+                }
+            }
+        }
+    },
+
+    onLoadAutomobiles : function(thisStore, records, successful, eOpts) {
+        if (successful) {
+            this.lookupReference('myListingsGrid').getStore().load();
+        }
+    },
+
+    onDeleteAutomobile : function(grid, rowIdx, colIdx) {
+        var store = grid.getStore();
+        var rec = store.getAt(rowIdx);
+
+        Ext.Msg.confirm('Confirm Delete', 'Are you sure you want to delete the selected automobile?', function(btn){
+            if(btn === 'yes') {
+                store.remove(rec);
+                store.sync({
+                    success : function() {
+                        Ext.Msg.alert('Success', 'Automobile successfully deleted.');
+                        store.reload();
+                    },
+                    failure : function() {
+                        Ext.Msg.alert('Failure', 'Delete has failed. Please try again.');
+                        store.rejectChanges();
+                    }
+                });
+            }
+        });
+    },
 
     onAfterRenderUserDetails : function(thisPanel, eOpts) {
         var store = Ext.StoreMgr.lookup('User');
@@ -127,28 +148,28 @@ Ext.define('Jalopy.view.account.AccountViewController', {
         }
     },
 
-    onClickManageListing : function(btn) {
+    onClickCloseListing : function(btn) {
         var grid = this.lookupReference('myListingsGrid');
         var rec = btn.getWidgetRecord();
         var isActive = rec.get('isActive');
-        var title = isActive ? 'Close' : 'Open';
-        var msg = isActive ? 'This listing is currently open. Are you sure you want to close it?' :
-            'This listing is currently closed. Are you sure you want to open it?';
-        Ext.Msg.confirm('Confirm ' + title, msg, function(confirmBtn) {
-            if (confirmBtn === 'yes') {
-                var store = grid.getStore();
+        if (rec.get('isActive') === false) {
+            Ext.Msg.alert('Error', 'Listing already closed.');
+        } else {
+            Ext.Msg.confirm('Confirm Close', 'Are you sure you want to close this listing?', function(confirmBtn) {
+                if (confirmBtn === 'yes') {
+                    var store = grid.getStore();
 
-                rec.set('isActive', !isActive);
-                store.sync({
-                    success : function() {
-                        var alertMsg = !isActive ? 'opened.' : 'closed.';
-                        Ext.Msg.alert('Success', 'Listing successully ' + alertMsg);
-                    },
-                    failure : function() {
-                        store.rejectChanges();
-                    }
-                });
-            }
-        });
+                    rec.set('isActive', !isActive);
+                    store.sync({
+                        success : function() {
+                            Ext.Msg.alert('Success', 'Listing successfully closed.');
+                        },
+                        failure : function() {
+                            store.rejectChanges();
+                        }
+                    });
+                }
+            });
+        }
     }
 });

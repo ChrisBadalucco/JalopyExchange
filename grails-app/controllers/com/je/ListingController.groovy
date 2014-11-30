@@ -95,14 +95,24 @@ class ListingController extends RestfulController {
 
         listingInstance.validate()
         if (listingInstance.hasErrors()) {
-            log.error "Failed to update Listing."
-            def list = []
-            listingInstance.errors.allErrors.each {
-                log.error messageSource.getMessage(it, null)
-                list << messageSource.getMessage(it, null)
+
+            def buyerError = listingInstance.errors.getFieldError('buyer')
+
+            if (buyerError) {
+                log.info "Attempting to generate full domain instance for buyer"
+                def buyer = User.findByUsername(buyerError.rejectedValue)
+                listingInstance.buyer = buyer
+                listingInstance.clearErrors()
+            } else {
+                log.error "Failed to update Listing."
+                def list = []
+                listingInstance.errors.allErrors.each {
+                    log.error messageSource.getMessage(it, null)
+                    list << messageSource.getMessage(it, null)
+                }
+                render([success: false, message: 'Unable to update Listing. ' + list ] as JSON)
+                return
             }
-            render([success: false, message: 'Unable to update Listing. ' + list ] as JSON)
-            return
         }
 
         listingInstance.save flush:true

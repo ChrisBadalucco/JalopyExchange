@@ -14,6 +14,7 @@ Ext.define('Jalopy.view.account.Accounts', {
         var west = {
             xtype : 'form',
             region : 'west',
+            autoScroll : true,
             width : 320,
             title : 'User Details',
             iconCls : 'icon-user-edit',
@@ -22,7 +23,6 @@ Ext.define('Jalopy.view.account.Accounts', {
             collapsible : true,
             bodyPadding : '20 15',
             layout : 'anchor',
-            defaults : { anchor : '100%' },
             listeners : {
                 afterRender : 'onAfterRenderUserDetails'
             },
@@ -33,10 +33,12 @@ Ext.define('Jalopy.view.account.Accounts', {
                     click : 'onClickSaveUserChanges'
                 }
             } ],
+            defaults : { anchor : '100%', padding : '30 0', disabled : JE.ADMIN },
             items : [ {
                 xtype : 'displayfield',
                 fieldLabel : 'Username',
-                value : '',
+                padding: '0',
+                disabled : false,
                 name : 'username'
             }, {
                 xtype : 'textfield',
@@ -61,6 +63,8 @@ Ext.define('Jalopy.view.account.Accounts', {
                 xtype : 'textarea',
                 fieldLabel : 'About Me',
                 grow : true,
+                height : 100,
+                resizable : true,
                 emptyText : 'Tell us about you!',
                 name : 'bio'
             } ]
@@ -70,10 +74,12 @@ Ext.define('Jalopy.view.account.Accounts', {
             xtype : 'grid',
             title : 'My Listings',
             reference : 'myListingsGrid',
+            itemId : 'myListingsGrid',
             iconCls : 'icon-form',
             region : 'south',
             collapsible : true,
             flex : 1,
+            multiColumnSort : true,
             tbar : [ '->', {
                 xtype : 'button',
                 text : 'Create Listing',
@@ -109,10 +115,40 @@ Ext.define('Jalopy.view.account.Accounts', {
                 text : 'Manage',
                 widget : {
                     xtype : 'button',
-                    text : 'Open / Close',
+                    text : 'Close Listing',
                     margin : 2,
-                    handler :'onClickManageListing'
+                    handler :'onClickCloseListing'
                 }
+//            }, {
+//                xtype : 'actioncolumn',
+//                text : 'Delete',
+//                fixed : true,
+//                width : 70,
+//                sortable : false,
+//                items : [ {
+//                    iconCls : 'icon-delete',
+//                    altText : 'Delete',
+//                    tooltip : 'Delete Listing',
+//                    handler : function(grid, rowIdx, colIdx) {
+//                        var store = grid.getStore();
+//                        var rec = store.getAt(rowIdx);
+//
+//                        Ext.Msg.confirm('Confirm Delete', 'Are you sure you want to delete the selected listing?', function(btn){
+//                            if(btn === 'yes') {
+//                                store.remove(rec);
+//                                store.sync({
+//                                    success : function() {
+//                                        Ext.Msg.alert('Success', 'Listing successfully deleted.');
+//                                    },
+//                                    failure : function() {
+//                                        Ext.Msg.alert('Failure', 'Delete has failed. Please try again.');
+//                                        store.rejectChanges();
+//                                    }
+//                                });
+//                            }
+//                        });
+//                    }
+//                } ]
             } ],
             store : Ext.create('Jalopy.store.Listing', {
                 storeId : 'users-listings',
@@ -130,6 +166,7 @@ Ext.define('Jalopy.view.account.Accounts', {
             region : 'center',
             flex : 1,
             itemId : 'automobileGrid',
+            multiColumnSort : true,
             tbar : [ '->', {
                 xtype : 'button',
                 text : 'Add Automobile',
@@ -157,38 +194,19 @@ Ext.define('Jalopy.view.account.Accounts', {
             }, {
                 text : 'Model',
                 dataIndex : 'model'
-//            }, {
-//                xtype : 'actioncolumn',
-//                text : 'Delete',
-//                fixed : true,
-//                width : 70,
-//                sortable : false,
-//                items : [ {
-//                    iconCls : 'icon-delete',
-//                    altText : 'Delete',
-//                    tooltip : 'Delete User',
-//                    handler : function(grid, rowIdx, colIdx) {
-//                        var store = grid.getStore();
-//                        var rec = store.getAt(rowIdx);
-//
-//                        Ext.Msg.confirm('Confirm Delete', 'Are you sure you want to delete the selected automobile?', function(btn){
-//                            if(btn === 'yes') {
-//                                store.remove(rec);
-//                                store.sync({
-//                                    success : function() {
-//                                        Ext.Msg.alert('Success', 'Automobile successfully deleted.');
-//                                    },
-//                                    failure : function() {
-////                                        Ext.Msg.alert('Failure', 'Delete has failed. Please try again.');
-//                                        store.rejectChanges();
-//                                    }
-//                                });
-//                            }
-//                        });
-//                    }
-//                } ]
+            }, {
+                xtype : 'actioncolumn',
+                text : 'Delete',
+                fixed : true,
+                width : 70,
+                sortable : false,
+                items : [ {
+                    iconCls : 'icon-delete',
+                    altText : 'Delete',
+                    tooltip : 'Delete Automobile',
+                    handler : 'onDeleteAutomobile'
+                } ]
             } ],
-//            store : 'UserAutomobile'
             store : Ext.create('Jalopy.store.Automobile', {
                 storeId : 'users-autos',
                 filters : {

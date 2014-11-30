@@ -22,6 +22,7 @@ class UserMarshaller {
             map['firstName'] = user?.firstName
             map['lastName'] = user?.lastName
             map['bio'] = user?.bio
+            map['accountLocked'] = user.accountLocked
             map['listings'] = listings
             map['automobiles'] = autos
 

@@ -12,17 +12,19 @@ Ext.define('Jalopy.common.view.Menu', {
     },
     items : [ {
         text : ' Listings',
-//        tooltip : 'View .',
         iconCls : 'icon-form',
         href : JE.CONTEXT + '/listings'
-    }, {
-        text : 'My Account',
-        iconCls : 'icon-user',
-//        tooltip : 'Manage your account details.',
-        href : JE.CONTEXT + '/myaccount'
     } ],
 
     initComponent : function() {
+        if (!JE.ADMIN) {
+            this.items.push({
+                text : 'My Account',
+                    iconCls : 'icon-user',
+                href : JE.CONTEXT + '/myaccount'
+            });
+        }
+
         if (JE.ADMIN) {
             this.items.push( '->', {
                 text : 'Manage Users',

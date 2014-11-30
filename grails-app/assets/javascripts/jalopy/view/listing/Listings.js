@@ -75,14 +75,13 @@ Ext.define('Jalopy.view.listing.Listings', {
             iconCls : 'icon-money',
             disabled : true,
             reference : 'purchaseBtn',
-            listeners : {
-                click : function() {
-                    Ext.widget('purchasedlg');
-                }
-            }
+            handler : 'onClickPurchaseBtn'
         };
 
-        var dockedItems = [ filterForm, '->', purchase ];
+        var dockedItems = [ filterForm ];
+        if (!JE.ADMIN) {
+            dockedItems.push('->', purchase);
+        }
 
         var columns = [ {
             text : 'ID',
@@ -96,9 +95,11 @@ Ext.define('Jalopy.view.listing.Listings', {
             dataIndex : 'autoYear'
         }, {
             text : 'Make',
+            width : 110,
             dataIndex : 'autoMake'
         }, {
             text : 'Model',
+            width : 110,
             dataIndex : 'autoModel'
         }, {
             text : 'Seller',
@@ -110,15 +111,15 @@ Ext.define('Jalopy.view.listing.Listings', {
             dataIndex : 'price',
             formatter : 'usMoney'
         }, {
+            text : 'Buyer',
+            width : 150,
+            dataIndex : 'buyer'
+        }, {
             xtype: 'datecolumn',
             text : 'Last Updated',
             width : 120,
             dataIndex : 'lastUpdated',
             format: 'm/d/Y'
-        }, {
-            text : 'Buyer',
-            width : 150,
-            dataIndex : 'buyer'
         } ];
 
         if (JE.ADMIN) {
@@ -169,6 +170,9 @@ Ext.define('Jalopy.view.listing.Listings', {
 
         return {
             xtype : 'grid',
+            title : 'All Listings',
+            iconCls : 'icon-form',
+            multiColumnSort : true,
             dockedItems: [{
                 xtype: 'toolbar',
                 dock: 'top',
