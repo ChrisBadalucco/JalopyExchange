@@ -39,7 +39,7 @@ Ext.define('Jalopy.view.account.AddListingDlg', {
         }, {
             xtype : 'combo',
             fieldLabel : 'Automobile',
-            store : 'AutomobileFiltered',
+            store : 'AutomobileListing',
             queryMode : 'local',
             emptyText : 'Select an automobile...',
             valueField : 'id',

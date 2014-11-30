@@ -46,12 +46,27 @@ Ext.define('Jalopy.view.listing.Listings', {
         };
         Ext.apply(status, defaults);
 
+        var make = {
+            xtype : 'jalopycombo',
+            labelWidth : 80,
+            fieldLabel : 'Make',
+            forceSelection : true,
+            allowBlank : false,
+            typeAhead : true,
+            queryMode : 'local',
+            store : 'filters.AutomobileFilter',
+            displayField : 'make',
+            valueField : 'make',
+            name : 'make'
+        };
+        Ext.apply(make, defaults);
+
         var seller = {
             xtype : 'jalopycombo',
             labelWidth : 80,
             fieldLabel : 'Seller',
             forceSelection : true,
-            allowBlank : true,
+            allowBlank : false,
             typeAhead : true,
             queryMode : 'local',
             store : 'filters.Seller',
@@ -66,7 +81,7 @@ Ext.define('Jalopy.view.listing.Listings', {
             border : false,
             layout : 'hbox',
             reference : 'filterForm',
-            items : [ status, seller, search ]
+            items : [ status, make, seller, search ]
         };
 
         var purchase = {

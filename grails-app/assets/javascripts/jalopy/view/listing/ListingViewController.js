@@ -19,6 +19,10 @@ Ext.define('Jalopy.view.listing.ListingViewController', {
         btn.disable();
     },
 
+    onAfterRenderMakeCombo : function(thisCombo, eOpts) {
+        thisCombo.getStore().load();
+    },
+
     onClickSearch : function(btn) {
         var form = this.lookupReference('filterForm');
 
