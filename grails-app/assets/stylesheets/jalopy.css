@@ -1,4 +1,4 @@
-body { background-color : #157fcc !important; color : #FFF !important;  font-family : Arial, Helvetica, sans-serif }
+body { background-color : #157fcc !important; font-family : Arial, Helvetica, sans-serif }
 a { color : #FFF; text-decoration: none; }
 a:hover { text-decoration : underline; }
 a:active { color : #333; }
@@ -15,11 +15,14 @@ a:active { color : #333; }
 /*------------------------------*/
 .page { margin : 10px; }
 #header { padding : 10px 10px 10px 5px; overflow : hidden; font-size: 18px; font-weight: bold; }
+#header * { color : #FFF; }
 #header .left { width : 215px; }
 .headerTitles { display : inline-block; }
 .mainTitle { margin-top : 2px; font-size : 26px; font-style : italic; }
 .subTitle { margin-top : 2px; padding : 4px; font-size: 16px; font-weight : bold; }
-#footer { bottom : 5px; padding-top : 2px; overflow : hidden; position : absolute; width : 100%; border-top : 2px solid #000; }
+.logout a:active { color : #333 !important; }
+#footer { bottom : 5px; padding-top : 2px; overflow : hidden; position : absolute; width : 100%; border-top : 2px solid #000; font-weight : bold; }
+#footer * { color : #FFF !important; }
 
 /*------------------------------*/
 /* Menu                         */

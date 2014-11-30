@@ -75,6 +75,7 @@ Ext.define('Jalopy.view.listing.Listings', {
             iconCls : 'icon-money',
             disabled : true,
             reference : 'purchaseBtn',
+            tooltip : 'Select an active listing',
             handler : 'onClickPurchaseBtn'
         };
 

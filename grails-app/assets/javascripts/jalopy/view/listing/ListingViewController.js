@@ -4,7 +4,19 @@ Ext.define('Jalopy.view.listing.ListingViewController', {
 
     onSelectionChange : function(thisSelModel, selected, eOpts ) {
         var btn = this.lookupReference('purchaseBtn');
-        return selected.length > 0 && selected[0].get('isActive') ? btn.enable() : btn.disable();
+        if (selected.length > 0 && selected[0].get('isActive')) {
+            if (selected[0].get('seller') === JE.USERNAME) {
+                btn.setTooltip('Cannot purchase your own automobile');
+                btn.disable();
+                return
+            } else {
+                btn.setTooltip('Click to purchase selected');
+                btn.enable();
+                return
+            }
+        }
+        btn.setTooltip('Select an active listing');
+        btn.disable();
     },
 
     onClickSearch : function(btn) {
