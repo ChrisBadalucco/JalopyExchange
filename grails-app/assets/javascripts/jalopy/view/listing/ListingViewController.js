@@ -19,10 +19,6 @@ Ext.define('Jalopy.view.listing.ListingViewController', {
         btn.disable();
     },
 
-    onAfterRenderMakeCombo : function(thisCombo, eOpts) {
-        thisCombo.getStore().load();
-    },
-
     onClickSearch : function(btn) {
         var form = this.lookupReference('filterForm');
 
@@ -82,7 +78,7 @@ Ext.define('Jalopy.view.listing.ListingViewController', {
             },
             failure : function() {
                 btn.up('window').destroy();
-                Ext.Msg.alert('Error', 'We were unable to confirm your purchase. Please try again.');
+//                Ext.Msg.alert('Error', 'We were unable to confirm your purchase. Please try again.');
                 store.rejectChanges();
             }
         });

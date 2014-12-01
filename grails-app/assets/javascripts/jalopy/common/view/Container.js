@@ -26,7 +26,6 @@ Ext.define('Jalopy.common.view.Container', {
         this.items = [ {
             xtype : 'container',
             region : 'north',
-//            style : 'backgroundColor : #157fcc',
             items : [ {
                 xtype : 'container',
                 html : Ext.create('Ext.XTemplate', this.headerTmp).apply( {
@@ -40,7 +39,6 @@ Ext.define('Jalopy.common.view.Container', {
             xtype : 'container',
             region : 'center',
             layout : 'border',
-//            margin : '5 0 0 0',
             items : this.content
         }, {
             xtype : 'container',

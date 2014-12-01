@@ -78,9 +78,6 @@ class ListingController extends RestfulController {
 
     @Transactional
     def save() {
-
-        // TODO check if putting Listing listingInstance as parameter fixes this manual process
-
         def json = request.JSON
         def listingInstance = new Listing(json)
         listingInstance.seller = springSecurityService.currentUser

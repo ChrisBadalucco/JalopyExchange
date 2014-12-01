@@ -31,7 +31,7 @@ Ext.define('Jalopy.view.account.AccountViewController', {
                         store.reload();
                     },
                     failure : function() {
-                        Ext.Msg.alert('Failure', 'Delete has failed. Please try again.');
+//                        Ext.Msg.alert('Failure', 'Delete has failed. Please try again.');
                         store.rejectChanges();
                     }
                 });
@@ -73,7 +73,6 @@ Ext.define('Jalopy.view.account.AccountViewController', {
                     failure : function() {
                         store.rejectChanges();
                         form.loadRecord(store.getAt(0));
-                        // TODO alert user if error not caught by default override
                     }
                 });
             }

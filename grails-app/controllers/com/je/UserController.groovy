@@ -16,18 +16,10 @@ class UserController extends RestfulController{
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index() {
-
-        /****** HELPFUL SECURITY UTILITIES ******/
         User user = springSecurityService.currentUser
-        def auth = springSecurityService.authentication
-        def principal = springSecurityService.principal
-
-        def roles = SpringSecurityUtils.authoritiesToRoles()
-        def principalAuth = SpringSecurityUtils.principalAuthorities
-        def notGranted = SpringSecurityUtils.ifNotGranted('ROLE_ADMIN')
         def isAdmin = SpringSecurityUtils.ifAnyGranted('ROLE_ADMIN')
-
         def data
+
         if(!isAdmin) {
             data = User.findByUsername(user.username)
         } else {
@@ -97,7 +89,6 @@ class UserController extends RestfulController{
     @Secured('ROLE_ADMIN')
     @Transactional
     def delete(User userInstance) {
-
         if (userInstance == null) {
             log.error "Failed to delete User."
             render([success: false, message: 'Error parsing data. Please make sure you are submitting a valid User.'] as JSON)

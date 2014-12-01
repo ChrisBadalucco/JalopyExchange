@@ -12,7 +12,5 @@ Ext.define('Jalopy.common.view.JalopyCombo', {
     matchFieldWidth : true,
     submitValue : true,
     labelWidth : 50,
-    width : 200 //,
-//    selectOnFocus : true,
-//    autoSingleSelect : true
+    width : 200
 });

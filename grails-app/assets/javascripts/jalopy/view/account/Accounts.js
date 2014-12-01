@@ -119,36 +119,6 @@ Ext.define('Jalopy.view.account.Accounts', {
                     margin : 2,
                     handler :'onClickCloseListing'
                 }
-//            }, {
-//                xtype : 'actioncolumn',
-//                text : 'Delete',
-//                fixed : true,
-//                width : 70,
-//                sortable : false,
-//                items : [ {
-//                    iconCls : 'icon-delete',
-//                    altText : 'Delete',
-//                    tooltip : 'Delete Listing',
-//                    handler : function(grid, rowIdx, colIdx) {
-//                        var store = grid.getStore();
-//                        var rec = store.getAt(rowIdx);
-//
-//                        Ext.Msg.confirm('Confirm Delete', 'Are you sure you want to delete the selected listing?', function(btn){
-//                            if(btn === 'yes') {
-//                                store.remove(rec);
-//                                store.sync({
-//                                    success : function() {
-//                                        Ext.Msg.alert('Success', 'Listing successfully deleted.');
-//                                    },
-//                                    failure : function() {
-//                                        Ext.Msg.alert('Failure', 'Delete has failed. Please try again.');
-//                                        store.rejectChanges();
-//                                    }
-//                                });
-//                            }
-//                        });
-//                    }
-//                } ]
             } ],
             store : Ext.create('Jalopy.store.Listing', {
                 storeId : 'users-listings',

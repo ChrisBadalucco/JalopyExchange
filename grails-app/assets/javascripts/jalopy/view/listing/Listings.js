@@ -51,7 +51,7 @@ Ext.define('Jalopy.view.listing.Listings', {
             labelWidth : 80,
             fieldLabel : 'Make',
             forceSelection : true,
-            allowBlank : false,
+            allowBlank : true,
             typeAhead : true,
             queryMode : 'local',
             store : 'filters.AutomobileFilter',
@@ -153,38 +153,6 @@ Ext.define('Jalopy.view.listing.Listings', {
                 }
             });
         }
-//        if (JE.ADMIN) {
-//            var actionCol = {
-//                xtype : 'actioncolumn',
-//                text : 'Delete',
-//                fixed : 'true',
-//                sortable : false,
-//                width : 75,
-//                items : [ {
-//                    iconCls : 'icon-delete',
-//                    tooltip : 'Delete listing',
-//                    handler : function(grid, rowIdx, colIdx) {
-//                        var store = grid.getStore();
-//                        var rec = store.getAt(rowIdx);
-//                        Ext.Msg.confirm('Confirm Delete', 'Are you sure you want to delete the selected listing?', function(btn) {
-//                            if (btn === 'yes') {
-//                                store.remove(rec);
-//                                store.sync({
-//                                    success : function() {
-//                                        Ext.Msg.alert('Success', 'Delete was successful.');
-//                                    },
-//                                    failure : function() {
-//                                        store.rejectChanges();
-//                                    }
-//                                });
-//                            }
-//                        });
-//                    }
-//                } ]
-//            };
-//
-//            columns.push(actionCol)
-//        }
 
         return {
             xtype : 'grid',

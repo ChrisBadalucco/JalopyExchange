@@ -4,7 +4,6 @@ Ext.define('Jalopy.view.listing.PurchaseDlg', {
     controller: 'listingViewController',
 
     record : null,
-//    title: 'Confirm Purchase',
     modal : true,
     autoShow : true,
     layout : 'anchor',
@@ -14,7 +13,6 @@ Ext.define('Jalopy.view.listing.PurchaseDlg', {
             xtype : 'form',
             bodyPadding: 5,
             anchor : '100%',
-//            layout : 'anchor',
             reference : 'purchaseForm',
             buttonAlign : 'center',
             buttons : [ {
@@ -32,7 +30,6 @@ Ext.define('Jalopy.view.listing.PurchaseDlg', {
             } ],
             items : [ {
                 xtype : 'container',
-//                anchor : '100%',
                 layout : { type : 'vbox', align : 'center', pack : 'center' },
                 defaults : { xtype : 'displayfield' },
                 items : [ {
