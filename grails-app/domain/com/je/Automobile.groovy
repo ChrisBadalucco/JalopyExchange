@@ -19,10 +19,8 @@ class Automobile {
     Date lastUpdated
 
     static transients = ['description']
-
     static hasOne = [ listing : Listing ]
     static belongsTo = [ owner : User ]
-
     static constraints = {
         vin blank : false, unique : true
         year size: 4

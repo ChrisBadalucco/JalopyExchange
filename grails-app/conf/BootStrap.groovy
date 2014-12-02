@@ -143,7 +143,7 @@ class BootStrap {
         def listCamry = new Listing(automobile: camry, seller: tom, price: 12050, isActive: false, buyer: chris).save(failOnError:true, flush:true, insert: true)
         listCamry.errors = null
 
-        assert Listing.count == 7;
+        assert Listing.count == 8;
         println "Finished loading $Listing.count listings into database"
     }
 }

@@ -20,7 +20,6 @@ class Listing {
     boolean isActive
 
     static belongsTo = [ seller : User ]
-//    static hasOne = [ buyer : User ]
     static constraints = {
         id blank : false, unique : true
         automobile unique : true
