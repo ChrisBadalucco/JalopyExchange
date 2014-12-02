@@ -1,7 +1,8 @@
-JalopyExchange - Developer Document
+JalopyExchange - Developer README
 ===================================
+
 #The College of Saint Rose C.I.S. Masters Project
-    Web Application that simulates buying/selling of automobiles
+    - A web application that simulates buying/selling of automobiles
 
 #Git Repository - https://github.com/badastrose/JalopyExchange
     This is an open-source project. Feel free to fork the code and run with the idea!
@@ -21,8 +22,8 @@ JalopyExchange - Developer Document
     application and by default, make the app available on:
     http://localhost:8080/JalopyExchange
  
-#Database Design
+#Database Design:
     The database was designed using GORM (part of Grails) and it is managed solely
-    by the associations defined by the domain classes. All data is inject at runtime
+    by the associations defined by the domain classes. All data is injected at runtime
     from the BootStrap.groovy file. If the data model changes, you may need to make
     changes to the mock data found in that file.
