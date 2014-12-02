@@ -7,10 +7,10 @@ Ext.define('Jalopy.common.view.JalopyCombo', {
     queryMode : 'local',
     displayField : 'name',
     valueField : 'value',
-    typeAhead : true,
     forceSelection : true,
     matchFieldWidth : true,
     submitValue : true,
     labelWidth : 50,
-    width : 200
+    width : 200,
+    editable : false
 });

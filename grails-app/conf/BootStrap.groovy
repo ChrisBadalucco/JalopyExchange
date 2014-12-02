@@ -116,8 +116,10 @@ class BootStrap {
 
         /* joe listings */
         def listWrangler = new Listing(automobile: wrangler, seller: joe, price: 15000, isActive: false, buyer: tom).save(failOnError:true, flush:true, insert: true)
-//        assert listWrangler.save(failOnError:true, flush:true, insert: true)
         listWrangler.errors = null
+
+        def listFusion = new Listing(automobile: fusion, seller: joe, price: 12000, isActive: true).save(failOnError:true, flush:true, insert: true)
+        listFusion.errors = null
 
         /* chris listings*/
         def listWrx = new Listing(automobile: wrx, seller: chris, price: 30000, isActive: true).save(failOnError:true, flush:true, insert: true)
@@ -135,7 +137,6 @@ class BootStrap {
         listEclipse.errors = null
 
         /* tom listings*/
-
         def listCivic = new Listing(automobile: civic, seller: tom, price: 9999, isActive: false).save(failOnError:true, flush:true, insert: true)
         listCivic.errors = null
 

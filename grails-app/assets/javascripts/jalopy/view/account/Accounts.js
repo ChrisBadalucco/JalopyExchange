@@ -29,6 +29,7 @@ Ext.define('Jalopy.view.account.Accounts', {
             buttons : [ {
                 text : 'Save Changes',
                 iconCls : 'icon-accept',
+                formBind : true,
                 listeners : {
                     click : 'onClickSaveUserChanges'
                 }

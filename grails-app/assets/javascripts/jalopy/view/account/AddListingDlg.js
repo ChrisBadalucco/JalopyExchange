@@ -44,7 +44,6 @@ Ext.define('Jalopy.view.account.AddListingDlg', {
             emptyText : 'Select an automobile...',
             valueField : 'id',
             displayField : 'description',
-            typeAhead : true,
             forceSelection : true,
             name : 'autoId'
         }, {

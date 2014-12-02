@@ -45,7 +45,7 @@ Ext.define('Jalopy.view.user.Users', {
             editor : {
                 xtype : 'numberfield',
                 minValue : 18,
-                maxValue : 120
+                maxValue : 100
             }
         }, {
             text : 'Bio',
@@ -81,6 +81,10 @@ Ext.define('Jalopy.view.user.Users', {
                         if (rec.get('username') === JE.USERNAME) {
                             Ext.Msg.alert('Cannot Lock', 'You cannot lock yourself!');
                         } else {
+                            if (rec.get('accountLocked') === true) {
+                                Ext.Msg.alert('Cannot Lock', 'User is already locked.');
+                                return
+                            }
                             Ext.Msg.confirm('Confirm Lock', 'Are you sure you want to lock this users account?', function(btn) {
                                 if (btn === 'yes') {
                                     rec.set('accountLocked', true);
@@ -109,6 +113,7 @@ Ext.define('Jalopy.view.user.Users', {
                             Ext.Msg.alert('Cannot Unlock', 'You cannot unlock yourself!');
                         } else if (rec.get('accountLocked') === false) {
                             Ext.Msg.alert('Cannot Unlock', 'User is already unlocked.');
+                            return
                         } else {
                             Ext.Msg.confirm('Confirm Unlock', 'Are you sure you want to unlock this users account?', function(btn) {
                                 if (btn === 'yes') {
