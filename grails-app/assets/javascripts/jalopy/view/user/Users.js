@@ -52,82 +52,90 @@ Ext.define('Jalopy.view.user.Users', {
             flex : 2,
             dataIndex : 'bio',
             editor : 'textfield'
-        }, {
-            xtype : 'actioncolumn',
-            text : 'Actions',
-            fixed : true,
-            width : 70,
-            sortable : false,
-            items : [ {
-                iconCls : 'icon-lock-add',
-                padding : '0 2',
-                altText : 'Lock User',
-                tooltip : 'Lock User',
-                handler : function(grid, rowIdx, colIdx) {
-                    var store = grid.getStore();
-                    var rec = store.getAt(rowIdx);
-
-                    if (rec.get('username') === JE.USERNAME) {
-                        Ext.Msg.alert('Cannot Lock', 'You cannot lock yourself!');
-                    } else {
-                        Ext.Msg.confirm('Confirm Lock', 'Are you sure you want to lock this users account?', function(btn) {
-                            if (btn === 'yes') {
-                                rec.set('accountLocked', true);
-                                store.sync({
-                                    success : function() {
-                                        Ext.Msg.alert('Success', 'User successully locked.');
-                                    },
-                                    failure : function() {
-                                        Ext.Msg.alert('Lock Failed', 'Unable to lock user. Please try again. ');
-                                        store.rejectChanges();
-                                    }
-                                });
-                            }
-                        });
-                    }
-                }
-            }, {
-                iconCls : 'icon-lock-delete',
-                altText : 'Unlock User',
-                tooltip : 'Unlock User',
-                handler : function(grid, rowIdx, colIdx) {
-                    var store = grid.getStore();
-                    var rec = store.getAt(rowIdx);
-
-                    if (rec.get('username') === JE.USERNAME) {
-                        Ext.Msg.alert('Cannot Unlock', 'You cannot unlock yourself!');
-                    } else if (rec.get('accountLocked') === false) {
-                        Ext.Msg.alert('Cannot Unlock', 'User is already unlocked.');
-                    } else {
-                        Ext.Msg.confirm('Confirm Unlock', 'Are you sure you want to unlock this users account?', function(btn) {
-                            if (btn === 'yes') {
-                                rec.set('accountLocked', false);
-                                store.sync({
-                                    success : function() {
-                                        Ext.Msg.alert('Success', 'User successully unlocked.');
-                                    },
-                                    failure : function() {
-                                        Ext.Msg.alert('Lock Failed', 'Unable to unlock user. Please try again. ');
-                                        store.rejectChanges();
-                                    }
-                                });
-                            }
-                        });
-                    }
-                }
-            } ]
         } ];
+
+        var plugins = [];
+        if (JE.ADMIN) {
+            plugins.push({
+                ptype : 'rowediting',
+                listeners : {
+                    edit : 'onEditUserGrid'
+                }
+            });
+
+            columns.push({
+                xtype : 'actioncolumn',
+                text : 'Actions',
+                fixed : true,
+                width : 70,
+                sortable : false,
+                items : [ {
+                    iconCls : 'icon-lock-add',
+                    padding : '0 2',
+                    altText : 'Lock User',
+                    tooltip : 'Lock User',
+                    handler : function(grid, rowIdx, colIdx) {
+                        var store = grid.getStore();
+                        var rec = store.getAt(rowIdx);
+
+                        if (rec.get('username') === JE.USERNAME) {
+                            Ext.Msg.alert('Cannot Lock', 'You cannot lock yourself!');
+                        } else {
+                            Ext.Msg.confirm('Confirm Lock', 'Are you sure you want to lock this users account?', function(btn) {
+                                if (btn === 'yes') {
+                                    rec.set('accountLocked', true);
+                                    store.sync({
+                                        success : function() {
+                                            Ext.Msg.alert('Success', 'User successully locked.');
+                                        },
+                                        failure : function() {
+                                            Ext.Msg.alert('Lock Failed', 'Unable to lock user. Please try again. ');
+                                            store.rejectChanges();
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    }
+                }, {
+                    iconCls : 'icon-lock-delete',
+                    altText : 'Unlock User',
+                    tooltip : 'Unlock User',
+                    handler : function(grid, rowIdx, colIdx) {
+                        var store = grid.getStore();
+                        var rec = store.getAt(rowIdx);
+
+                        if (rec.get('username') === JE.USERNAME) {
+                            Ext.Msg.alert('Cannot Unlock', 'You cannot unlock yourself!');
+                        } else if (rec.get('accountLocked') === false) {
+                            Ext.Msg.alert('Cannot Unlock', 'User is already unlocked.');
+                        } else {
+                            Ext.Msg.confirm('Confirm Unlock', 'Are you sure you want to unlock this users account?', function(btn) {
+                                if (btn === 'yes') {
+                                    rec.set('accountLocked', false);
+                                    store.sync({
+                                        success : function() {
+                                            Ext.Msg.alert('Success', 'User successully unlocked.');
+                                        },
+                                        failure : function() {
+                                            Ext.Msg.alert('Lock Failed', 'Unable to unlock user. Please try again. ');
+                                            store.rejectChanges();
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    }
+                } ]
+            });
+        }
+
         return {
             xtype : 'grid',
             title : 'All Users',
             iconCls : 'icon-group',
             columns : columns,
-            plugins : [ {
-                ptype : 'rowediting',
-                listeners : {
-                    edit : 'onEditUserGrid'
-                }
-            } ],
+            plugins : plugins,
             reference : 'userGrid',
             itemId : 'userGrid',
             store : 'User'

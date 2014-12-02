@@ -90,24 +90,27 @@ Ext.define('Jalopy.view.account.Accounts', {
             } ],
             columns : [ {
                 text : 'Listing ID',
+                width : 80,
                 dataIndex : 'id'
             }, {
                 text : 'Asking Price',
-                width : 120,
+                width : 110,
                 dataIndex : 'price',
+                align : 'right',
                 formatter : 'usMoney'
             }, {
                 text : 'Automobile',
                 dataIndex : 'autoDescription',
-                width : 250
+                width : 185
             }, {
                 xtype: 'datecolumn',
-                width : 120,
+                width : 110,
                 text : 'Last Updated',
                 dataIndex : 'lastUpdated',
                 format: 'm/d/Y'
             }, {
                 text : 'Status',
+                width : 75,
                 dataIndex : 'status'
             }, {
                 xtype : 'widgetcolumn',
@@ -154,7 +157,7 @@ Ext.define('Jalopy.view.account.Accounts', {
             }, {
                 text : 'VIN',
                 dataIndex : 'vin',
-                width : 200
+                width : 185
             }, {
                 text : 'Year',
                 dataIndex : 'year'

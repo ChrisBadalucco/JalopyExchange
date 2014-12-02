@@ -125,6 +125,7 @@ Ext.define('Jalopy.view.listing.Listings', {
         }, {
             text : 'Asking Price',
             width : 120,
+            align : 'right',
             dataIndex : 'price',
             formatter : 'usMoney'
         }, {
