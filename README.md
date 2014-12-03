@@ -19,8 +19,7 @@ Grails provides you with a web container and data source all-in-one solution in
 building  a Groovy/Java based web application.  This project was built off the
 default H2 in-memory database and it runs off the default Tomcat web container.
 
-#NOTE - The repository also includes Grails plugins as well as Intellij IDE
-specific files.
+NOTE - The repository also includes Grails plugins as well as Intellij IDE specific files.
  
 #How to run the application:
 Once you have Groovy and Grails downloaded and configured for you system,
