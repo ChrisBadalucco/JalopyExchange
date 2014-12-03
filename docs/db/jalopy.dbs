@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="jalopy-export.sql" id="Project1295887" template="Default" database="MySql" >
+	<schema name="PUBLIC" catalogname="DEVDB" schemaname="PUBLIC" defo="y" >
+		<table name="AUTOMOBILE" >
+			<column name="ID" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo>(NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_D6A71DE3_F6C6_4396_BE30_CD4F7A732B2A)</defo>
+			</column>
+			<column name="VERSION" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="DATE_CREATED" type="timestamp" length="23" decimal="10" jt="93" mandatory="y" />
+			<column name="LAST_UPDATED" type="timestamp" length="23" decimal="10" jt="93" mandatory="y" />
+			<column name="MAKE" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="MODEL" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="OWNER_ID" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="VIN" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="YEAR" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<index name="CONSTRAINT_3" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="UK_9DS6FW9JCXA2D86PC6QFSLDAB_INDEX_3" unique="UNIQUE" >
+				<column name="VIN" />
+			</index>
+			<index name="FK_YAIXHDOFC2AHBVO87F4KXNFD_INDEX_3" unique="NORMAL" >
+				<column name="OWNER_ID" />
+			</index>
+			<fk name="FK_YAIXHDOFC2AHBVO87F4KXNFD" to_schema="PUBLIC" to_table="USER" delete_action="restrict" update_action="restrict" >
+				<fk_column name="OWNER_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="LISTING" >
+			<column name="ID" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo>(NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_DD690853_1C9C_4D86_A829_71FD3A86D035)</defo>
+			</column>
+			<column name="VERSION" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="AUTOMOBILE_ID" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="BUYER_ID" type="bigint" length="19" decimal="0" jt="-5" />
+			<column name="DATE_CREATED" type="timestamp" length="23" decimal="10" jt="93" mandatory="y" />
+			<column name="IS_ACTIVE" type="boolean" length="1" decimal="0" jt="16" mandatory="y" />
+			<column name="LAST_UPDATED" type="timestamp" length="23" decimal="10" jt="93" mandatory="y" />
+			<column name="PRICE" type="decimal" length="19" decimal="2" jt="3" mandatory="y" />
+			<column name="SELLER_ID" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<index name="CONSTRAINT_35" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="UK_BLQC2QNSV34VDIJ2WDCJA6HP1_INDEX_3" unique="UNIQUE" >
+				<column name="AUTOMOBILE_ID" />
+			</index>
+			<index name="FK_3FD1L12TYDNGSG3JK09360EXU_INDEX_3" unique="NORMAL" >
+				<column name="SELLER_ID" />
+			</index>
+			<index name="FK_MR2WLVMJAO25KOSDRJ07SX6X5_INDEX_3" unique="NORMAL" >
+				<column name="BUYER_ID" />
+			</index>
+			<fk name="FK_BLQC2QNSV34VDIJ2WDCJA6HP1" to_schema="PUBLIC" to_table="AUTOMOBILE" delete_action="restrict" update_action="restrict" >
+				<fk_column name="AUTOMOBILE_ID" pk="ID" />
+			</fk>
+			<fk name="FK_3FD1L12TYDNGSG3JK09360EXU" to_schema="PUBLIC" to_table="USER" delete_action="restrict" update_action="restrict" >
+				<fk_column name="SELLER_ID" pk="ID" />
+			</fk>
+			<fk name="FK_MR2WLVMJAO25KOSDRJ07SX6X5" to_schema="PUBLIC" to_table="USER" delete_action="restrict" update_action="restrict" >
+				<fk_column name="BUYER_ID" pk="ID" />
+			</fk>
+		</table>
+		<table name="ROLE" >
+			<column name="ID" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo>(NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_11CDFA44_4778_422D_B68E_B82491E2AA59)</defo>
+			</column>
+			<column name="VERSION" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="AUTHORITY" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<index name="CONSTRAINT_2" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="UK_IRSAMGNERA6ANGM0PRQ1KEMT2_INDEX_2" unique="UNIQUE" >
+				<column name="AUTHORITY" />
+			</index>
+		</table>
+		<table name="USER" >
+			<column name="ID" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" >
+				<defo>(NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_8FF9F30E_E968_4978_8208_BA490A969147)</defo>
+			</column>
+			<column name="VERSION" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="ACCOUNT_EXPIRED" type="boolean" length="1" decimal="0" jt="16" mandatory="y" />
+			<column name="ACCOUNT_LOCKED" type="boolean" length="1" decimal="0" jt="16" mandatory="y" />
+			<column name="AGE" type="integer" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="BIO" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="EMAIL" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="ENABLED" type="boolean" length="1" decimal="0" jt="16" mandatory="y" />
+			<column name="FIRST_NAME" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="LAST_NAME" type="varchar" length="255" decimal="0" jt="12" />
+			<column name="password" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<column name="PASSWORD_EXPIRED" type="boolean" length="1" decimal="0" jt="16" mandatory="y" />
+			<column name="USERNAME" type="varchar" length="255" decimal="0" jt="12" mandatory="y" />
+			<index name="CONSTRAINT_27" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="UK_SB8BBOUER5WAK8VYIIY4PF2BX_INDEX_2" unique="UNIQUE" >
+				<column name="USERNAME" />
+			</index>
+		</table>
+		<table name="USER_ROLE" >
+			<column name="ROLE_ID" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<column name="USER_ID" type="bigint" length="19" decimal="0" jt="-5" mandatory="y" />
+			<index name="CONSTRAINT_B" unique="PRIMARY_KEY" >
+				<column name="ROLE_ID" />
+				<column name="USER_ID" />
+			</index>
+			<index name="FK_APCC8LXK2XNUG8377FATVBN04_INDEX_B" unique="NORMAL" >
+				<column name="USER_ID" />
+			</index>
+			<fk name="FK_IT77EQ964JHFQTU54081EBTIO" to_schema="PUBLIC" to_table="ROLE" delete_action="restrict" update_action="restrict" >
+				<fk_column name="ROLE_ID" pk="ID" />
+			</fk>
+			<fk name="FK_APCC8LXK2XNUG8377FATVBN04" to_schema="PUBLIC" to_table="USER" delete_action="restrict" update_action="restrict" >
+				<fk_column name="USER_ID" pk="ID" />
+			</fk>
+		</table>
+	</schema>
+	<connector name="H2" database="H2" driver_class="org.h2.Driver" driver_jar="h2-1.3.173.jar" host="localhost" port="-1" instance="sa" schema_mapping="" />
+	<layout id="Layout1296006" name="Layout" show_relation_columns="y" >
+		<entity schema="PUBLIC" name="USER_ROLE" color="b2cdf7" x="45" y="45" />
+		<entity schema="PUBLIC" name="ROLE" color="b2cdf7" x="45" y="195" />
+		<entity schema="PUBLIC" name="AUTOMOBILE" color="b2cdf7" x="45" y="345" />
+		<entity schema="PUBLIC" name="LISTING" color="b2cdf7" x="270" y="360" />
+		<entity schema="PUBLIC" name="USER" color="b2cdf7" x="195" y="45" />
+	</layout>
+</project>

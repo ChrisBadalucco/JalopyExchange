@@ -1,0 +1,783 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN' 'http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml' >
+<head>
+<title>Database Documentation</title>
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+<style type='text/css'>
+body {
+    font-family: 'trebuchet MS', 'Lucida sans', Dialog;
+    font-size: 12px;
+    color: #444;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.bordered {
+    border: solid #ccc 1px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 1px 1px #ccc;
+    -moz-box-shadow: 0 1px 1px #ccc;
+    box-shadow: 0 1px 1px #ccc;
+}
+
+.bordered tr:hover {
+    background: #fbf8e9;
+    -o-transition: all 0.1s ease-in-out;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+}
+
+.bordered td, .bordered th {
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    padding: 4px;
+    text-align: left;
+}
+
+.bordered th {
+    background-color: #d7d7ea;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#f4f4fb), to(#d7d7ea));
+    background-image: -webkit-linear-gradient(top, #f4f4fb, #d7d7ea);
+    background-image:    -moz-linear-gradient(top, #f4f4fb, #d7d7ea);
+    background-image:     -ms-linear-gradient(top, #f4f4fb, #d7d7ea);
+    background-image:      -o-linear-gradient(top, #f4f4fb, #d7d7ea);
+    background-image:         linear-gradient(top, #f4f4fb, #d7d7ea);
+    -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;
+    -moz-box-shadow:0 1px 0 rgba(255,255,255,.8) inset;
+    box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;
+    border-top: none;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5);
+}
+
+.bordered td:first-child, .bordered th:first-child {
+    border-left: none;
+}
+
+.bordered th:first-child {
+    -moz-border-radius: 6px 0 0 0;
+    -webkit-border-radius: 6px 0 0 0;
+    border-radius: 6px 0 0 0;
+}
+
+.bordered th:last-child {
+    -moz-border-radius: 0 6px 0 0;
+    -webkit-border-radius: 0 6px 0 0;
+    border-radius: 0 6px 0 0;
+}
+
+.bordered th:only-child{
+    -moz-border-radius: 6px 6px 0 0;
+    -webkit-border-radius: 6px 6px 0 0;
+    border-radius: 6px 6px 0 0;
+}
+
+.bordered tr:last-child td:first-child {
+    -moz-border-radius: 0 0 0 6px;
+    -webkit-border-radius: 0 0 0 6px;
+    border-radius: 0 0 0 6px;
+}
+
+.bordered tr:last-child td:last-child {
+    -moz-border-radius: 0 0 6px 0;
+    -webkit-border-radius: 0 0 6px 0;
+    border-radius: 0 0 6px 0;
+}
+
+</style>
+</head>
+
+<body>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'   width='555' height='875' viewbox='0 0 555 875' >
+  <script type='text/ecmascript'>
+  <![CDATA[
+  function hghl(el) { for ( var i in el ){ document.getElementById(el[i]).setAttribute('class','highlight');  }  }
+  function uhghl(el) { for ( var i in el ){ document.getElementById(el[i]).setAttribute('class','scene'); }  } 
+  ]]>
+  </script> 
+
+<style type='text/css'>
+  text                { fill:#000000; font-family: Tahoma, 'trebuchet MS', Dialog, Dialog; font-size:12px; }
+  text:hover          { fill:#a00000; font-size:13px; }
+  text.highlight      { fill:#a00000; font-size:13px; }
+  text.colType        { fill:#b3b3b3; }
+  text.tableTitle     { fill:#000000; }
+  path                { stroke:#54402e; stroke-width:1.15; fill:none; }
+  path.scene          { stroke-width:10; opacity:0;}
+  path.highlight      { stroke-width:10; stroke:blue; opacity:0.1;}
+  rect.table          { fill:#ffffff; stroke:#101010; stroke-width:0.2; filter:url(#shadow); }
+  line.table          { stroke:#222; stroke-width:0.2; }
+  rect.callout        { fill:url(#calloutGradient); stroke:#bebdbd; stroke-width:0.5; filter: url(#shadow);}
+  rect.grp            { stroke:#b1b1b1; stroke-width:1.7; }
+</style>
+<defs>
+  <pattern patternUnits='userSpaceOnUse' id='layoutBgA' width='10' height='20' x='0' y='0' viewBox='0 0 5 10'>  
+     <line x1='-2' y1='1' x2='7' y2='10' stroke='#f0f0f0' stroke-width='.5'/>  
+     <line x1='-2' y1='6' x2='7' y2='15' stroke='#f0f0f0' stroke-width='.5'/>  
+     <line x1='-2' y1='-4' x2='7' y2='5' stroke='#f0f0f0' stroke-width='.5'/>  
+  </pattern>  
+  <radialGradient id='layoutBgB' gradientUnits='userSpaceOnUse' cx='50%' cy='50%' r='75%' fx='46%' fy='22%'>
+     <stop offset='0%' stop-opacity='.2' stop-color='#eaeaea' />  
+     <stop offset='100%' stop-color='#e0e0e0' />  
+  </radialGradient>
+  <linearGradient id='tableHeaderGradient0' x1='0%' y1='0%' x2='0%' y2='90%' >
+          <stop offset='0%' stop-color='#b2cdf7'/> 
+          <stop offset='30%' stop-color='white'/> 
+          <stop offset='100%' stop-color='#b2cdf7'/> 
+   </linearGradient>
+  <linearGradient id='groupUnderTitleLine' x1='0%' y1='0%' x2='100%' y2='0%' >
+          <stop offset='0%' stop-color='#999999' stop-opacity='0.7'/> 
+          <stop offset='100%' stop-color='#999999' stop-opacity='0' /> 
+   </linearGradient>
+  <radialGradient id='calloutGradient' cx='25%' cy='20%' r='80%' fx='10%' fy='10%'>
+	   <stop offset='0%' stop-color='#ffffff' />
+    <stop offset='100%' stop-color='#f8f6d1' />
+  </radialGradient>
+  <filter id='shadow' width='120%' height='120%'> 
+      <feOffset result='offOut' in='SourceGraphic' dx='2' dy='2' /> 
+      <feColorMatrix result='matrixOut' in='offOut' type='matrix' 
+      values='0.1 0 0 0 0 0 0.1 0 0 0 0 0 0.1 0 0 0 0 0 0.5 0' /> 
+      <feGaussianBlur result='blurOut' in='matrixOut' stdDeviation='2' /> 
+      <feBlend in='SourceGraphic' in2='blurOut' mode='normal' /> 
+    </filter> 
+  <filter id='fkShadow' height='130%'> 
+    <feGaussianBlur in='SourceAlpha' stdDeviation='1.5'/> <!-- stdDeviation is how much to blur -->
+    <feOffset dx='1.2' dy='1.2' result='offsetblur'/> <!-- how much to offset -->
+    <feMerge>
+    <feMergeNode/> <!-- this contains the offset blurred image -->
+    <feMergeNode in='SourceGraphic'/> <!-- this contains the element that the filter is applied to -->
+    </feMerge>
+  </filter>
+  <radialGradient id='legendGradient' fx='5%' fy='5%' r='75%' spreadMethod='pad'>
+          <stop offset='0%' stop-color='#eaeef6' stop-opacity='1'/> 
+          <stop offset='100%' stop-color='#cad2e3' stop-opacity='1' /> 
+   </radialGradient>
+  <symbol id='calloutArrowDown' overflow='visible' >
+      <path d='M 0,0 L 7,11 L 15,0 z' style='fill:#f8f6d1;stroke:none; filter: url(#shadow);' />
+      <path d='M 0,0 L 7,11 L 15,0' style='stroke:#bebdbd; stroke-width:0.5;' />
+  </symbol>
+  <symbol id='calloutArrowUp' overflow='visible' >
+      <path d='M 0,15 L 7,3 L 15,15 z' style='fill:#ffffff; stroke:none; filter: url(#shadow);' />
+      <path d='M 0,15 L 7,3 L 15,15' style='stroke:#bebdbd; stroke-width:0.5;' />
+  </symbol>
+  <symbol id='pk' overflow='visible' >
+    <g transform='scale(0.99)'>
+     <path style='fill:#fbea8e;stroke:#763f17;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;'
+        d='M 9.3678877,3.5695485 C 9.1030218,3.2729386 9.0796382,2.7628519 9.3396185,2.4517097 9.5449651,2.1956495 9.9040386,2.0980533 10.199638,2.2169415 10.533525,2.3415459 10.775153,2.706942 10.750675,3.0842709 10.737029,3.3980003 10.541153,3.699122 10.258248,3.8066067 9.966649,3.9250429 9.6169668,3.8418805 9.4008073,3.6062324 9.3894892,3.5943518 9.3785264,3.582104 9.3678886,3.5695487 z M 11.226617,6.9916004 C 11.888137,6.3548946 12.293488,5.4172188 12.311087,4.442353 12.378144,2.7379364 11.248678,1.0541269 9.7322318,0.44767357 8.3887112,-0.1280313 6.7865012,0.26822889 5.8918395,1.4007929 5.080823,2.3839145 4.9336815,3.8452096 5.3635544,5.101615 L 4.3670905,5.315913 C 4.0664984,5.3682645 4.0967703,5.6316724 4.2574957,5.8208829 L 4.9124,6.5655244 4.1543436,7.2512357 3.2136002,7.2163506 3.1674775,8.5586827 2.0406832,8.5086512 1.5965306,8.9299953 1.5471661,10.179833 0.75616674,10.195223 0.2112857,10.758575 0.15354288,11.735988 0.07199052,12.765553 c 0.36440953,0.238225 0.79006967,0.195492 1.44938278,-0.02675 L 6.3033562,8.1282037 6.8217102,8.6765688 C 6.9985465,8.8799427 7.3003699,8.7497574 7.358381,8.5016252 L 7.4938877,7.5084164 c 0.8537488,0.3985387 1.8303125,0.4711541 2.6851793,0.1427713 0.393927,-0.1407258 0.746858,-0.3701772 1.04755,-0.6595873 z'/>
+     <path d='M 6.8014948,6.3102123 0.15369063,13.024481 0.21560535,12.141962 6.0062342,6.2683782 z'
+        style='fill:#ffe5a5;fill-opacity:1;stroke:#854e31;stroke-width:0.06912433;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:3.00300009'/>
+    </g>
+  </symbol>
+  <symbol id='unq' overflow='visible' >
+    <g transform='scale(0.99)'>
+      <rect style='fill:#e07554;stroke:#7e4d31;stroke-width:0.71934468;stroke-linecap:round;stroke-linejoin:round;'
+         width='2.29' height='8.43' x='7.48' y='-0.76' ry='1.14' transform='matrix(0.701,0.713,-0.727,0.685,0,0)' />
+      <path style='fill:white;stroke:#858585;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;'
+         d='m 26.04,8.64 a 4.13,4.13 0 1 1 -8.26,0 4.13,4.13 0 1 1 8.26,0 z'
+         transform='matrix(1.025,0,0,0.987,-14.690,-3.862)' />
+      <text x='5.5' y='7.7' style='font-size:8px;fill:#0460b5;'>1</text>
+    </g>
+  </symbol>
+  <symbol id='idx' overflow='visible' >
+    <g transform='scale(0.99)'>
+      <rect style='fill:#e07554;stroke:#7e4d31;stroke-width:0.71934468;stroke-linecap:round;stroke-linejoin:round;'
+         width='2.29' height='8.43' x='7.48' y='-0.76' ry='1.14' transform='matrix(0.701,0.713,-0.727,0.685,0,0)' />
+      <path style='fill:white;stroke:#858585;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;'
+         d='m 26.04,8.64 a 4.13,4.13 0 1 1 -8.26,0 4.13,4.13 0 1 1 8.26,0 z'
+         transform='matrix(1.025,0,0,0.987,-14.690,-3.862)' />
+    </g>
+  </symbol>
+  <symbol id='fk' overflow='visible' >
+    <g transform='scale(0.87)'>
+      <path style='fill:#b7d0f6;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+      d='M 12.48,0.33 7.07,0.89 9.067,2.974 0.329,11.731 1.073,12.597 9.811,3.841 11.77,5.78 z' />
+    </g>
+  </symbol>
+  <symbol id='ref' overflow='visible' >
+    <g transform='scale(0.87)'>
+      <path style='fill:#b7d0f6;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+          d='M 0.10,12.70 5.31,12.15 3.40,10.06 11.82,1.32 11.11,0.45 2.68,9.19 0.80,7.24 z'/>
+    </g>
+  </symbol>
+  <symbol id='flag' overflow='visible' >
+    <g transform='scale(0.92)'>
+      <path style='fill:#b7d0f6;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+          d='M 0.12,12.67 0.16,7.22 C 2.59,7.22 4.13,8.78 9.22,4.22 5.68,4.98 2.53,4.50 0.09,1.80 z'/>
+    </g>
+  </symbol>
+  <symbol id='nn' overflow='visible' >
+  <path style='stroke:#9b3e50;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+          d='M 0,0 3,3 M 0,3 3,0 z'/>
+  </symbol>
+  <marker id='arrow01' viewBox='0 0 15.00 7.50' refX='7.50' refY='3.75' markerUnits='strokeWidth' markerWidth='15.00' markerHeight='7.50' orient='auto'>
+    <path d='M 15.000,3.750 L 7.500,2.500 L 7.500,7.500 L 15.000,3.750 z' style='fill:#5e554d;' />
+  </marker>
+  <marker id='arrow1' viewBox='0 0 15.00 7.50' refX='7.50' refY='3.75' markerUnits='strokeWidth' markerWidth='15.00' markerHeight='7.50' orient='auto'>
+    <path d='M 15.000,3.750 L 7.500,2.500 L 7.500,7.500 L 15.000,3.750 z' style='fill:#5e554d;' />
+  </marker>
+  <marker id='foot01' viewBox='0 0 15.00 7.50' refX='7.50' refY='3.75' markerUnits='strokeWidth' markerWidth='15.00' markerHeight='7.50' orient='auto'>
+    <path d='M 0.00,3.75 L 15.00,3.75 z' />
+    <circle cx='11.25' cy='3.75' r='2.50' style='fill:white;stroke:#5e554d;' />
+    <path d='M 3.75,0.00 L 3.75, 7.50 z' />
+  </marker>
+  <marker id='foot0p' viewBox='0 0 15.00 7.50' refX='7.50' refY='3.75' markerUnits='strokeWidth' markerWidth='15.00' markerHeight='7.50' orient='auto'>
+    <path d='M 0.00,3.75 L 15.00,3.75 z' />
+    <circle cx='11.25' cy='3.75' r='2.50' style='fill:white;stroke:#5e554d;' />
+    <path d='M 0.00,0.00 L 7.50,3.75 L 0.00,7.50' />
+  </marker>
+  <marker id='foot1' viewBox='0 0 15.00 7.50' refX='7.50' refY='3.75' markerUnits='strokeWidth' markerWidth='15.00' markerHeight='7.50' orient='auto'>
+    <path d='M 0.00,3.75 L 15.00,3.75 z' />
+    <path d='M 7.50,0.00 L 7.50, 7.50 z' />
+    <path d='M 3.75,0.00 L 3.75, 7.50 z' />
+  </marker>
+  <marker id='foot1p' viewBox='0 0 15.00 7.50' refX='7.50' refY='3.75' markerUnits='strokeWidth' markerWidth='15.00' markerHeight='7.50' orient='auto'>
+    <path d='M 0.00,3.75 L 15.00,3.75 z' />
+    <path d='M 7.50,0.00 L 7.50, 7.50 z' />
+    <path d='M 0.00,0.00 L 7.50,3.75 L 0.00,7.50' />
+  </marker>
+</defs>
+
+<!-- ============= Desktop ============= -->
+<rect x='1' y='1' width='553' height='873' rx='7' ry='7' style='fill:url(#layoutBgA); stroke:#333333; stroke-width:0.5;' />
+<rect x='1' y='1' width='553' height='873' rx='7' ry='7' style='fill:url(#layoutBgB)'/>
+
+<!-- ============= Legend ============= -->
+<g transform='translate(10,10)'>
+  <rect x='10' y='10' width='260' height='64' rx='6' ry='6' style='fill:url(#legendGradient);filter:url(#shadow);'/> 
+  <text x='20' y='30'><tspan>Project</tspan> jalopy-export.sql @ <a xlink:href='http://www.dbschema.com' text-decoration='underline'>DbSchema.com</a></text> 
+  <text x='20' y='44'><tspan>Layout</tspan> Layout</text> 
+  <text x='20' y='58' style='fill:#777'><tspan>Column comments as mouse-over tooltips.</tspan></text> 
+</g>
+
+<g transform='translate(0,110)'>
+<!-- ============= Fk 'AUTOMOBILE_FK_YAIXHDOFC2AHBVO87F4KXNFD' ============= -->
+<path id='AUTOMOBILE_FK_YAIXHDOFC2AHBVO87F4KXNFD'  onmouseover="hghl(['AUTOMOBILE_FK_YAIXHDOFC2AHBVO87F4KXNFD','PUBLIC.AUTOMOBILE.OWNER_ID','PUBLIC.USER.ID'])" onmouseout="uhghl(['AUTOMOBILE_FK_YAIXHDOFC2AHBVO87F4KXNFD','PUBLIC.AUTOMOBILE.OWNER_ID','PUBLIC.USER.ID'])" transform='translate(7,0)' class='scene' d='M 180 330 L 345,330' >
+	<title>Fk FK_YAIXHDOFC2AHBVO87F4KXNFD
+AUTOMOBILE ref USER ( OWNER_ID -> ID )</title>
+</path>
+<path class='defo' transform='translate(7,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 180 330 L 345,330' ></path>
+<text x='187' y='325' transform='rotate(0 187,325)' title='Fk FK_YAIXHDOFC2AHBVO87F4KXNFD
+AUTOMOBILE ref USER ( OWNER_ID -> ID )' style='fill:#a1a0a0;'>OWNER_ID</text>
+<!-- ============= Fk 'LISTING_FK_BLQC2QNSV34VDIJ2WDCJA6HP1' ============= -->
+<path id='LISTING_FK_BLQC2QNSV34VDIJ2WDCJA6HP1'  onmouseover="hghl(['LISTING_FK_BLQC2QNSV34VDIJ2WDCJA6HP1','PUBLIC.LISTING.AUTOMOBILE_ID','PUBLIC.AUTOMOBILE.ID'])" onmouseout="uhghl(['LISTING_FK_BLQC2QNSV34VDIJ2WDCJA6HP1','PUBLIC.LISTING.AUTOMOBILE_ID','PUBLIC.AUTOMOBILE.ID'])" transform='translate(7,0)' class='scene' d='M 75 525 L 75,420' >
+	<title>Fk FK_BLQC2QNSV34VDIJ2WDCJA6HP1
+LISTING ref AUTOMOBILE ( AUTOMOBILE_ID -> ID )</title>
+</path>
+<path class='defo' transform='translate(7,0)' marker-start='url(#foot1)' marker-end='url(#arrow1)'    d='M 75 525 L 75,420' ></path>
+<text x='77' y='520' transform='rotate(270 77,520)' title='Fk FK_BLQC2QNSV34VDIJ2WDCJA6HP1
+LISTING ref AUTOMOBILE ( AUTOMOBILE_ID -> ID )' style='fill:#a1a0a0;'>AUTOMOBILE_ID</text>
+<!-- ============= Fk 'LISTING_FK_3FD1L12TYDNGSG3JK09360EXU' ============= -->
+<path id='LISTING_FK_3FD1L12TYDNGSG3JK09360EXU'  onmouseover="hghl(['LISTING_FK_3FD1L12TYDNGSG3JK09360EXU','PUBLIC.LISTING.SELLER_ID','PUBLIC.USER.ID'])" onmouseout="uhghl(['LISTING_FK_3FD1L12TYDNGSG3JK09360EXU','PUBLIC.LISTING.SELLER_ID','PUBLIC.USER.ID'])" transform='translate(7,0)' class='scene' d='M 180 585 L 367,585 Q 375,585 375,577 L 375,570' >
+	<title>Fk FK_3FD1L12TYDNGSG3JK09360EXU
+LISTING ref USER ( SELLER_ID -> ID )</title>
+</path>
+<path class='defo' transform='translate(7,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 180 585 L 367,585 Q 375,585 375,577 L 375,570' ></path>
+<text x='187' y='580' transform='rotate(0 187,580)' title='Fk FK_3FD1L12TYDNGSG3JK09360EXU
+LISTING ref USER ( SELLER_ID -> ID )' style='fill:#a1a0a0;'>SELLER_ID</text>
+<!-- ============= Fk 'LISTING_FK_MR2WLVMJAO25KOSDRJ07SX6X5' ============= -->
+<path id='LISTING_FK_MR2WLVMJAO25KOSDRJ07SX6X5'  onmouseover="hghl(['LISTING_FK_MR2WLVMJAO25KOSDRJ07SX6X5','PUBLIC.LISTING.BUYER_ID','PUBLIC.USER.ID'])" onmouseout="uhghl(['LISTING_FK_MR2WLVMJAO25KOSDRJ07SX6X5','PUBLIC.LISTING.BUYER_ID','PUBLIC.USER.ID'])" transform='translate(7,0)' class='scene' d='M 180 600 L 382,600 Q 390,600 390,592 L 390,570' >
+	<title>Fk FK_MR2WLVMJAO25KOSDRJ07SX6X5
+LISTING ref USER ( BUYER_ID -> ID )</title>
+</path>
+<path class='defo' transform='translate(7,0)' marker-start='url(#foot0p)' marker-end='url(#arrow1)'    d='M 180 600 L 382,600 Q 390,600 390,592 L 390,570' ></path>
+<text x='187' y='595' transform='rotate(0 187,595)' title='Fk FK_MR2WLVMJAO25KOSDRJ07SX6X5
+LISTING ref USER ( BUYER_ID -> ID )' style='fill:#a1a0a0;'>BUYER_ID</text>
+<!-- ============= Fk 'USER_ROLE_FK_IT77EQ964JHFQTU54081EBTIO' ============= -->
+<path id='USER_ROLE_FK_IT77EQ964JHFQTU54081EBTIO'  onmouseover="hghl(['USER_ROLE_FK_IT77EQ964JHFQTU54081EBTIO','PUBLIC.USER_ROLE.ROLE_ID','PUBLIC.ROLE.ID'])" onmouseout="uhghl(['USER_ROLE_FK_IT77EQ964JHFQTU54081EBTIO','PUBLIC.USER_ROLE.ROLE_ID','PUBLIC.ROLE.ID'])" transform='translate(7,0)' class='scene' d='M 390 75 L 135,75' >
+	<title>Fk FK_IT77EQ964JHFQTU54081EBTIO
+USER_ROLE ref ROLE ( ROLE_ID -> ID )</title>
+</path>
+<path class='defo' transform='translate(7,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 390 75 L 135,75' ></path>
+<text x='350' y='70' transform='rotate(0 350,70)' title='Fk FK_IT77EQ964JHFQTU54081EBTIO
+USER_ROLE ref ROLE ( ROLE_ID -> ID )' style='fill:#a1a0a0;'>ROLE_ID</text>
+<!-- ============= Fk 'USER_ROLE_FK_APCC8LXK2XNUG8377FATVBN04' ============= -->
+<path id='USER_ROLE_FK_APCC8LXK2XNUG8377FATVBN04'  onmouseover="hghl(['USER_ROLE_FK_APCC8LXK2XNUG8377FATVBN04','PUBLIC.USER_ROLE.USER_ID','PUBLIC.USER.ID'])" onmouseout="uhghl(['USER_ROLE_FK_APCC8LXK2XNUG8377FATVBN04','PUBLIC.USER_ROLE.USER_ID','PUBLIC.USER.ID'])" transform='translate(7,0)' class='scene' d='M 420 150 L 420,315' >
+	<title>Fk FK_APCC8LXK2XNUG8377FATVBN04
+USER_ROLE ref USER ( USER_ID -> ID )</title>
+</path>
+<path class='defo' transform='translate(7,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'    d='M 420 150 L 420,315' ></path>
+<text x='433' y='150' transform='rotate(90 433,150)' title='Fk FK_APCC8LXK2XNUG8377FATVBN04
+USER_ROLE ref USER ( USER_ID -> ID )' style='fill:#a1a0a0;'>USER_ID</text>
+<!-- ============= Table 'ROLE' ============= -->
+<rect class='table' x='45' y='38' width='90' height='90' rx='7' ry='7' />
+<path d='M 45.50 64.50 L 45.50 45.50 Q 45.50 38.50 52.50 38.50 L 127.50 38.50 Q 134.50 38.50 134.50 45.50 L 134.50 64.50 L45.50 64.50 ' style='fill:url(#tableHeaderGradient0); stroke:none;' />
+<a xlink:href='#ROLE'><text x='73' y='56' class='tableTitle'>ROLE</text><title>Table PUBLIC.ROLE</title></a>
+  <use id='nn' x='47' y='72' xlink:href='#nn'/><a xlink:href='#ROLE.ID'><use id='pk' x='47' y='71' xlink:href='#pk'/><title>Pk CONSTRAINT_2 ( ID ) </title></a>
+<a xlink:href='#ROLE.ID'><text id='PUBLIC.ROLE.ID' x='63' y='82' onmouseover="hghl(['USER_ROLE_FK_IT77EQ964JHFQTU54081EBTIO'])" onmouseout="uhghl(['USER_ROLE_FK_IT77EQ964JHFQTU54081EBTIO'])">ID</text><title>ID
+* bigint default &#40;NEXT VALUE FOR PUBLIC&#46;SYSTEM&#95;SEQUENCE&#95;11CDFA44&#95;4778&#95;422D&#95;B68E&#95;B82491E2AA59&#41;</title></a>
+<a xlink:href='#ROLE.ID'><use id='ref' x='123' y='71' xlink:href='#ref'/><title>Referred by USER_ROLE ( ROLE_ID -> ID ) </title></a>
+  <use id='nn' x='47' y='87' xlink:href='#nn'/><a xlink:href='#ROLE.VERSION'><text id='PUBLIC.ROLE.VERSION' x='63' y='97'>VERSION</text><title>VERSION
+* bigint</title></a>
+  <use id='nn' x='47' y='102' xlink:href='#nn'/><a xlink:href='#ROLE.AUTHORITY'><use id='unq' x='47' y='101' xlink:href='#unq'/><title>Unq UK_IRSAMGNERA6ANGM0PRQ1KEMT2_INDEX_2 ( AUTHORITY ) </title></a>
+<a xlink:href='#ROLE.AUTHORITY'><text id='PUBLIC.ROLE.AUTHORITY' x='63' y='112'>AUTHORITY</text><title>AUTHORITY
+* varchar&#40;255&#41;</title></a>
+
+<!-- ============= Table 'AUTOMOBILE' ============= -->
+<rect class='table' x='60' y='233' width='120' height='180' rx='7' ry='7' />
+<path d='M 60.50 259.50 L 60.50 240.50 Q 60.50 233.50 67.50 233.50 L 172.50 233.50 Q 179.50 233.50 179.50 240.50 L 179.50 259.50 L60.50 259.50 ' style='fill:url(#tableHeaderGradient0); stroke:none;' />
+<a xlink:href='#AUTOMOBILE'><text x='84' y='251' class='tableTitle'>AUTOMOBILE</text><title>Table PUBLIC.AUTOMOBILE</title></a>
+  <use id='nn' x='62' y='267' xlink:href='#nn'/><a xlink:href='#AUTOMOBILE.ID'><use id='pk' x='62' y='266' xlink:href='#pk'/><title>Pk CONSTRAINT_3 ( ID ) </title></a>
+<a xlink:href='#AUTOMOBILE.ID'><text id='PUBLIC.AUTOMOBILE.ID' x='78' y='277' onmouseover="hghl(['LISTING_FK_BLQC2QNSV34VDIJ2WDCJA6HP1'])" onmouseout="uhghl(['LISTING_FK_BLQC2QNSV34VDIJ2WDCJA6HP1'])">ID</text><title>ID
+* bigint default &#40;NEXT VALUE FOR PUBLIC&#46;SYSTEM&#95;SEQUENCE&#95;D6A71DE3&#95;F6C6&#95;4396&#95;BE30&#95;CD4F7A732B2A&#41;</title></a>
+<a xlink:href='#AUTOMOBILE.ID'><use id='ref' x='168' y='266' xlink:href='#ref'/><title>Referred by LISTING ( AUTOMOBILE_ID -> ID ) </title></a>
+  <use id='nn' x='62' y='282' xlink:href='#nn'/><a xlink:href='#AUTOMOBILE.VERSION'><text id='PUBLIC.AUTOMOBILE.VERSION' x='78' y='292'>VERSION</text><title>VERSION
+* bigint</title></a>
+  <use id='nn' x='62' y='297' xlink:href='#nn'/><a xlink:href='#AUTOMOBILE.DATE_CREATED'><text id='PUBLIC.AUTOMOBILE.DATE_CREATED' x='78' y='307'>DATE_CREATED</text><title>DATE_CREATED
+* timestamp</title></a>
+  <use id='nn' x='62' y='312' xlink:href='#nn'/><a xlink:href='#AUTOMOBILE.LAST_UPDATED'><text id='PUBLIC.AUTOMOBILE.LAST_UPDATED' x='78' y='322'>LAST_UPDATED</text><title>LAST_UPDATED
+* timestamp</title></a>
+  <use id='nn' x='62' y='327' xlink:href='#nn'/><a xlink:href='#AUTOMOBILE.MAKE'><text id='PUBLIC.AUTOMOBILE.MAKE' x='78' y='337'>MAKE</text><title>MAKE
+* varchar&#40;255&#41;</title></a>
+  <use id='nn' x='62' y='342' xlink:href='#nn'/><a xlink:href='#AUTOMOBILE.MODEL'><text id='PUBLIC.AUTOMOBILE.MODEL' x='78' y='352'>MODEL</text><title>MODEL
+* varchar&#40;255&#41;</title></a>
+  <use id='nn' x='62' y='357' xlink:href='#nn'/><a xlink:href='#AUTOMOBILE.OWNER_ID'><use id='idx' x='62' y='356' xlink:href='#idx'/><title>FK_YAIXHDOFC2AHBVO87F4KXNFD_INDEX_3 ( OWNER_ID ) </title></a>
+<a xlink:href='#AUTOMOBILE.OWNER_ID'><text id='PUBLIC.AUTOMOBILE.OWNER_ID' x='78' y='367' onmouseover="hghl(['AUTOMOBILE_FK_YAIXHDOFC2AHBVO87F4KXNFD'])" onmouseout="uhghl(['AUTOMOBILE_FK_YAIXHDOFC2AHBVO87F4KXNFD'])">OWNER_ID</text><title>OWNER_ID
+* bigint</title></a>
+<a xlink:href='#AUTOMOBILE.OWNER_ID'><use id='fk' x='168' y='356' xlink:href='#fk'/><title>References USER ( OWNER_ID -> ID ) </title></a>
+  <use id='nn' x='62' y='372' xlink:href='#nn'/><a xlink:href='#AUTOMOBILE.VIN'><use id='unq' x='62' y='371' xlink:href='#unq'/><title>Unq UK_9DS6FW9JCXA2D86PC6QFSLDAB_INDEX_3 ( VIN ) </title></a>
+<a xlink:href='#AUTOMOBILE.VIN'><text id='PUBLIC.AUTOMOBILE.VIN' x='78' y='382'>VIN</text><title>VIN
+* bigint</title></a>
+  <use id='nn' x='62' y='387' xlink:href='#nn'/><a xlink:href='#AUTOMOBILE.YEAR'><text id='PUBLIC.AUTOMOBILE.YEAR' x='78' y='397'>YEAR</text><title>YEAR
+* integer</title></a>
+
+<!-- ============= Table 'LISTING' ============= -->
+<rect class='table' x='60' y='533' width='120' height='180' rx='7' ry='7' />
+<path d='M 60.50 559.50 L 60.50 540.50 Q 60.50 533.50 67.50 533.50 L 172.50 533.50 Q 179.50 533.50 179.50 540.50 L 179.50 559.50 L60.50 559.50 ' style='fill:url(#tableHeaderGradient0); stroke:none;' />
+<a xlink:href='#LISTING'><text x='98' y='551' class='tableTitle'>LISTING</text><title>Table PUBLIC.LISTING</title></a>
+  <use id='nn' x='62' y='567' xlink:href='#nn'/><a xlink:href='#LISTING.ID'><use id='pk' x='62' y='566' xlink:href='#pk'/><title>Pk CONSTRAINT_35 ( ID ) </title></a>
+<a xlink:href='#LISTING.ID'><text id='PUBLIC.LISTING.ID' x='78' y='577'>ID</text><title>ID
+* bigint default &#40;NEXT VALUE FOR PUBLIC&#46;SYSTEM&#95;SEQUENCE&#95;DD690853&#95;1C9C&#95;4D86&#95;A829&#95;71FD3A86D035&#41;</title></a>
+  <use id='nn' x='62' y='582' xlink:href='#nn'/><a xlink:href='#LISTING.VERSION'><text id='PUBLIC.LISTING.VERSION' x='78' y='592'>VERSION</text><title>VERSION
+* bigint</title></a>
+  <use id='nn' x='62' y='597' xlink:href='#nn'/><a xlink:href='#LISTING.AUTOMOBILE_ID'><use id='unq' x='62' y='596' xlink:href='#unq'/><title>Unq UK_BLQC2QNSV34VDIJ2WDCJA6HP1_INDEX_3 ( AUTOMOBILE_ID ) </title></a>
+<a xlink:href='#LISTING.AUTOMOBILE_ID'><text id='PUBLIC.LISTING.AUTOMOBILE_ID' x='78' y='607' onmouseover="hghl(['LISTING_FK_BLQC2QNSV34VDIJ2WDCJA6HP1'])" onmouseout="uhghl(['LISTING_FK_BLQC2QNSV34VDIJ2WDCJA6HP1'])">AUTOMOBILE_ID</text><title>AUTOMOBILE_ID
+* bigint</title></a>
+<a xlink:href='#LISTING.AUTOMOBILE_ID'><use id='fk' x='168' y='596' xlink:href='#fk'/><title>References AUTOMOBILE ( AUTOMOBILE_ID -> ID ) </title></a>
+  <a xlink:href='#LISTING.BUYER_ID'><use id='idx' x='62' y='611' xlink:href='#idx'/><title>FK_MR2WLVMJAO25KOSDRJ07SX6X5_INDEX_3 ( BUYER_ID ) </title></a>
+<a xlink:href='#LISTING.BUYER_ID'><text id='PUBLIC.LISTING.BUYER_ID' x='78' y='622' onmouseover="hghl(['LISTING_FK_MR2WLVMJAO25KOSDRJ07SX6X5'])" onmouseout="uhghl(['LISTING_FK_MR2WLVMJAO25KOSDRJ07SX6X5'])">BUYER_ID</text><title>BUYER_ID
+bigint</title></a>
+<a xlink:href='#LISTING.BUYER_ID'><use id='fk' x='168' y='611' xlink:href='#fk'/><title>References USER ( BUYER_ID -> ID ) </title></a>
+  <use id='nn' x='62' y='627' xlink:href='#nn'/><a xlink:href='#LISTING.DATE_CREATED'><text id='PUBLIC.LISTING.DATE_CREATED' x='78' y='637'>DATE_CREATED</text><title>DATE_CREATED
+* timestamp</title></a>
+  <use id='nn' x='62' y='642' xlink:href='#nn'/><a xlink:href='#LISTING.IS_ACTIVE'><text id='PUBLIC.LISTING.IS_ACTIVE' x='78' y='652'>IS_ACTIVE</text><title>IS_ACTIVE
+* boolean</title></a>
+  <use id='nn' x='62' y='657' xlink:href='#nn'/><a xlink:href='#LISTING.LAST_UPDATED'><text id='PUBLIC.LISTING.LAST_UPDATED' x='78' y='667'>LAST_UPDATED</text><title>LAST_UPDATED
+* timestamp</title></a>
+  <use id='nn' x='62' y='672' xlink:href='#nn'/><a xlink:href='#LISTING.PRICE'><text id='PUBLIC.LISTING.PRICE' x='78' y='682'>PRICE</text><title>PRICE
+* decimal&#40;19&#41;</title></a>
+  <use id='nn' x='62' y='687' xlink:href='#nn'/><a xlink:href='#LISTING.SELLER_ID'><use id='idx' x='62' y='686' xlink:href='#idx'/><title>FK_3FD1L12TYDNGSG3JK09360EXU_INDEX_3 ( SELLER_ID ) </title></a>
+<a xlink:href='#LISTING.SELLER_ID'><text id='PUBLIC.LISTING.SELLER_ID' x='78' y='697' onmouseover="hghl(['LISTING_FK_3FD1L12TYDNGSG3JK09360EXU'])" onmouseout="uhghl(['LISTING_FK_3FD1L12TYDNGSG3JK09360EXU'])">SELLER_ID</text><title>SELLER_ID
+* bigint</title></a>
+<a xlink:href='#LISTING.SELLER_ID'><use id='fk' x='168' y='686' xlink:href='#fk'/><title>References USER ( SELLER_ID -> ID ) </title></a>
+
+<!-- ============= Table 'USER' ============= -->
+<rect class='table' x='360' y='323' width='150' height='240' rx='7' ry='7' />
+<path d='M 360.50 349.50 L 360.50 330.50 Q 360.50 323.50 367.50 323.50 L 502.50 323.50 Q 509.50 323.50 509.50 330.50 L 509.50 349.50 L360.50 349.50 ' style='fill:url(#tableHeaderGradient0); stroke:none;' />
+<a xlink:href='#USER'><text x='418' y='341' class='tableTitle'>USER</text><title>Table PUBLIC.USER</title></a>
+  <use id='nn' x='362' y='357' xlink:href='#nn'/><a xlink:href='#USER.ID'><use id='pk' x='362' y='356' xlink:href='#pk'/><title>Pk CONSTRAINT_27 ( ID ) </title></a>
+<a xlink:href='#USER.ID'><text id='PUBLIC.USER.ID' x='378' y='367' onmouseover="hghl(['AUTOMOBILE_FK_YAIXHDOFC2AHBVO87F4KXNFD','LISTING_FK_3FD1L12TYDNGSG3JK09360EXU','LISTING_FK_MR2WLVMJAO25KOSDRJ07SX6X5','USER_ROLE_FK_APCC8LXK2XNUG8377FATVBN04'])" onmouseout="uhghl(['AUTOMOBILE_FK_YAIXHDOFC2AHBVO87F4KXNFD','LISTING_FK_3FD1L12TYDNGSG3JK09360EXU','LISTING_FK_MR2WLVMJAO25KOSDRJ07SX6X5','USER_ROLE_FK_APCC8LXK2XNUG8377FATVBN04'])">ID</text><title>ID
+* bigint default &#40;NEXT VALUE FOR PUBLIC&#46;SYSTEM&#95;SEQUENCE&#95;8FF9F30E&#95;E968&#95;4978&#95;8208&#95;BA490A969147&#41;</title></a>
+<a xlink:href='#USER.ID'><use id='ref' x='498' y='356' xlink:href='#ref'/><title>Referred by AUTOMOBILE ( OWNER_ID -> ID ) 
+Referred by LISTING ( SELLER_ID -> ID ) 
+Referred by LISTING ( BUYER_ID -> ID ) 
+Referred by USER_ROLE ( USER_ID -> ID ) </title></a>
+  <use id='nn' x='362' y='372' xlink:href='#nn'/><a xlink:href='#USER.VERSION'><text id='PUBLIC.USER.VERSION' x='378' y='382'>VERSION</text><title>VERSION
+* bigint</title></a>
+  <use id='nn' x='362' y='387' xlink:href='#nn'/><a xlink:href='#USER.ACCOUNT_EXPIRED'><text id='PUBLIC.USER.ACCOUNT_EXPIRED' x='378' y='397'>ACCOUNT_EXPIRED</text><title>ACCOUNT_EXPIRED
+* boolean</title></a>
+  <use id='nn' x='362' y='402' xlink:href='#nn'/><a xlink:href='#USER.ACCOUNT_LOCKED'><text id='PUBLIC.USER.ACCOUNT_LOCKED' x='378' y='412'>ACCOUNT_LOCKED</text><title>ACCOUNT_LOCKED
+* boolean</title></a>
+  <use id='nn' x='362' y='417' xlink:href='#nn'/><a xlink:href='#USER.AGE'><text id='PUBLIC.USER.AGE' x='378' y='427'>AGE</text><title>AGE
+* integer</title></a>
+  <a xlink:href='#USER.BIO'><text id='PUBLIC.USER.BIO' x='378' y='442'>BIO</text><title>BIO
+varchar&#40;255&#41;</title></a>
+  <a xlink:href='#USER.EMAIL'><text id='PUBLIC.USER.EMAIL' x='378' y='457'>EMAIL</text><title>EMAIL
+varchar&#40;255&#41;</title></a>
+  <use id='nn' x='362' y='462' xlink:href='#nn'/><a xlink:href='#USER.ENABLED'><text id='PUBLIC.USER.ENABLED' x='378' y='472'>ENABLED</text><title>ENABLED
+* boolean</title></a>
+  <a xlink:href='#USER.FIRST_NAME'><text id='PUBLIC.USER.FIRST_NAME' x='378' y='487'>FIRST_NAME</text><title>FIRST_NAME
+varchar&#40;255&#41;</title></a>
+  <a xlink:href='#USER.LAST_NAME'><text id='PUBLIC.USER.LAST_NAME' x='378' y='502'>LAST_NAME</text><title>LAST_NAME
+varchar&#40;255&#41;</title></a>
+  <use id='nn' x='362' y='507' xlink:href='#nn'/><a xlink:href='#USER.password'><text id='PUBLIC.USER.password' x='378' y='517'>password</text><title>password
+* varchar&#40;255&#41;</title></a>
+  <use id='nn' x='362' y='522' xlink:href='#nn'/><a xlink:href='#USER.PASSWORD_EXPIRED'><text id='PUBLIC.USER.PASSWORD_EXPIRED' x='378' y='532'>PASSWORD_EXPIRED</text><title>PASSWORD_EXPIRED
+* boolean</title></a>
+  <use id='nn' x='362' y='537' xlink:href='#nn'/><a xlink:href='#USER.USERNAME'><use id='unq' x='362' y='536' xlink:href='#unq'/><title>Unq UK_SB8BBOUER5WAK8VYIIY4PF2BX_INDEX_2 ( USERNAME ) </title></a>
+<a xlink:href='#USER.USERNAME'><text id='PUBLIC.USER.USERNAME' x='378' y='547'>USERNAME</text><title>USERNAME
+* varchar&#40;255&#41;</title></a>
+
+<!-- ============= Table 'USER_ROLE' ============= -->
+<rect class='table' x='405' y='68' width='75' height='75' rx='7' ry='7' />
+<path d='M 405.50 94.50 L 405.50 75.50 Q 405.50 68.50 412.50 68.50 L 472.50 68.50 Q 479.50 68.50 479.50 75.50 L 479.50 94.50 L405.50 94.50 ' style='fill:url(#tableHeaderGradient0); stroke:none;' />
+<a xlink:href='#USER_ROLE'><text x='409' y='86' class='tableTitle'>USER_ROLE</text><title>Table PUBLIC.USER_ROLE</title></a>
+  <use id='nn' x='407' y='102' xlink:href='#nn'/><a xlink:href='#USER_ROLE.ROLE_ID'><use id='pk' x='407' y='101' xlink:href='#pk'/><title>Pk CONSTRAINT_B ( ROLE_ID, USER_ID ) </title></a>
+<a xlink:href='#USER_ROLE.ROLE_ID'><text id='PUBLIC.USER_ROLE.ROLE_ID' x='423' y='112' onmouseover="hghl(['USER_ROLE_FK_IT77EQ964JHFQTU54081EBTIO'])" onmouseout="uhghl(['USER_ROLE_FK_IT77EQ964JHFQTU54081EBTIO'])">ROLE_ID</text><title>ROLE_ID
+* bigint</title></a>
+<a xlink:href='#USER_ROLE.ROLE_ID'><use id='fk' x='468' y='101' xlink:href='#fk'/><title>References ROLE ( ROLE_ID -> ID ) </title></a>
+  <use id='nn' x='407' y='117' xlink:href='#nn'/><a xlink:href='#USER_ROLE.USER_ID'><use id='pk' x='407' y='116' xlink:href='#pk'/><title>Pk CONSTRAINT_B ( ROLE_ID, USER_ID ) FK_APCC8LXK2XNUG8377FATVBN04_INDEX_B ( USER_ID ) </title></a>
+<a xlink:href='#USER_ROLE.USER_ID'><text id='PUBLIC.USER_ROLE.USER_ID' x='423' y='127' onmouseover="hghl(['USER_ROLE_FK_APCC8LXK2XNUG8377FATVBN04'])" onmouseout="uhghl(['USER_ROLE_FK_APCC8LXK2XNUG8377FATVBN04'])">USER_ID</text><title>USER_ID
+* bigint</title></a>
+<a xlink:href='#USER_ROLE.USER_ID'><use id='fk' x='468' y='116' xlink:href='#fk'/><title>References USER ( USER_ID -> ID ) </title></a>
+
+</g></svg>
+
+<br/><br/>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'><a name='ROLE'>Table ROLE</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*</td>
+		<td><a name='ROLE.ID'>ID</a></td>
+		<td> bigint   DEFO (NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_11CDFA44_4778_422D_B68E_B82491E2AA59) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='ROLE.VERSION'>VERSION</a></td>
+		<td> bigint   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='ROLE.AUTHORITY'>AUTHORITY</a></td>
+		<td> varchar&#40; 255 &#41;   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'><b>Indexes</b></th></tr>
+	<tr>		<td>Pk</td><td>CONSTRAINT&#95;2</td>
+		<td> ON ID</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td>U</td><td>UK&#95;IRSAMGNERA6ANGM0PRQ1KEMT2&#95;INDEX&#95;2</td>
+		<td> ON AUTHORITY</td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'><a name='AUTOMOBILE'>Table AUTOMOBILE</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*</td>
+		<td><a name='AUTOMOBILE.ID'>ID</a></td>
+		<td> bigint   DEFO (NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_D6A71DE3_F6C6_4396_BE30_CD4F7A732B2A) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='AUTOMOBILE.VERSION'>VERSION</a></td>
+		<td> bigint   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='AUTOMOBILE.DATE_CREATED'>DATE&#95;CREATED</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='AUTOMOBILE.LAST_UPDATED'>LAST&#95;UPDATED</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='AUTOMOBILE.MAKE'>MAKE</a></td>
+		<td> varchar&#40; 255 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='AUTOMOBILE.MODEL'>MODEL</a></td>
+		<td> varchar&#40; 255 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='AUTOMOBILE.OWNER_ID'>OWNER&#95;ID</a></td>
+		<td> bigint   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='AUTOMOBILE.VIN'>VIN</a></td>
+		<td> bigint   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='AUTOMOBILE.YEAR'>YEAR</a></td>
+		<td> integer   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'><b>Indexes</b></th></tr>
+	<tr>		<td>Pk</td><td>CONSTRAINT&#95;3</td>
+		<td> ON ID</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td>U</td><td>UK&#95;9DS6FW9JCXA2D86PC6QFSLDAB&#95;INDEX&#95;3</td>
+		<td> ON VIN</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td>&nbsp;</td><td>FK&#95;YAIXHDOFC2AHBVO87F4KXNFD&#95;INDEX&#95;3</td>
+		<td> ON OWNER&#95;ID</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'><b>Foreign Keys</b></th></tr>
+	<tr>
+		<td>&nbsp;</td><td>FK_YAIXHDOFC2AHBVO87F4KXNFD</td>
+		<td > ( OWNER&#95;ID ) ref <a href='#USER'>USER</a> (ID) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'><a name='LISTING'>Table LISTING</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*</td>
+		<td><a name='LISTING.ID'>ID</a></td>
+		<td> bigint   DEFO (NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_DD690853_1C9C_4D86_A829_71FD3A86D035) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='LISTING.VERSION'>VERSION</a></td>
+		<td> bigint   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='LISTING.AUTOMOBILE_ID'>AUTOMOBILE&#95;ID</a></td>
+		<td> bigint   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='LISTING.BUYER_ID'>BUYER&#95;ID</a></td>
+		<td> bigint   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='LISTING.DATE_CREATED'>DATE&#95;CREATED</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='LISTING.IS_ACTIVE'>IS&#95;ACTIVE</a></td>
+		<td> boolean   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='LISTING.LAST_UPDATED'>LAST&#95;UPDATED</a></td>
+		<td> timestamp   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='LISTING.PRICE'>PRICE</a></td>
+		<td> decimal&#40; 19 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='LISTING.SELLER_ID'>SELLER&#95;ID</a></td>
+		<td> bigint   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'><b>Indexes</b></th></tr>
+	<tr>		<td>Pk</td><td>CONSTRAINT&#95;35</td>
+		<td> ON ID</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td>U</td><td>UK&#95;BLQC2QNSV34VDIJ2WDCJA6HP1&#95;INDEX&#95;3</td>
+		<td> ON AUTOMOBILE&#95;ID</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td>&nbsp;</td><td>FK&#95;3FD1L12TYDNGSG3JK09360EXU&#95;INDEX&#95;3</td>
+		<td> ON SELLER&#95;ID</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td>&nbsp;</td><td>FK&#95;MR2WLVMJAO25KOSDRJ07SX6X5&#95;INDEX&#95;3</td>
+		<td> ON BUYER&#95;ID</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'><b>Foreign Keys</b></th></tr>
+	<tr>
+		<td>&nbsp;</td><td>FK_BLQC2QNSV34VDIJ2WDCJA6HP1</td>
+		<td > ( AUTOMOBILE&#95;ID ) ref <a href='#AUTOMOBILE'>AUTOMOBILE</a> (ID) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td><td>FK_3FD1L12TYDNGSG3JK09360EXU</td>
+		<td > ( SELLER&#95;ID ) ref <a href='#USER'>USER</a> (ID) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td><td>FK_MR2WLVMJAO25KOSDRJ07SX6X5</td>
+		<td > ( BUYER&#95;ID ) ref <a href='#USER'>USER</a> (ID) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'><a name='USER'>Table USER</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*</td>
+		<td><a name='USER.ID'>ID</a></td>
+		<td> bigint   DEFO (NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_8FF9F30E_E968_4978_8208_BA490A969147) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='USER.VERSION'>VERSION</a></td>
+		<td> bigint   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='USER.ACCOUNT_EXPIRED'>ACCOUNT&#95;EXPIRED</a></td>
+		<td> boolean   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='USER.ACCOUNT_LOCKED'>ACCOUNT&#95;LOCKED</a></td>
+		<td> boolean   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='USER.AGE'>AGE</a></td>
+		<td> integer   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='USER.BIO'>BIO</a></td>
+		<td> varchar&#40; 255 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='USER.EMAIL'>EMAIL</a></td>
+		<td> varchar&#40; 255 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='USER.ENABLED'>ENABLED</a></td>
+		<td> boolean   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='USER.FIRST_NAME'>FIRST&#95;NAME</a></td>
+		<td> varchar&#40; 255 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><a name='USER.LAST_NAME'>LAST&#95;NAME</a></td>
+		<td> varchar&#40; 255 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='USER.password'>password</a></td>
+		<td> varchar&#40; 255 &#41;   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='USER.PASSWORD_EXPIRED'>PASSWORD&#95;EXPIRED</a></td>
+		<td> boolean   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='USER.USERNAME'>USERNAME</a></td>
+		<td> varchar&#40; 255 &#41;   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'><b>Indexes</b></th></tr>
+	<tr>		<td>Pk</td><td>CONSTRAINT&#95;27</td>
+		<td> ON ID</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td>U</td><td>UK&#95;SB8BBOUER5WAK8VYIIY4PF2BX&#95;INDEX&#95;2</td>
+		<td> ON USERNAME</td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table class='bordered'>
+<thead>
+<tr><th colspan='4'><a name='USER_ROLE'>Table USER_ROLE</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td>*</td>
+		<td><a name='USER_ROLE.ROLE_ID'>ROLE&#95;ID</a></td>
+		<td> bigint   </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td><a name='USER_ROLE.USER_ID'>USER&#95;ID</a></td>
+		<td> bigint   </td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'><b>Indexes</b></th></tr>
+	<tr>		<td>Pk</td><td>CONSTRAINT&#95;B</td>
+		<td> ON ROLE&#95;ID&#44; USER&#95;ID</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td>&nbsp;</td><td>FK&#95;APCC8LXK2XNUG8377FATVBN04&#95;INDEX&#95;B</td>
+		<td> ON USER&#95;ID</td>
+		<td>  </td>
+	</tr>
+<tr><th colspan='4'><b>Foreign Keys</b></th></tr>
+	<tr>
+		<td>&nbsp;</td><td>FK_IT77EQ964JHFQTU54081EBTIO</td>
+		<td > ( ROLE&#95;ID ) ref <a href='#ROLE'>ROLE</a> (ID) </td>
+		<td>  </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td><td>FK_APCC8LXK2XNUG8377FATVBN04</td>
+		<td > ( USER&#95;ID ) ref <a href='#USER'>USER</a> (ID) </td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+</body></html>
