@@ -1,5 +1,5 @@
-JalopyExchange - Developer Doc
-==============================
+JalopyExchange - Developer Document
+===================================
 
 By Chris Badalucco
 
