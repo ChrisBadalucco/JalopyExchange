@@ -8,9 +8,11 @@ The College of Saint Rose C.I.S. Masters Project
 Jalopy Exchange is a web application that simulates buying/selling of automobiles
 
 
-#Git Repository - https://github.com/badastrose/JalopyExchange
+#Git Repository
+https://github.com/badastrose/JalopyExchange
 
-# User Guide - http://youtu.be/kxj4w4sIP2Q
+#User Guide
+http://youtu.be/kxj4w4sIP2Q
 
 This is an open-source project. Feel free to fork the code and run with the idea!
 
