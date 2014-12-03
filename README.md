@@ -1,5 +1,5 @@
-JalopyExchange - Developer README
-===================================
+JalopyExchange - Developer Doc
+==============================
 
 By Chris Badalucco
 
